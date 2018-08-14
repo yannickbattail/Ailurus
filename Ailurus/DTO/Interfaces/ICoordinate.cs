@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace Ailurus.DTO
+﻿namespace Ailurus.DTO
 {
     public interface ICoordinate
     {
-        Double GetDistanceTo(ICoordinate destination);
+        double GetDistanceTo(ICoordinate destination);
     }
 }

@@ -7,7 +7,6 @@ namespace AilurusTest
         [Fact]
         public void Test1()
         {
-
         }
     }
 }
