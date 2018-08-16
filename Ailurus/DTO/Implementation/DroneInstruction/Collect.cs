@@ -1,6 +1,6 @@
 ﻿namespace Ailurus.DTO.Implementation.DroneInstruction
 {
-    public class Collect : IDroneInstruction
+    public class Collect<TCoordinate> : IDroneInstruction<TCoordinate> where TCoordinate : ICoordinate
     {
         public string TYPE
         {

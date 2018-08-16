@@ -2,8 +2,8 @@
 
 namespace Ailurus.DTO
 {
-    public interface IInstructions
+    public interface IInstructions<TCoordinate> where TCoordinate : ICoordinate
     {
-        IEnumerable<IDroneInstruction> DroneInstruction { get; set; }
+        IEnumerable<IDroneInstruction<TCoordinate>> DroneInstruction { get; set; }
     }
 }

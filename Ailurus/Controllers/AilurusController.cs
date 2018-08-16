@@ -9,8 +9,8 @@ namespace Ailurus.Controllers
 {
     public class AilurusController : Controller
     {
-        // GET api/map
-        [HttpGet]
+        // GET map
+        [HttpGet("map")]
         public IMapInfo<CoordinateInt2D> GetMap()
         {
             return new MapInfo<CoordinateInt2D>()
@@ -52,8 +52,8 @@ namespace Ailurus.Controllers
             };
         }
 
-        // GET api/playerContext
-        [HttpGet]
+        // GET playerContext
+        [HttpGet("playerContext")]
         public IPlayerContext<CoordinateInt2D> GetPlayerContext()
         {
             //@TODO get playerName from authentication
@@ -71,9 +71,9 @@ namespace Ailurus.Controllers
             }
         }
 
-        // POST api/instructions
-        [HttpPost]
-        public string SendInstructions(IInstructions instructions)
+        // POST instructions
+        [HttpPost("instructions")]
+        public string SendInstructions(IInstructions<CoordinateInt2D> instructions)
         {
             return "Oki doki";
         }
