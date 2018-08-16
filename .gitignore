@@ -392,11 +392,7 @@ ASALocalRun/
 .mfractor/
 
 Ailurus/Ailurus.csproj.user
-Ailurus/Model/
-Ailurus/Properties/
-Ailurus/Service/
 Ailurus/bin/
 Ailurus/obj/
-Ailurus/wwwroot/
 AilurusTest/bin/
 AilurusTest/obj/

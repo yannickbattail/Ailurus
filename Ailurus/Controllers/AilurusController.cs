@@ -4,6 +4,7 @@ using Ailurus.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using Ailurus.Service;
 
 namespace Ailurus.Controllers
 {
@@ -73,9 +74,14 @@ namespace Ailurus.Controllers
 
         // POST instructions
         [HttpPost("instructions")]
-        public string SendInstructions(IInstructions<CoordinateInt2D> instructions)
+        public IEnumerable<string> SendInstructions(
+            /*[ModelBinder(BinderType = typeof(InstructionModelBinder))]*/
+            Instructions<CoordinateInt2D> instructions)
         {
-            return "Oki doki";
+            //@TODO get playerName from authentication
+            var context = GetPlayerContext();
+            var service = new DroneManagmentService<CoordinateInt2D>(context);
+            return service.ProcessInstructions(instructions);
         }
     }
 }
