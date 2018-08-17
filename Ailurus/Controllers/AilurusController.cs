@@ -15,8 +15,8 @@ namespace Ailurus.Controllers
     public class AilurusController : Controller
     {
         // GET map
-        [Route("map")]
         [HttpGet]
+        [Route("map")]
         public IMapInfo<CoordinateInt2D> GetMap()
         {
             return new MapInfo<CoordinateInt2D>()
@@ -59,8 +59,8 @@ namespace Ailurus.Controllers
         }
 
         // GET playerContext
-        [Route("playerContext")]
         [HttpGet]
+        [Route("playerContext")]
         public IPlayerContext<CoordinateInt2D> GetPlayerContext()
         {
             //@TODO get playerName from authentication
@@ -103,11 +103,29 @@ namespace Ailurus.Controllers
             }
         }
 
+        
+        /*
+[
+	{
+		"TYPE" : "CollectDto",
+		"DroneName" : "Drone_1"
+	},
+	{
+		"TYPE" : "MoveToDto",
+		"DroneName" : "Drone_2",
+		"Destination" : {
+			"X" : 10,
+			"Y" : 10
+		}
+	}
+]*/
         // POST instructions
-        [Route("instructions")]
         [HttpPost]
+        [Route("instructions")]
         public IEnumerable<string> SendInstructions(
-        [Required] List<GlobalInstruction<CoordinateInt2D>> instructions)
+            [FromBody]
+            [Required]
+            List<GlobalInstruction<CoordinateInt2D>> instructions)
         {
             if (!ModelState.IsValid)
             {

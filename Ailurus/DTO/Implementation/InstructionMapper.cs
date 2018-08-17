@@ -7,14 +7,14 @@ namespace Ailurus.DTO.Implementation
     {
         public IDroneInstruction<TCoordinate> ToSpecificInstruction(GlobalInstruction<TCoordinate> globalInstruction)
         {
-            if (globalInstruction.TYPE == typeof(CollectDto<TCoordinate>).Name)
+            if (globalInstruction.TYPE == "CollectDto")
             {
                 return new CollectDto<TCoordinate>()
                 {
                     DroneName = globalInstruction.DroneName
                 };
             }
-            if (globalInstruction.TYPE == typeof(MoveToDto<TCoordinate>).Name)
+            if (globalInstruction.TYPE == "MoveToDto")
             {
                 return new MoveToDto<TCoordinate>()
                 {
@@ -22,7 +22,7 @@ namespace Ailurus.DTO.Implementation
                     Destination = globalInstruction.Destination
                 };
             } 
-            if (globalInstruction.TYPE == typeof(UnloadDto<TCoordinate>).Name)
+            if (globalInstruction.TYPE == "UnloadDto")
             {
                 return new UnloadDto<TCoordinate>()
                 {
