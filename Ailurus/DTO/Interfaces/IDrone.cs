@@ -8,7 +8,8 @@ namespace Ailurus.DTO
         string Name { get; set; }
         IInstruction<TCoordinate> LastInstruction { get; set; }
         TCoordinate CurrentPosition { get; set; }
-        DroneState DroneState { get; }
+        DroneState State { get; }
+        DroneState GetStateAt(DateTime Time);
         Double Speed { get; set; }
     }
 }

@@ -9,19 +9,24 @@ namespace Ailurus.DTO.Implementation
         public IInstruction<TCoordinate> LastInstruction { get; set; }
         public TCoordinate CurrentPosition { get; set; }
 
+        public DroneState GetStateAt(DateTime Time)
+        {
+            if (LastInstruction == null
+                || LastInstruction.EndAt < Time)
+            {
+                return DroneState.WaitingForOrders;
+            }
+
+            return DroneState.ExecutionInstruction;
+        }
+
         public double Speed { get; set; }
         
-        public DroneState DroneState
+        public DroneState State
         {
             get
             {
-                if (LastInstruction == null
-                    || LastInstruction.EndAt < DateTime.Now)
-                {
-                    return DroneState.WaitingForOrders;
-                }
-
-                return DroneState.ExecutionInstruction;
+                return GetStateAt(DateTime.Now);
             }
         }
 

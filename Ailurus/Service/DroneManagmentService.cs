@@ -16,9 +16,9 @@ namespace Ailurus.Service
             PlayerContext = playerContext ?? throw new ArgumentNullException(nameof(playerContext));
         }
 
-        public IEnumerable<string> ProcessInstructions(Instructions<TCoordinate> instructions)
+        public IEnumerable<string> ProcessInstructions(IEnumerable<IDroneInstruction<TCoordinate>> instructions)
         {
-            return instructions.DroneInstruction.Select(
+            return instructions.Select(
                 ProcessInstruction
             );
         }
@@ -30,8 +30,7 @@ namespace Ailurus.Service
                 var drone = PlayerContext.Drones.First(
                     dr => dr.Name == instruction.DroneName
                 );
-                if (drone.DroneState == DroneState.ExecutionInstruction 
-                    && drone.LastInstruction != null)
+                if (drone.State == DroneState.ExecutionInstruction)
                 {
                     return "drone is alrady doing an action "+drone.LastInstruction.TYPE;
                 }

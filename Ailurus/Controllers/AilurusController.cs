@@ -4,6 +4,10 @@ using Ailurus.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using Ailurus.DTO.Implementation.DroneInstruction;
+using Ailurus.Model.Instructions;
 using Ailurus.Service;
 
 namespace Ailurus.Controllers
@@ -11,7 +15,8 @@ namespace Ailurus.Controllers
     public class AilurusController : Controller
     {
         // GET map
-        [HttpGet("map")]
+        [Route("map")]
+        [HttpGet]
         public IMapInfo<CoordinateInt2D> GetMap()
         {
             return new MapInfo<CoordinateInt2D>()
@@ -54,7 +59,8 @@ namespace Ailurus.Controllers
         }
 
         // GET playerContext
-        [HttpGet("playerContext")]
+        [Route("playerContext")]
+        [HttpGet]
         public IPlayerContext<CoordinateInt2D> GetPlayerContext()
         {
             //@TODO get playerName from authentication
@@ -66,22 +72,54 @@ namespace Ailurus.Controllers
             }
             catch (Exception e)
             {
-                var playerCtx = new PlayerContext<CoordinateInt2D>();
+                var playerCtx = new PlayerContext<CoordinateInt2D>()
+                    {
+                        Drones = new List<IDrone<CoordinateInt2D>>()
+                        {
+                            new Drone<CoordinateInt2D>()
+                            {
+                                Name = "Drone_1",
+                                CurrentPosition = new CoordinateInt2D()
+                                {
+                                    X = 1,
+                                    Y = 1
+                                },
+                                Speed = 10
+                            },
+                            new Drone<CoordinateInt2D>()
+                            {
+                                Name = "Drone_2",
+                                CurrentPosition = new CoordinateInt2D()
+                                {
+                                    X = 3,
+                                    Y = 6
+                                },
+                                Speed = 10
+                            }
+                        }
+                    };
                 repo.SavePlayerContextByPlayerName(playerName, playerCtx);
                 return playerCtx;
             }
         }
 
         // POST instructions
-        [HttpPost("instructions")]
+        [Route("instructions")]
+        [HttpPost]
         public IEnumerable<string> SendInstructions(
-            /*[ModelBinder(BinderType = typeof(InstructionModelBinder))]*/
-            Instructions<CoordinateInt2D> instructions)
+        [Required] List<GlobalInstruction<CoordinateInt2D>> instructions)
         {
+            if (!ModelState.IsValid)
+            {
+                throw new Exception("Model not valid");
+            }
             //@TODO get playerName from authentication
+            var mapper = new InstructionMapper<CoordinateInt2D>();
             var context = GetPlayerContext();
             var service = new DroneManagmentService<CoordinateInt2D>(context);
-            return service.ProcessInstructions(instructions);
+            return service.ProcessInstructions(instructions.Select(
+                    globInstr => mapper.ToSpecificInstruction(globInstr)
+                ));
         }
     }
 }
