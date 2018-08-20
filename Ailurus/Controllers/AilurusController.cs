@@ -102,7 +102,6 @@ namespace Ailurus.Controllers
                 return playerCtx;
             }
         }
-
         
         /*
 [
@@ -132,12 +131,9 @@ namespace Ailurus.Controllers
                 throw new Exception("Model not valid");
             }
             //@TODO get playerName from authentication
-            var mapper = new InstructionMapper<CoordinateInt2D>();
             var context = GetPlayerContext();
             var service = new DroneManagmentService<CoordinateInt2D>(context);
-            return service.ProcessInstructions(instructions.Select(
-                    globInstr => mapper.ToSpecificInstruction(globInstr)
-                ));
+            return service.ProcessInstructions(instructions);
         }
     }
 }

@@ -1,9 +1,14 @@
-﻿using Ailurus.DTO.Implementation.DroneInstruction;
+﻿using System;
+using Ailurus.DTO.Implementation.DroneInstruction;
+using Ailurus.Model.Instructions;
 
 namespace Ailurus.DTO
 {
     public interface IInstructionMapper<TCoordinate> where TCoordinate : ICoordinate
     {
-        IDroneInstruction<TCoordinate> ToSpecificInstruction(GlobalInstruction<TCoordinate> globalInstruction);
+        IInstruction<TCoordinate> ToSpecificInstruction(
+            GlobalInstruction<TCoordinate> globalInstruction,
+            IDrone<TCoordinate> drone,
+            DateTime currentTime);
     }
 }
