@@ -12,7 +12,7 @@ namespace Ailurus.DTO.Implementation.DroneInstruction
         public string DroneName { get; set; }
         public IInstruction<TCoordinate> ToIInstruction(DateTime startedAt, IDrone<TCoordinate> drone)
         {
-            return new Collect<TCoordinate>(drone,startedAt);
+            return new Unload<TCoordinate>(drone,startedAt);
         }
     }
 }
