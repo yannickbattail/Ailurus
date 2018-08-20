@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Ailurus.DTO.Implementation.DroneInstruction;
+using Ailurus.DTO.Interfaces;
+using Ailurus.Model;
 using Ailurus.Model.Instructions;
 using Ailurus.Service;
 
@@ -61,14 +63,15 @@ namespace Ailurus.Controllers
         // GET playerContext
         [HttpGet]
         [Route("playerContext")]
-        public IPlayerContext<CoordinateInt2D> GetPlayerContext()
+        public IPlayerContextDto<CoordinateInt2D> GetPlayerContext()
         {
             //@TODO get playerName from authentication
             var playerName = "RedPanda";
             var repo = new PlayerContextRepository<CoordinateInt2D>();
+            var mapper = new PlayerContextMapper<CoordinateInt2D>();
             try
             {
-                return repo.GetPlayerContextByPlayerName(playerName);
+                return mapper.map(repo.GetPlayerContextByPlayerName(playerName));
             }
             catch (Exception e)
             {
@@ -99,18 +102,18 @@ namespace Ailurus.Controllers
                         }
                     };
                 repo.SavePlayerContextByPlayerName(playerName, playerCtx);
-                return playerCtx;
+                return mapper.map(playerCtx);
             }
         }
         
         /*
 [
 	{
-		"TYPE" : "CollectDto",
+		"TYPE" : "Collect",
 		"DroneName" : "Drone_1"
 	},
 	{
-		"TYPE" : "MoveToDto",
+		"TYPE" : "MoveTo",
 		"DroneName" : "Drone_2",
 		"Destination" : {
 			"X" : 10,
@@ -131,7 +134,9 @@ namespace Ailurus.Controllers
                 throw new Exception("Model not valid");
             }
             //@TODO get playerName from authentication
-            var context = GetPlayerContext();
+            var playerName = "RedPanda";
+            var repo = new PlayerContextRepository<CoordinateInt2D>();
+            var context = repo.GetPlayerContextByPlayerName(playerName);
             var service = new DroneManagmentService<CoordinateInt2D>(context);
             return service.ProcessInstructions(instructions);
         }

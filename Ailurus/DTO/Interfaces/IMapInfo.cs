@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Ailurus.DTO
+namespace Ailurus.DTO.Interfaces
 {
     public interface IMapInfo<TCoordinate> where TCoordinate : ICoordinate
     {

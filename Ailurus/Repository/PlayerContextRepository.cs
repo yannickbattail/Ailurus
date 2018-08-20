@@ -1,6 +1,7 @@
 ﻿using Ailurus.DTO;
 using System;
 using System.Collections.Generic;
+using Ailurus.DTO.Interfaces;
 
 namespace Ailurus.Repository
 {

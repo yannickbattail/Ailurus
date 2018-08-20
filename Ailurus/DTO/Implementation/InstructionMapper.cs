@@ -1,5 +1,7 @@
 ﻿using System;
 using Ailurus.DTO.Implementation.DroneInstruction;
+using Ailurus.DTO.Interfaces;
+using Ailurus.Model;
 using Ailurus.Model.Instructions;
 
 namespace Ailurus.DTO.Implementation

@@ -1,7 +1,9 @@
 ﻿using System;
+using Ailurus.DTO;
+using Ailurus.DTO.Interfaces;
 using Ailurus.Model.Instructions;
 
-namespace Ailurus.DTO
+namespace Ailurus.Model
 {
     public interface IDrone<TCoordinate> where TCoordinate : ICoordinate
     {

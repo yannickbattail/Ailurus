@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using Ailurus.DTO.Interfaces;
+using Ailurus.Model;
 
-namespace Ailurus.DTO
+namespace Ailurus.DTO.Implementation
 {
     public class PlayerContext<TCoordinate> : IPlayerContext<TCoordinate> where TCoordinate : ICoordinate
     {

@@ -1,4 +1,6 @@
-﻿namespace Ailurus.DTO.Implementation
+﻿using Ailurus.DTO.Interfaces;
+
+namespace Ailurus.DTO.Implementation
 {
     public class MainBuilding<TCoordinate> : IItem<TCoordinate> where TCoordinate : ICoordinate
     {

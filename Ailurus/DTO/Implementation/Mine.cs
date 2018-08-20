@@ -1,4 +1,6 @@
-﻿namespace Ailurus.DTO.Implementation
+﻿using Ailurus.DTO.Interfaces;
+
+namespace Ailurus.DTO.Implementation
 {
     public class Mine<TCoordinate> : IItem<TCoordinate> where TCoordinate : ICoordinate
     {

@@ -4,9 +4,7 @@ using System.Linq;
 using Ailurus.DTO;
 using Ailurus.DTO.Implementation;
 using Ailurus.DTO.Implementation.DroneInstruction;
-using Ailurus.Model.Instructions;
-using Ailurus.Repository;
-using SQLitePCL;
+using Ailurus.DTO.Interfaces;
 
 namespace Ailurus.Service
 {
@@ -35,13 +33,13 @@ namespace Ailurus.Service
                 );
                 if (drone.State == DroneState.ExecutionInstruction)
                 {
-                    return "drone is alrady doing an action "+drone.LastInstruction.TYPE;
+                    return "drone is alrady doing an action "+drone.LastInstruction.GetType().Name;
                 }
 
                 var mapper = new InstructionMapper<TCoordinate>();
                 drone.LastInstruction = mapper.ToSpecificInstruction(globInstruction, drone, DateTime.Now);
                 drone.LastInstruction = globInstruction.ToIInstruction(DateTime.Now, drone);
-                return "OK, drone will do "+drone.LastInstruction.TYPE;
+                return "OK, drone will do "+drone.LastInstruction.GetType().Name;
                 
             }
             catch (InvalidOperationException e)

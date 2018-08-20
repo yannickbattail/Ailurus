@@ -1,6 +1,7 @@
 ﻿using System;
+using Ailurus.DTO.Interfaces;
 
-namespace Ailurus.DTO
+namespace Ailurus.DTO.Implementation
 {
     public class CoordinateInt2D : ICoordinate
     {

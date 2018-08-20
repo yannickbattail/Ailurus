@@ -1,8 +1,9 @@
 ﻿using System;
 using Ailurus.DTO.Implementation.DroneInstruction;
+using Ailurus.Model;
 using Ailurus.Model.Instructions;
 
-namespace Ailurus.DTO
+namespace Ailurus.DTO.Interfaces
 {
     public interface IInstructionMapper<TCoordinate> where TCoordinate : ICoordinate
     {

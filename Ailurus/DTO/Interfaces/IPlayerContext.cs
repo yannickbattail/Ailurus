@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Ailurus.Model;
 
-namespace Ailurus.DTO
+namespace Ailurus.DTO.Interfaces
 {
     public interface IPlayerContext<TCoordinate> where TCoordinate : ICoordinate
     {
