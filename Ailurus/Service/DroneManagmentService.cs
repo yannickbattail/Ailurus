@@ -3,31 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using Ailurus.DTO;
 using Ailurus.Repository;
-using SQLitePCL;
 
 namespace Ailurus.Service
 {
     public class DroneManagmentService<TCoordinate> where TCoordinate : ICoordinate
     {
-        private IPlayerContext<TCoordinate> PlayerContext;
+        private IPlayerContextRepository<TCoordinate> Repository;
 
-        public DroneManagmentService(IPlayerContext<TCoordinate> playerContext)
+        public DroneManagmentService(IPlayerContextRepository<TCoordinate> repository)
         {
-            PlayerContext = playerContext ?? throw new ArgumentNullException(nameof(playerContext));
+            Repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public IEnumerable<string> ProcessInstructions(IEnumerable<IDroneInstruction<TCoordinate>> instructions)
+        public IEnumerable<string> ProcessInstructions(IEnumerable<IDroneInstruction<TCoordinate>> instructions, string playerName)
         {
-            return instructions.Select(
-                ProcessInstruction
+            
+            var context = Repository.GetPlayerContextByPlayerName(playerName);
+            var messages = instructions.Select(
+                instruction => ProcessInstruction(instruction, context)
             );
+            Repository.SavePlayerContextByPlayerName(playerName, context);
+            return messages;
         }
         
-        public string ProcessInstruction(IDroneInstruction<TCoordinate> instruction)
+        private string ProcessInstruction(IDroneInstruction<TCoordinate> instruction, IPlayerContext<TCoordinate> context)
         {
             try
             {
-                var drone = PlayerContext.Drones.First(
+                var drone = context.Drones.First(
                     dr => dr.Name == instruction.DroneName
                 );
                 if (drone.State == DroneState.ExecutionInstruction)

@@ -1,14 +1,13 @@
-﻿using Ailurus.DTO;
-using Ailurus.DTO.Implementation;
-using Ailurus.Repository;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using Ailurus.DTO;
+using Ailurus.DTO.Implementation;
 using Ailurus.DTO.Implementation.DroneInstruction;
-using Ailurus.Model.Instructions;
+using Ailurus.Repository;
 using Ailurus.Service;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Ailurus.Controllers
 {
@@ -132,12 +131,14 @@ namespace Ailurus.Controllers
                 throw new Exception("Model not valid");
             }
             //@TODO get playerName from authentication
+            var playerName = "RedPanda";
+            var repo = new PlayerContextRepository<CoordinateInt2D>();
             var mapper = new InstructionMapper<CoordinateInt2D>();
-            var context = GetPlayerContext();
-            var service = new DroneManagmentService<CoordinateInt2D>(context);
+            
+            var service = new DroneManagmentService<CoordinateInt2D>(repo);
             return service.ProcessInstructions(instructions.Select(
                     globInstr => mapper.ToSpecificInstruction(globInstr)
-                ));
+                ), playerName);
         }
     }
 }
