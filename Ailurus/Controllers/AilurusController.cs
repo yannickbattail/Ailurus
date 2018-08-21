@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Ailurus.DTO.Implementation.DroneInstruction;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Model;
 using Ailurus.Model.Instructions;

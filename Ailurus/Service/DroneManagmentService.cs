@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Ailurus.DTO;
 using Ailurus.DTO.Implementation;
-using Ailurus.DTO.Implementation.DroneInstruction;
 using Ailurus.DTO.Interfaces;
 
 namespace Ailurus.Service

@@ -3,7 +3,7 @@ using Ailurus.DTO.Interfaces;
 using Ailurus.Model;
 using Ailurus.Model.Instructions;
 
-namespace Ailurus.DTO.Implementation.DroneInstruction
+namespace Ailurus.DTO.Implementation
 {
     public class GlobalInstruction<TCoordinate> where TCoordinate : ICoordinate
     {

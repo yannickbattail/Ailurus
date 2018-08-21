@@ -1,5 +1,5 @@
 ﻿using System;
-using Ailurus.DTO.Implementation.DroneInstruction;
+using Ailurus.DTO.Implementation;
 using Ailurus.Model;
 using Ailurus.Model.Instructions;
 
