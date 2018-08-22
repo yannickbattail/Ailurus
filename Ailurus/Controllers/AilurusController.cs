@@ -128,16 +128,28 @@ namespace Ailurus.Controllers
             [Required]
             List<GlobalInstruction<CoordinateInt2D>> instructions)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                throw new Exception("Model not valid");
+                if (!ModelState.IsValid)
+                {
+                    throw new Exception("Model not valid");
+                }
+
+                //@TODO get playerName from authentication
+                var playerName = "RedPanda";
+                var repo = new PlayerContextRepository<CoordinateInt2D>();
+                var context = repo.GetPlayerContextByPlayerName(playerName);
+                var service = new DroneManagmentService<CoordinateInt2D>(context);
+                return service.ProcessInstructions(instructions).ToList();
             }
-            //@TODO get playerName from authentication
-            var playerName = "RedPanda";
-            var repo = new PlayerContextRepository<CoordinateInt2D>();
-            var context = repo.GetPlayerContextByPlayerName(playerName);
-            var service = new DroneManagmentService<CoordinateInt2D>(context);
-            return service.ProcessInstructions(instructions);
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return new List<string>()
+                {
+                    e.Message
+                };
+            }
         }
     }
 }

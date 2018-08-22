@@ -16,11 +16,11 @@ namespace Ailurus.DTO.Implementation
             {
                 return new Collect<TCoordinate>(drone, startedAt);
             }
-            if (globalInstruction.TYPE == "MoveToDto")
+            if (globalInstruction.TYPE == "MoveTo")
             {
                 return new MoveTo<TCoordinate>(drone,startedAt,globalInstruction.Destination,drone.CurrentPosition);
             } 
-            if (globalInstruction.TYPE == "UnloadDto")
+            if (globalInstruction.TYPE == "Unload")
             {
                 return new Unload<TCoordinate>(drone,startedAt);
             }

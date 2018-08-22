@@ -37,9 +37,8 @@ namespace Ailurus.Service
 
                 var mapper = new InstructionMapper<TCoordinate>();
                 drone.LastInstruction = mapper.ToSpecificInstruction(globInstruction, drone, DateTime.Now);
-                drone.LastInstruction = globInstruction.ToIInstruction(DateTime.Now, drone);
+                drone.LastInstruction.DoIt();
                 return "OK, drone will do "+drone.LastInstruction.GetType().Name;
-                
             }
             catch (InvalidOperationException e)
             {

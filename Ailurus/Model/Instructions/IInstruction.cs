@@ -11,5 +11,6 @@ namespace Ailurus.Model.Instructions
         IDrone<TCoordinate> Drone { get; set; }
         DateTime StartedAt { get; set; }
         DateTime EndAt { get; }
+        void DoIt();
     }
 }

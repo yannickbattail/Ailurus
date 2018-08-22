@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Ailurus.DTO;
 using Ailurus.DTO.Interfaces;
 
@@ -39,6 +40,23 @@ namespace Ailurus.Model.Instructions
             StartedAt = startedAt;
             StartPosition = startPosition;
             Destination = destination;
+        }
+        
+        public async void DoIt()
+        {
+            await Task.Run(async () => //Task.Run automatically unwraps nested Task types!
+            {
+                Console.WriteLine("Schedule "+this.GetType().Name);
+                await Task.Delay((int)Duration * 1000);
+                DoDo();
+                Console.WriteLine("Done "+this.GetType().Name);
+            });
+            Console.WriteLine("All done "+this.GetType().Name);
+        }
+
+        private void DoDo()
+        {
+            
         }
     }
 }
