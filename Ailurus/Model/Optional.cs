@@ -20,7 +20,7 @@ namespace Ailurus.Model
         {
         }
 
-        public static Optional<T> For<T>(T val)
+        public static Optional<T> For(T val)
         {
             var opt = new Optional<T>();
             opt.value = val;
@@ -33,7 +33,7 @@ namespace Ailurus.Model
         }
 
         // map makes it easy to work with pure functions
-        //public Optional<TOut> Map<TIn, TOut>(Func<TIn, TOut> f) where TIn : T {
+        //public Optional<TOut> Map<TIn, TOut>(Func<TIn, TOut> f) where TIn : T 
         public Optional<TOut> Map<TOut>(Func<T, TOut> f)
         {
             return IsPresent ? Optional<TOut>.For(f(value)) : Optional<TOut>.Empty();
@@ -58,6 +58,9 @@ namespace Ailurus.Model
         }
 
         // orElse for taking actions when dealing with `None`
-        public void OrElse(Action f) { if (!IsPresent) f(); }
+        public void OrElse(Action f)
+        {
+            if (!IsPresent) f();
+        }
     }
 }
