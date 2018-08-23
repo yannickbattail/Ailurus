@@ -74,33 +74,8 @@ namespace Ailurus.Controllers
             }
             catch (Exception e)
             {
-                var playerCtx = new PlayerContext<CoordinateInt2D>()
-                    {
-                        Drones = new List<IDrone<CoordinateInt2D>>()
-                        {
-                            new Drone<CoordinateInt2D>()
-                            {
-                                Name = "Drone_1",
-                                CurrentPosition = new CoordinateInt2D()
-                                {
-                                    X = 1,
-                                    Y = 1
-                                },
-                                Speed = 10
-                            },
-                            new Drone<CoordinateInt2D>()
-                            {
-                                Name = "Drone_2",
-                                CurrentPosition = new CoordinateInt2D()
-                                {
-                                    X = 3,
-                                    Y = 6
-                                },
-                                Speed = 10
-                            }
-                        }
-                    };
-                repo.SavePlayerContextByPlayerName(playerName, playerCtx);
+                var playerCtx = CreateNew(playerName);
+                repo.Save(playerName, playerCtx);
                 return mapper.map(playerCtx);
             }
         }
@@ -109,7 +84,8 @@ namespace Ailurus.Controllers
 [
 	{
 		"TYPE" : "Collect",
-		"DroneName" : "Drone_1"
+		"DroneName" : "Drone_1",
+		"Destination" : null
 	},
 	{
 		"TYPE" : "MoveTo",
@@ -137,10 +113,9 @@ namespace Ailurus.Controllers
 
                 //@TODO get playerName from authentication
                 var playerName = "RedPanda";
-                var repo = new PlayerContextRepository<CoordinateInt2D>();
-                var context = repo.GetPlayerContextByPlayerName(playerName);
-                var service = new DroneManagmentService<CoordinateInt2D>(context);
-                return service.ProcessInstructions(instructions).ToList();
+
+                var service = new DroneManagmentService<CoordinateInt2D>(playerName);
+                return service.ProcessInstructions(instructions);
             }
             catch (Exception e)
             {
@@ -150,6 +125,36 @@ namespace Ailurus.Controllers
                     e.Message
                 };
             }
+        }
+        
+        private IPlayerContext<CoordinateInt2D> CreateNew(string playerName)
+        {
+            return new PlayerContext<CoordinateInt2D>() {
+                PlayerName = playerName,
+                Drones = new List<IDrone<CoordinateInt2D>>()
+                {
+                    new Drone<CoordinateInt2D>()
+                    {
+                        Name = "Drone_1",
+                        CurrentPosition = new CoordinateInt2D()
+                        {
+                            X = 1,
+                            Y = 1
+                        },
+                        Speed = 10
+                    },
+                    new Drone<CoordinateInt2D>()
+                    {
+                        Name = "Drone_2",
+                        CurrentPosition = new CoordinateInt2D()
+                        {
+                            X = 3,
+                            Y = 6
+                        },
+                        Speed = 10
+                    }
+                }
+            };
         }
     }
 }

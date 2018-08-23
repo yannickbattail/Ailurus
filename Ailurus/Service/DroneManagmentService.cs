@@ -4,26 +4,31 @@ using System.Linq;
 using Ailurus.DTO;
 using Ailurus.DTO.Implementation;
 using Ailurus.DTO.Interfaces;
+using Ailurus.Repository;
 
 namespace Ailurus.Service
 {
     public class DroneManagmentService<TCoordinate> where TCoordinate : ICoordinate
     {
         private IPlayerContext<TCoordinate> PlayerContext;
-
-        public DroneManagmentService(IPlayerContext<TCoordinate> playerContext)
+        private IPlayerContextRepository<TCoordinate> Repository;
+        
+        public DroneManagmentService(string playerName)
         {
-            PlayerContext = playerContext ?? throw new ArgumentNullException(nameof(playerContext));
+            Repository = new PlayerContextRepository<TCoordinate>();
+            PlayerContext = Repository.GetPlayerContextByPlayerName(playerName);
         }
 
         public IEnumerable<string> ProcessInstructions(IEnumerable<GlobalInstruction<TCoordinate>> instructions)
         {
-            return instructions.Select(
+            var messages = instructions.Select(
                 ProcessInstruction
             );
+            Repository.Save(PlayerContext.PlayerName, PlayerContext);
+            return messages;
         }
         
-        public string ProcessInstruction(GlobalInstruction<TCoordinate> globInstruction)
+        private string ProcessInstruction(GlobalInstruction<TCoordinate> globInstruction)
         {
             try
             {

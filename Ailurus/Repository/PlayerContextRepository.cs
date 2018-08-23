@@ -12,17 +12,14 @@ namespace Ailurus.Repository
 
         public IPlayerContext<TCoordinate> GetPlayerContextByPlayerName(string playerName)
         {
-            if (PlayerContexts.ContainsKey(playerName))
-            {
-                return PlayerContexts[playerName];
-            }
-            else
+            if (!PlayerContexts.ContainsKey(playerName))
             {
                 throw new Exception("Player not found");
             }
+            return PlayerContexts[playerName];
         }
 
-        public void SavePlayerContextByPlayerName(string playerName, IPlayerContext<TCoordinate> playerContext)
+        public void Save(string playerName, IPlayerContext<TCoordinate> playerContext)
         {
             PlayerContexts[playerName] = playerContext;
         }
