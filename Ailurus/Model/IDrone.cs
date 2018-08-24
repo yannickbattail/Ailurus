@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Ailurus.DTO;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Model.Instructions;
@@ -13,5 +14,7 @@ namespace Ailurus.Model
         DroneState State { get; }
         DroneState GetStateAt(DateTime Time);
         Double Speed { get; set; }
+        int StorageSize { get; set; }
+        ResourceQuantity Storage { get; set; }
     }
 }

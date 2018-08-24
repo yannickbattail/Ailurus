@@ -2,13 +2,14 @@
 using System.Threading.Tasks;
 using Ailurus.DTO;
 using Ailurus.DTO.Interfaces;
+using Ailurus.Repository;
 using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace Ailurus.Model.Instructions
 {
     public class Unload<TCoordinate> : IInstruction<TCoordinate> where TCoordinate : ICoordinate
     {
-        public static readonly int Duration = 7;
+        public static readonly int Duration = 2;
 
         public IDrone<TCoordinate> Drone { get; set; }
         public DateTime StartedAt { get; set; }
@@ -27,21 +28,29 @@ namespace Ailurus.Model.Instructions
             StartedAt = startedAt;
         }
         
-        public async void DoIt()
+        public async void DoIt(IPlayerContext<TCoordinate> playerContext)
         {
-            await Task.Run(async () => //Task.Run automatically unwraps nested Task types!
+            await Task.Run(async () =>
             {
-                Console.WriteLine("Schedule "+this.GetType().Name);
+                Console.WriteLine("Schedule "+GetType().Name);
                 await Task.Delay(Duration * 1000);
-                DoDo();
-                Console.WriteLine("Done "+this.GetType().Name);
+                JustDoIt(playerContext);
+                Console.WriteLine("Done "+GetType().Name);
             });
-            Console.WriteLine("All done "+this.GetType().Name);
+            Console.WriteLine("All done "+GetType().Name);
         }
 
-        private void DoDo()
+        private void JustDoIt(IPlayerContext<TCoordinate> playerContext)
         {
-            
+            if (Drone.Storage == null)
+            {
+                Console.WriteLine("Drone.Storage is null");
+                return;
+            }
+            playerContext.AddResource(Drone.Storage);
+            Drone.Storage = null;
+            var repo = new PlayerContextRepository<TCoordinate>();
+            repo.Save(playerContext.PlayerName, playerContext);
         }
     }
 }

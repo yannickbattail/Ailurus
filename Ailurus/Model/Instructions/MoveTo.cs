@@ -42,19 +42,19 @@ namespace Ailurus.Model.Instructions
             Destination = destination;
         }
         
-        public async void DoIt()
+        public async void DoIt(IPlayerContext<TCoordinate> playerContext)
         {
             await Task.Run(async () => //Task.Run automatically unwraps nested Task types!
             {
-                Console.WriteLine("Schedule "+this.GetType().Name);
+                Console.WriteLine("Schedule "+GetType().Name);
                 await Task.Delay((int)Duration * 1000);
-                DoDo();
-                Console.WriteLine("Done "+this.GetType().Name);
+                JustDoIt(playerContext);
+                Console.WriteLine("Done "+GetType().Name);
             });
-            Console.WriteLine("All done "+this.GetType().Name);
+            Console.WriteLine("All done "+GetType().Name);
         }
 
-        private void DoDo()
+        private void JustDoIt(IPlayerContext<TCoordinate> playerContext)
         {
             
         }

@@ -153,6 +153,14 @@ namespace Ailurus.Controllers
                         },
                         Speed = 10
                     }
+                },
+                Resources = new List<ResourceQuantity>()
+                {
+                    new ResourceQuantity()
+                    {
+                        Resource = ResourceType.Gold,
+                        Quantity = 0
+                    }
                 }
             };
         }

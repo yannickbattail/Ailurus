@@ -9,7 +9,6 @@ namespace Ailurus.Repository
     {
         private static IDictionary<string, IPlayerContext<TCoordinate>> PlayerContexts = new Dictionary<string, IPlayerContext<TCoordinate>>();
 
-
         public IPlayerContext<TCoordinate> GetPlayerContextByPlayerName(string playerName)
         {
             if (!PlayerContexts.ContainsKey(playerName))
@@ -23,6 +22,5 @@ namespace Ailurus.Repository
         {
             PlayerContexts[playerName] = playerContext;
         }
-
     }
 }

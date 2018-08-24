@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Ailurus.DTO;
+using Ailurus.DTO.Implementation;
 using Ailurus.DTO.Interfaces;
+using Ailurus.Repository;
 
 namespace Ailurus.Model.Instructions
 {
@@ -26,21 +28,27 @@ namespace Ailurus.Model.Instructions
             StartedAt = startedAt;
         }
 
-        public async void DoIt()
+        public async void DoIt(IPlayerContext<TCoordinate> playerContext)
         {
             await Task.Run(async () => //Task.Run automatically unwraps nested Task types!
             {
-                Console.WriteLine("Schedule "+this.GetType().Name);
+                Console.WriteLine("Schedule "+GetType().Name);
                 await Task.Delay(Duration * 1000);
-                DoDo();
-                Console.WriteLine("Done "+this.GetType().Name);
+                JustDoIt(playerContext);
+                Console.WriteLine("Done "+GetType().Name);
             });
-            Console.WriteLine("All done"+this.GetType().Name);
+            Console.WriteLine("All done"+GetType().Name);
         }
 
-        private void DoDo()
+        private void JustDoIt(IPlayerContext<TCoordinate> playerContext)
         {
-            
+            Drone.Storage = new ResourceQuantity()
+            {
+                Resource = ResourceType.Gold,
+                Quantity = Drone.StorageSize
+            };
+            var repo = new PlayerContextRepository<TCoordinate>();
+            repo.Save(playerContext.PlayerName, playerContext);
         }
     }
 }
