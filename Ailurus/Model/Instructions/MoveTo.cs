@@ -2,11 +2,13 @@
 using System.Threading.Tasks;
 using Ailurus.DTO;
 using Ailurus.DTO.Interfaces;
+using Newtonsoft.Json;
 
 namespace Ailurus.Model.Instructions
 {
     public class MoveTo<TCoordinate> : IInstruction<TCoordinate> where TCoordinate : ICoordinate
     {
+        [JsonIgnore]
         public IDrone<TCoordinate> Drone { get; set; }
         public DateTime StartedAt { get; set; }
         public TCoordinate StartPosition { get; set; }

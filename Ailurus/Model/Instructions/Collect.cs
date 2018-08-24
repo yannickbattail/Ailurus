@@ -4,13 +4,14 @@ using Ailurus.DTO;
 using Ailurus.DTO.Implementation;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Repository;
+using Newtonsoft.Json;
 
 namespace Ailurus.Model.Instructions
 {
     public class Collect<TCoordinate> : IInstruction<TCoordinate> where TCoordinate : ICoordinate
     {
         public static readonly int Duration = 5;
-
+        [JsonIgnore]
         public IDrone<TCoordinate> Drone { get; set; }
         public DateTime StartedAt { get; set; }
 

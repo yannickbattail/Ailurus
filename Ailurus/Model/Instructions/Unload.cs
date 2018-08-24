@@ -4,13 +4,15 @@ using Ailurus.DTO;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Repository;
 using Microsoft.WindowsAzure.Storage.Blob;
+using Newtonsoft.Json;
 
 namespace Ailurus.Model.Instructions
 {
     public class Unload<TCoordinate> : IInstruction<TCoordinate> where TCoordinate : ICoordinate
     {
         public static readonly int Duration = 2;
-
+        
+        [JsonIgnore]
         public IDrone<TCoordinate> Drone { get; set; }
         public DateTime StartedAt { get; set; }
 

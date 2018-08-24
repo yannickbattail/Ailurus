@@ -80,22 +80,6 @@ namespace Ailurus.Controllers
             }
         }
         
-        /*
-[
-	{
-		"TYPE" : "Collect",
-		"DroneName" : "Drone_1",
-		"Destination" : null
-	},
-	{
-		"TYPE" : "MoveTo",
-		"DroneName" : "Drone_2",
-		"Destination" : {
-			"X" : 10,
-			"Y" : 10
-		}
-	}
-]*/
         // POST instructions
         [HttpPost]
         [Route("instructions")]
@@ -141,7 +125,7 @@ namespace Ailurus.Controllers
                             X = 1,
                             Y = 1
                         },
-                        Speed = 10
+                        Speed = 1
                     },
                     new Drone<CoordinateInt2D>()
                     {
@@ -151,7 +135,7 @@ namespace Ailurus.Controllers
                             X = 3,
                             Y = 6
                         },
-                        Speed = 10
+                        Speed = 1
                     }
                 },
                 Resources = new List<ResourceQuantity>()
