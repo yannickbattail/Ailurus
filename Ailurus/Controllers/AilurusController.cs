@@ -64,7 +64,7 @@ namespace Ailurus.Controllers
         [Route("playerContext")]
         public IPlayerContextDto<CoordinateInt2D> GetPlayerContext()
         {
-            //@TODO get playerName from authentication
+            //@TODO get playerName from authentication/session
             var playerName = "RedPanda";
             var repo = new PlayerContextRepository<CoordinateInt2D>();
             var mapper = new PlayerContextMapper<CoordinateInt2D>();
@@ -75,7 +75,7 @@ namespace Ailurus.Controllers
             catch (Exception e)
             {
                 var playerCtx = CreateNew(playerName);
-                repo.Save(playerName, playerCtx);
+                repo.Save(playerCtx);
                 return mapper.map(playerCtx);
             }
         }
@@ -95,7 +95,7 @@ namespace Ailurus.Controllers
                     throw new Exception("Model not valid");
                 }
 
-                //@TODO get playerName from authentication
+                //@TODO get playerName from authentication/session
                 var playerName = "RedPanda";
 
                 var service = new DroneManagmentService<CoordinateInt2D>(playerName);

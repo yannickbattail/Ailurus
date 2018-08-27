@@ -52,7 +52,7 @@ namespace Ailurus.Model.Instructions
             playerContext.AddResource(Drone.Storage);
             Drone.Storage = null;
             var repo = new PlayerContextRepository<TCoordinate>();
-            repo.Save(playerContext.PlayerName, playerContext);
+            repo.Save(playerContext);
         }
     }
 }

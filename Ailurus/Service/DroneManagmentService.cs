@@ -24,7 +24,7 @@ namespace Ailurus.Service
             var messages = instructions.Select(
                 ProcessInstruction
             );
-            Repository.Save(PlayerContext.PlayerName, PlayerContext);
+            Repository.Save(PlayerContext);
             return messages;
         }
         

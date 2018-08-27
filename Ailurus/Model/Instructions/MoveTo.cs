@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Ailurus.DTO;
 using Ailurus.DTO.Interfaces;
+using Ailurus.Repository;
 using Newtonsoft.Json;
 
 namespace Ailurus.Model.Instructions
@@ -58,7 +59,8 @@ namespace Ailurus.Model.Instructions
 
         private void JustDoIt(IPlayerContext<TCoordinate> playerContext)
         {
-            
+            var repo = new PlayerContextRepository<TCoordinate>();
+            repo.Save(playerContext);
         }
     }
 }

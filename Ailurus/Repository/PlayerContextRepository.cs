@@ -18,9 +18,9 @@ namespace Ailurus.Repository
             return PlayerContexts[playerName];
         }
 
-        public void Save(string playerName, IPlayerContext<TCoordinate> playerContext)
+        public void Save(IPlayerContext<TCoordinate> playerContext)
         {
-            PlayerContexts[playerName] = playerContext;
+            PlayerContexts[playerContext.PlayerName] = playerContext;
         }
     }
 }
