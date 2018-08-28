@@ -31,8 +31,8 @@ namespace AilurusTest
 
             var expected = new List<string>()
             {
-                "",
-                ""
+                "OK, drone will do Collect`1",
+                "OK, drone will do MoveTo`1"
             };
             controller.GetPlayerContext();
             var actual = controller.SendInstructions(instructions);

@@ -47,6 +47,7 @@ namespace Ailurus.Service
             }
             catch (InvalidOperationException e)
             {
+                Console.WriteLine(e.Message);
                 return "no such drone named: "+globInstruction.DroneName;
             }
         }

@@ -74,6 +74,7 @@ namespace Ailurus.Controllers
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 var playerCtx = CreateNew(playerName);
                 repo.Save(playerCtx);
                 return mapper.map(playerCtx);

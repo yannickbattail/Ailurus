@@ -9,9 +9,10 @@ namespace Ailurus.Model.Instructions
     public interface IInstruction<TCoordinate> where TCoordinate : ICoordinate
     {
         [JsonIgnore]
-        IDrone<TCoordinate> Drone { get; set; }
-        DateTime StartedAt { get; set; }
+        IDrone<TCoordinate> Drone { get; }
+        DateTime StartedAt { get; }
         DateTime EndAt { get; }
+        double Duration { get; }
         void DoIt(IPlayerContext<TCoordinate> PlayerContext);
     }
 }
