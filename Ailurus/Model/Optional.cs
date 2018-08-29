@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Ailurus.Model
 {
@@ -61,6 +62,15 @@ namespace Ailurus.Model
         public void OrElse(Action f)
         {
             if (!IsPresent) f();
+        }
+        
+        public static IEnumerable<Ta> ToIEnumerable<Ta>(Ta[,] array2D)
+        {
+            var enumerator = array2D.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                yield return (Ta)enumerator.Current;
+            }
         }
     }
 }

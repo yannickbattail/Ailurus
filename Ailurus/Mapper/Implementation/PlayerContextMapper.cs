@@ -1,10 +1,12 @@
 ﻿using System.Linq;
+using Ailurus.DTO.Implementation;
 using Ailurus.DTO.Interfaces;
+using Ailurus.Mapper.Interfaces;
 using Ailurus.Model;
 
-namespace Ailurus.DTO.Implementation
+namespace Ailurus.Mapper.Implementation
 {
-    public class PlayerContextMapper<TCoordinate> where TCoordinate : ICoordinate
+    public class PlayerContextMapper<TCoordinate> : IPlayerContextMapper<TCoordinate> where TCoordinate : ICoordinate
     {
         public PlayerContextDto<TCoordinate> Map(IPlayerContext<TCoordinate> playerContext)
         {

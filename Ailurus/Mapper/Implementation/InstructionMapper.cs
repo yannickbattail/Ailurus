@@ -1,9 +1,11 @@
 ﻿using System;
+using Ailurus.DTO.Implementation;
 using Ailurus.DTO.Interfaces;
+using Ailurus.Mapper.Interfaces;
 using Ailurus.Model;
 using Ailurus.Model.Instructions;
 
-namespace Ailurus.DTO.Implementation
+namespace Ailurus.Mapper.Implementation
 {
     public class InstructionMapper<TCoordinate> : IInstructionMapper<TCoordinate> where TCoordinate : ICoordinate
     {
