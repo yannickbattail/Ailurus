@@ -11,7 +11,7 @@ namespace Ailurus.DTO.Implementation
         public double GetDistanceTo(ICoordinate destination)
         {
             var dest = destination as CoordinateInt2D;
-            return Math.Sqrt(X * dest.X + Y * dest.Y);
+            return Math.Sqrt(Math.Pow(dest.X-X, 2) + Math.Pow(dest.Y-Y, 2));
         }
     }
 }

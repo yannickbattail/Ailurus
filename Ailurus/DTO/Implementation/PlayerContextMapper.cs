@@ -6,15 +6,15 @@ namespace Ailurus.DTO.Implementation
 {
     public class PlayerContextMapper<TCoordinate> where TCoordinate : ICoordinate
     {
-        public PlayerContextDto<TCoordinate> map(IPlayerContext<TCoordinate> playerContext)
+        public PlayerContextDto<TCoordinate> Map(IPlayerContext<TCoordinate> playerContext)
         {
             return new PlayerContextDto<TCoordinate>()
             {
-                Drones = playerContext.Drones.Select(d => map(d))
+                Drones = playerContext.Drones.Select(d => Map(d))
             };
         }
 
-        public IDroneDto<TCoordinate> map(IDrone<TCoordinate> drone)
+        public IDroneDto<TCoordinate> Map(IDrone<TCoordinate> drone)
         {
             return new DroneDto<TCoordinate>()
             {

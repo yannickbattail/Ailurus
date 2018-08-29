@@ -70,14 +70,14 @@ namespace Ailurus.Controllers
             var mapper = new PlayerContextMapper<CoordinateInt2D>();
             try
             {
-                return mapper.map(repo.GetPlayerContextByPlayerName(playerName));
+                return mapper.Map(repo.GetPlayerContextByPlayerName(playerName));
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 var playerCtx = CreateNew(playerName);
                 repo.Save(playerCtx);
-                return mapper.map(playerCtx);
+                return mapper.Map(playerCtx);
             }
         }
         
@@ -112,7 +112,7 @@ namespace Ailurus.Controllers
             }
         }
         
-        private IPlayerContext<CoordinateInt2D> CreateNew(string playerName)
+        public static IPlayerContext<CoordinateInt2D> CreateNew(string playerName)
         {
             return new PlayerContext<CoordinateInt2D>() {
                 PlayerName = playerName,
