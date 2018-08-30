@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Ailurus.Model
 {
@@ -64,13 +65,26 @@ namespace Ailurus.Model
             if (!IsPresent) f();
         }
         
-        public static IEnumerable<Ta> ToIEnumerable<Ta>(Ta[,] array2D)
+        public static IEnumerable<TA> ToIEnumerable<TA>(TA[,] array2D)
         {
             var enumerator = array2D.GetEnumerator();
             while (enumerator.MoveNext())
             {
-                yield return (Ta)enumerator.Current;
+                yield return (TA)enumerator.Current;
             }
         }
     }
+
+    public static class StreamReaderExtension
+    {
+        public static IEnumerable<string> ReadAllLinesEnumerable(this StreamReader stream)
+        {
+            var line = stream.ReadLine();
+            while (line != null)
+            {
+                line = stream.ReadLine();
+                yield return line;
+            }
+        }
+    } 
 }

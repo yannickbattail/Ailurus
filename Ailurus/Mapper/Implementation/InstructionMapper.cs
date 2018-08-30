@@ -14,19 +14,26 @@ namespace Ailurus.Mapper.Implementation
             IDrone<TCoordinate> drone,
             DateTime startedAt)
         {
-            if (globalInstruction.TYPE == "Collect")
+            if (globalInstruction == null)
             {
-                return new Collect<TCoordinate>(drone, startedAt);
+                throw new ArgumentException("globalInstruction is null");
             }
-            if (globalInstruction.TYPE == "MoveTo")
+            if (drone == null)
             {
-                return new MoveTo<TCoordinate>(drone,startedAt,globalInstruction.Destination,drone.CurrentPosition);
-            } 
-            if (globalInstruction.TYPE == "Unload")
-            {
-                return new Unload<TCoordinate>(drone,startedAt);
+                throw new ArgumentException("drone is null");
             }
-            throw new Exception("Unknown instruction type "+globalInstruction.TYPE);
+            
+            switch (globalInstruction.TYPE)
+            {
+                case "Collect":
+                    return new Collect<TCoordinate>(drone, startedAt);
+                case "MoveTo":
+                    return new MoveTo<TCoordinate>(drone,startedAt,drone.CurrentPosition,globalInstruction.Destination);
+                case "Unload":
+                    return new Unload<TCoordinate>(drone,startedAt);
+                default:
+                    throw new ArgumentException("Unknown instruction type "+globalInstruction.TYPE);
+            }
         }
     }
 }

@@ -9,12 +9,12 @@ using Ailurus.Repository;
 
 namespace Ailurus.Service
 {
-    public class DroneManagmentService<TCoordinate> where TCoordinate : ICoordinate
+    public class DroneManagementService<TCoordinate> where TCoordinate : ICoordinate
     {
         private IPlayerContext<TCoordinate> PlayerContext;
         private IPlayerContextRepository<TCoordinate> Repository;
         
-        public DroneManagmentService(string playerName)
+        public DroneManagementService(string playerName)
         {
             Repository = new PlayerContextRepository<TCoordinate>();
             PlayerContext = Repository.GetPlayerContextByPlayerName(playerName);

@@ -100,7 +100,7 @@ namespace Ailurus.Controllers
                 //@TODO get playerName from authentication/session
                 var playerName = "RedPanda";
 
-                var service = new DroneManagmentService<CoordinateInt2D>(playerName);
+                var service = new DroneManagementService<CoordinateInt2D>(playerName);
                 return service.ProcessInstructions(instructions);
             }
             catch (Exception e)

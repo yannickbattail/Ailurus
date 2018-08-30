@@ -39,6 +39,14 @@ namespace Ailurus.Model.Instructions
 
         public MoveTo(IDrone<TCoordinate> drone, DateTime startedAt, TCoordinate startPosition, TCoordinate destination)
         {
+            if (destination == null)
+            {
+                throw new ArgumentException("missing destination for MoveTo instruction");
+            }
+            if (startPosition == null)
+            {
+                throw new ArgumentException("missing startPosition for MoveTo instruction");
+            }
             Drone = drone;
             StartedAt = startedAt;
             StartPosition = startPosition;

@@ -12,7 +12,7 @@ namespace Ailurus.Mapper.Implementation
         {
             return new PlayerContextDto<TCoordinate>()
             {
-                Drones = playerContext.Drones.Select(d => Map(d))
+                Drones = playerContext.Drones.Select(Map)
             };
         }
 
@@ -24,7 +24,9 @@ namespace Ailurus.Mapper.Implementation
                 LastInstruction = drone.LastInstruction,
                 Name = drone.Name,
                 Speed = drone.Speed,
-                State = drone.State
+                State = drone.State,
+                StorageSize = drone.StorageSize,
+                Storage = drone.Storage
             };
         }
     }
