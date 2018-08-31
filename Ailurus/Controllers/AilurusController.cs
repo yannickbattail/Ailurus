@@ -16,48 +16,50 @@ namespace Ailurus.Controllers
 {
     public class AilurusController : Controller
     {
+        public static IMapInfo<CoordinateInt2D> Map = new MapInfo<CoordinateInt2D>()
+        {
+            Name = "lvl1",
+            Dimensions = new Tuple<CoordinateInt2D, CoordinateInt2D>(
+                new CoordinateInt2D()
+                {
+                    X = 0,
+                    Y = 0
+                },
+                new CoordinateInt2D()
+                {
+                    X = 100,
+                    Y = 100
+                }
+            ),
+            Items = new List<IItem<CoordinateInt2D>>()
+            {
+                new MainBuilding<CoordinateInt2D>()
+                {
+                    Name = "Home",
+                    Position = new CoordinateInt2D()
+                    {
+                        X = 2,
+                        Y = 2
+                    }
+                },
+                new Mine<CoordinateInt2D>()
+                {
+                    Name = "Gold Mine",
+                    Position = new CoordinateInt2D()
+                    {
+                        X = 98,
+                        Y = 98
+                    }
+                }
+            }
+        };
+        
         // GET map
         [HttpGet]
         [Route("map")]
         public IMapInfo<CoordinateInt2D> GetMap()
         {
-            return new MapInfo<CoordinateInt2D>()
-            {
-                Name = "lvl1",
-                Dimentions = new Tuple<CoordinateInt2D, CoordinateInt2D>(
-                    new CoordinateInt2D()
-                    {
-                        X = 0,
-                        Y = 0
-                    },
-                    new CoordinateInt2D()
-                    {
-                        X = 100,
-                        Y = 100
-                    }
-                ),
-                Items = new List<IItem<CoordinateInt2D>>()
-                {
-                    new MainBuilding<CoordinateInt2D>()
-                    {
-                        Name = "Home",
-                        Position = new CoordinateInt2D()
-                        {
-                            X = 2,
-                            Y = 2
-                        }
-                    },
-                    new Mine<CoordinateInt2D>()
-                    {
-                        Name = "Gold Mine",
-                        Position = new CoordinateInt2D()
-                        {
-                            X = 98,
-                            Y = 98
-                        }
-                    }
-                }
-            };
+            return Map;
         }
 
         // GET playerContext

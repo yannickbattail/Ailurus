@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Ailurus.DTO;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Repository;
+using Ailurus.Service;
 using Newtonsoft.Json;
 
 namespace Ailurus.Model.Instructions
@@ -16,7 +17,7 @@ namespace Ailurus.Model.Instructions
         public double Distance
         {
             get {
-                return StartPosition.GetDistanceTo(Destination);
+                return DroneManagementService<TCoordinate>.GetCoordinateUtils<TCoordinate>().GetDistanceTo(coordinate, Dimensions);
             }
         }
     
@@ -55,10 +56,10 @@ namespace Ailurus.Model.Instructions
 
         protected override void JustDoIt(string playerName)
         {
-            //var repo = new PlayerContextRepository<TCoordinate>();
-            //var playerContext = repo.GetPlayerContextByPlayerName(playerName);
-            //
-            //repo.Save(playerContext);
+            var repo = new PlayerContextRepository<TCoordinate>();
+            var playerContext = repo.GetPlayerContextByPlayerName(playerName);
+            Drone.CurrentPosition = Destination;
+            repo.Save(playerContext);
         }
     }
 }
