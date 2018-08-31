@@ -8,11 +8,13 @@ namespace Ailurus.Mapper.Implementation
 {
     public class PlayerContextMapper<TCoordinate> : IPlayerContextMapper<TCoordinate> where TCoordinate : ICoordinate
     {
-        public PlayerContextDto<TCoordinate> Map(IPlayerContext<TCoordinate> playerContext)
+        public IPlayerContextDto<TCoordinate> Map(IPlayerContext<TCoordinate> playerContext)
         {
             return new PlayerContextDto<TCoordinate>()
             {
-                Drones = playerContext.Drones.Select(Map)
+                Drones = playerContext.Drones.Select(Map),
+                PlayerName = playerContext.PlayerName,
+                Resources = playerContext.Resources
             };
         }
 
