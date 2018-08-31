@@ -1,6 +1,7 @@
 using Ailurus.Controllers;
 using Ailurus.DTO.Implementation;
 using Ailurus.Repository;
+using Ailurus.Service;
 using FluentAssertions;
 using Xunit;
 
@@ -13,7 +14,7 @@ namespace AilurusTest.Repository
         {
             var repo = new PlayerContextRepository<CoordinateInt2D>();
             var playerName = "somePlayer";
-            var expected = AilurusController.CreateNew(playerName);
+            var expected = AppService<CoordinateInt2D>.GetAppService().CreateNew(playerName);
             repo.Save(expected);
 
             var playerActual = repo.GetPlayerContextByPlayerName(playerName);

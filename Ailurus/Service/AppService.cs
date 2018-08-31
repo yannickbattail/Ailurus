@@ -7,8 +7,20 @@ using Ailurus.Repository;
 
 namespace Ailurus.Service
 {
-    public abstract class AppService<TCoordinate> where TCoordinate : ICoordinate, new()
+    public abstract class AppService<TCoordinate> : IAppService<TCoordinate> where TCoordinate : ICoordinate
     {
+        private static AppService<TCoordinate> App;
+        
+        public static AppService<TCoordinate> GetAppService()
+        {
+            if (App == null)
+            {
+                App = new AppServiceInt2D() as AppService<TCoordinate>;
+            }
+
+            return App;
+        }
+        
         public IMapInfo<TCoordinate> Map;
 
         public abstract ICoordinateUtils<TCoordinate> GetCoordinateUtils();

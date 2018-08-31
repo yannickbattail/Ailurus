@@ -20,7 +20,8 @@ namespace AilurusTest.Repository
                 X = 3,
                 Y = 4
             };
-            var distance = source.GetDistanceTo(dest);
+            var util = new CoordinateInt2DUtils();
+            var distance = util.GetDistanceTo(source, dest);
             
             distance.Should().Be(5);
         }

@@ -13,11 +13,12 @@ namespace Ailurus.Model.Instructions
         [JsonIgnore]
         public TCoordinate StartPosition { get; set; }
         public TCoordinate Destination { get; set; }
+        private static ICoordinateUtils<TCoordinate> utils = AppService<TCoordinate>.GetAppService().GetCoordinateUtils();
         
         public double Distance
         {
             get {
-                return DroneManagementService<TCoordinate>.GetCoordinateUtils<TCoordinate>().GetDistanceTo(coordinate, Dimensions);
+                return utils.GetDistanceTo(StartPosition, Destination);
             }
         }
     
