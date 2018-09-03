@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 using Ailurus.DTO.Interfaces;
 
 namespace Ailurus.DTO.Implementation
@@ -44,6 +45,15 @@ namespace Ailurus.DTO.Implementation
                 newCoordinate.Y = areaMax.Y;
             }
             return newCoordinate;
+        }
+
+        public CoordinateInt2D PathProgression(CoordinateInt2D origin, CoordinateInt2D destination, double progression)
+        {
+            return new CoordinateInt2D()
+            {
+                X = (int) Math.Round((destination.X - origin.X) * progression + origin.X),
+                Y = (int) Math.Round((destination.Y - origin.Y) * progression + origin.Y)
+            };
         }
     }
 }

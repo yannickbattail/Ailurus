@@ -13,6 +13,8 @@ namespace Ailurus.Model.Instructions
         DateTime StartedAt { get; }
         DateTime EndAt { get; }
         double Duration { get; }
+        double Progression { get; }
+        double GetProgressionAt(DateTime time);
         void DoIt(IPlayerContext<TCoordinate> PlayerContext);
     }
 }

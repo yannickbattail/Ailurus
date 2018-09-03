@@ -13,6 +13,23 @@ namespace Ailurus.Model.Instructions
         public abstract DateTime EndAt { get; protected set; }
         public abstract double Duration { get; protected set; }
 
+        public double Progression
+        {
+            get { return GetProgressionAt(DateTime.Now); }
+        }
+        
+        public double GetProgressionAt(DateTime time){
+            if (time <= StartedAt)
+            {
+                return 0;
+            }
+            if (time >= EndAt)
+            {
+                return 1;
+            }
+            return (time.Ticks - StartedAt.Ticks) / (EndAt.Ticks - StartedAt.Ticks);
+        }
+
         public async void DoIt(IPlayerContext<TCoordinate> playerContext)
         {
             await Task.Run(async () => //Task.Run automatically unwraps nested Task types!

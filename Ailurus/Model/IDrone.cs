@@ -12,7 +12,7 @@ namespace Ailurus.Model
         IInstruction<TCoordinate> LastInstruction { get; set; }
         TCoordinate CurrentPosition { get; set; }
         DroneState State { get; }
-        DroneState GetStateAt(DateTime Time);
+        DroneState GetStateAt(DateTime time);
         Double Speed { get; set; }
         int StorageSize { get; set; }
         ResourceQuantity Storage { get; set; }

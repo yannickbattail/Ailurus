@@ -39,6 +39,19 @@ namespace Ailurus.Model.Instructions
             protected set{}
         }
 
+        public TCoordinate GetPositionAt(DateTime time)
+        {
+            if (time <= StartedAt)
+            {
+                return StartPosition;
+            }
+            if (time >= EndAt)
+            {
+                return Destination;
+            }
+            return utils.PathProgression(StartPosition, Destination, GetProgressionAt(time));
+        }
+        
         public MoveTo(IDrone<TCoordinate> drone, DateTime startedAt, TCoordinate startPosition, TCoordinate destination)
         {
             if (destination == null)
