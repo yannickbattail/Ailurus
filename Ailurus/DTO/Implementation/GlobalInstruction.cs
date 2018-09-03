@@ -12,10 +12,5 @@ namespace Ailurus.DTO.Implementation
         
         public TCoordinate Destination { get; set; }
         
-        public IInstruction<TCoordinate> ToIInstruction(DateTime startedAt, IDrone<TCoordinate> drone)
-        {
-            return null;
-        }
-
     }
 }
