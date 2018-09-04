@@ -140,5 +140,83 @@ namespace AilurusTest.Repository
             
             inside.Should().BeEquivalentTo(expected);
         }
+                
+        [Fact]
+        public void PathProgressionTest()
+        {
+            var origin = new CoordinateInt2D()
+            {
+                X = 0,
+                Y = 0
+            };
+            var destination = new CoordinateInt2D()
+            {
+                X = 10,
+                Y = 10
+            };
+            
+            var expected = new CoordinateInt2D()
+            {
+                X = 5,
+                Y = 5
+            };
+            
+            var util = new CoordinateInt2DUtils();
+            var actual = util.PathProgression(origin, destination, 0.5);
+            
+            actual.Should().BeEquivalentTo(expected);
+        }
+
+        [Fact]
+        public void PathProgressionNegativeTest()
+        {
+            var origin = new CoordinateInt2D()
+            {
+                X = 6,
+                Y = 3
+            };
+            var destination = new CoordinateInt2D()
+            {
+                X = 0,
+                Y = 0
+            };
+            
+            var expected = new CoordinateInt2D()
+            {
+                X = 2,
+                Y = 1
+            };
+            
+            var util = new CoordinateInt2DUtils();
+            var actual = util.PathProgression(origin, destination, 0.6666666);
+            
+            actual.Should().BeEquivalentTo(expected);
+        }
+   
+        [Fact]
+        public void PathProgressionWrongProgressionTest()
+        {
+            var origin = new CoordinateInt2D()
+            {
+                X = 6,
+                Y = 3
+            };
+            var destination = new CoordinateInt2D()
+            {
+                X = 0,
+                Y = 0
+            };
+
+            var util = new CoordinateInt2DUtils();
+            
+            Action pathProgressionAction = () =>
+            {
+                util.PathProgression(origin, destination, 2);
+            };
+
+            pathProgressionAction.Should().Throw<Exception>()
+                .WithMessage("progression must be a percentage between 0 and 1 (including)");
+        }   
+
     }
 }

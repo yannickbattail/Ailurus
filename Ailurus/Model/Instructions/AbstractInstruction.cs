@@ -27,21 +27,21 @@ namespace Ailurus.Model.Instructions
             {
                 return 1;
             }
-            return (time.Ticks - StartedAt.Ticks) / (EndAt.Ticks - StartedAt.Ticks);
+            return (time.Ticks - StartedAt.Ticks) / ((double)EndAt.Ticks - StartedAt.Ticks);
         }
 
-        public async void DoIt(IPlayerContext<TCoordinate> playerContext)
+        public async void ScheduleEndInstructionAction(IPlayerContext<TCoordinate> playerContext)
         {
             await Task.Run(async () => //Task.Run automatically unwraps nested Task types!
             {
                 Console.WriteLine("Schedule "+GetType().Name);
                 await Task.Delay((int) (Duration * 1000));
-                JustDoIt(playerContext.PlayerName);
+                EndInstructionAction(playerContext.PlayerName);
                 Console.WriteLine("Done "+GetType().Name);
             });
             Console.WriteLine("All done"+GetType().Name);
         }
 
-        protected abstract void JustDoIt(string playerName);
+        protected abstract void EndInstructionAction(string playerName);
     }
 }

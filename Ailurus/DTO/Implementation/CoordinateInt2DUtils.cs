@@ -49,6 +49,10 @@ namespace Ailurus.DTO.Implementation
 
         public CoordinateInt2D PathProgression(CoordinateInt2D origin, CoordinateInt2D destination, double progression)
         {
+            if (progression < 0 || progression > 1)
+            {
+                throw new Exception("progression must be a percentage between 0 and 1 (including)");
+            }
             return new CoordinateInt2D()
             {
                 X = (int) Math.Round((destination.X - origin.X) * progression + origin.X),

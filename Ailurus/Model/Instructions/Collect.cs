@@ -30,7 +30,7 @@ namespace Ailurus.Model.Instructions
             StartedAt = startedAt;
         }
 
-        protected override void JustDoIt(string playerName)
+        protected override void EndInstructionAction(string playerName)
         {
             var repo = new PlayerContextRepository<TCoordinate>();
             var playerContext = repo.GetPlayerContextByPlayerName(playerName);

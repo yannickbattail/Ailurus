@@ -15,6 +15,6 @@ namespace Ailurus.Model.Instructions
         double Duration { get; }
         double Progression { get; }
         double GetProgressionAt(DateTime time);
-        void DoIt(IPlayerContext<TCoordinate> PlayerContext);
+        void ScheduleEndInstructionAction(IPlayerContext<TCoordinate> PlayerContext);
     }
 }

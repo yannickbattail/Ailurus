@@ -8,44 +8,47 @@ namespace Ailurus.Service
 {
     public class AppServiceInt2D: AppService<CoordinateInt2D>
     {
-        public IMapInfo<CoordinateInt2D> Map = new MapInfo<CoordinateInt2D>()
+        public AppServiceInt2D()
         {
-            Name = "lvl1",
-            Dimensions = new Tuple<CoordinateInt2D, CoordinateInt2D>(
-                new CoordinateInt2D()
-                {
-                    X = 0,
-                    Y = 0
-                },
-                new CoordinateInt2D()
-                {
-                    X = 100,
-                    Y = 100
-                }
-            ),
-            Items = new List<IItem<CoordinateInt2D>>()
+            Map = new MapInfo<CoordinateInt2D>()
             {
-                new MainBuilding<CoordinateInt2D>()
-                {
-                    Name = "Home",
-                    Position = new CoordinateInt2D()
+                Name = "lvl1",
+                Dimensions = new Tuple<CoordinateInt2D, CoordinateInt2D>(
+                    new CoordinateInt2D()
                     {
-                        X = 2,
-                        Y = 2
+                        X = 0,
+                        Y = 0
+                    },
+                    new CoordinateInt2D()
+                    {
+                        X = 100,
+                        Y = 100
                     }
-                },
-                new Mine<CoordinateInt2D>()
+                ),
+                Items = new List<IItem<CoordinateInt2D>>()
                 {
-                    Name = "Gold Mine",/*
+                    new MainBuilding<CoordinateInt2D>()
+                    {
+                        Name = "Home",
+                        Position = new CoordinateInt2D()
+                        {
+                            X = 2,
+                            Y = 2
+                        }
+                    },
+                    new Mine<CoordinateInt2D>()
+                    {
+                        Name = "Gold Mine",/*
                     Position = new CoordinateInt2D()
                     {
                         X = 98,
                         Y = 98
                     }*/
+                    }
                 }
-            }
-        };
-
+            };
+        }
+        
         public override ICoordinateUtils<CoordinateInt2D> GetCoordinateUtils()
         {
             return new CoordinateInt2DUtils();
