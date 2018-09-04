@@ -46,7 +46,7 @@ namespace Ailurus.Model
 
         public TCoordinate GetPositionAt(DateTime time)
         {
-            if (LastInstruction.GetType() != typeof(MoveTo<TCoordinate>))
+            if (LastInstruction == null || LastInstruction.GetType() != typeof(MoveTo<TCoordinate>))
             {
                 return _currentPosition;
             }
