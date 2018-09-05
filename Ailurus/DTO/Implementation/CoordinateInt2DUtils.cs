@@ -11,6 +11,11 @@ namespace Ailurus.DTO.Implementation
             return Math.Sqrt(Math.Pow(destination.X-origin.X, 2) + Math.Pow(destination.Y-origin.Y, 2));
         }
 
+        public bool IsNear(CoordinateInt2D pointA, CoordinateInt2D pointB)
+        {
+            return (pointA.X == pointB.X) && (pointA.Y == pointB.Y);
+        }
+
         public bool IsInside(CoordinateInt2D coord, Tuple<CoordinateInt2D, CoordinateInt2D> area)
         {
             var areaMin = area.Item1;

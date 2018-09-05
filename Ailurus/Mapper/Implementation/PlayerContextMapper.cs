@@ -23,7 +23,7 @@ namespace Ailurus.Mapper.Implementation
             return new DroneDto<TCoordinate>()
             {
                 CurrentPosition = drone.CurrentPosition,
-                LastInstruction = drone.LastInstruction,
+                LastInstruction = drone.Instructions.Last(),
                 Name = drone.Name,
                 Speed = drone.Speed,
                 State = drone.State,

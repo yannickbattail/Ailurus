@@ -33,19 +33,5 @@ namespace Ailurus.Model.Instructions
             Drone = drone;
             StartedAt = startedAt;
         }
-
-        protected override void EndInstructionAction(string playerName)
-        {
-            var repo = new PlayerContextRepository<TCoordinate>();
-            var playerContext = repo.GetPlayerContextByPlayerName(playerName);
-            if (Drone.Storage == null)
-            {
-                Console.WriteLine("Drone.Storage is null");
-                return;
-            }
-            playerContext.AddResource(Drone.Storage);
-            Drone.Storage = null;
-            repo.Save(playerContext);
-        }
     }
 }

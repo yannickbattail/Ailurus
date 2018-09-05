@@ -38,13 +38,12 @@ namespace Ailurus.Service
                 );
                 if (drone.State == DroneState.ExecutionInstruction)
                 {
-                    return "drone is already doing an action "+drone.LastInstruction.GetType().Name;
+                    return "drone is already doing an action "+drone.GetLastValidInstruction().GetType().Name;
                 }
 
                 var mapper = new InstructionMapper<TCoordinate>();
-                drone.LastInstruction = mapper.ToSpecificInstruction(globInstruction, drone, DateTime.Now);
-                drone.LastInstruction.ScheduleEndInstructionAction(PlayerContext);
-                return "OK, drone will do "+drone.LastInstruction.GetType().Name;
+                drone.Instructions.Add(mapper.ToSpecificInstruction(globInstruction, drone, DateTime.Now));
+                return "OK, drone will do "+drone.GetLastValidInstruction().GetType().Name;
             }
             catch (InvalidOperationException e)
             {

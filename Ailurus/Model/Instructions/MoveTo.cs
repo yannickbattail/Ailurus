@@ -67,13 +67,5 @@ namespace Ailurus.Model.Instructions
             StartPosition = startPosition;
             Destination = destination;
         }
-
-        protected override void EndInstructionAction(string playerName)
-        {
-            var repo = new PlayerContextRepository<TCoordinate>();
-            var playerContext = repo.GetPlayerContextByPlayerName(playerName);
-            Drone.CurrentPosition = Destination;
-            repo.Save(playerContext);
-        }
     }
 }

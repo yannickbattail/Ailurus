@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Linq;
+using Ailurus.DTO.Implementation;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Repository;
+using Ailurus.Service;
 
 namespace Ailurus.Model.Instructions
 {
     public class Collect<TCoordinate> : AbstractInstruction<TCoordinate> where TCoordinate : ICoordinate
     {
+        public Mine<TCoordinate> Mine { get; set; }
         public override DateTime EndAt
         {
             get
@@ -26,20 +30,15 @@ namespace Ailurus.Model.Instructions
 
         public Collect(IDrone<TCoordinate> drone, DateTime startedAt)
         {
+            var util = AppService<TCoordinate>.GetAppService().GetCoordinateUtils();
+            var item = AppService<TCoordinate>.GetAppService().Map.Items.First(
+                    itm => (itm.GetType() == typeof(Mine<TCoordinate>))
+                        && util.IsNear(drone.CurrentPosition, itm.Position)
+                );
+            var mine = item as Mine<TCoordinate>;
             Drone = drone;
             StartedAt = startedAt;
-        }
-
-        protected override void EndInstructionAction(string playerName)
-        {
-            var repo = new PlayerContextRepository<TCoordinate>();
-            var playerContext = repo.GetPlayerContextByPlayerName(playerName);
-            Drone.Storage = new ResourceQuantity()
-            {
-                Resource = ResourceType.Gold,
-                Quantity = Drone.StorageSize
-            };
-            repo.Save(playerContext);
+            Mine = mine;
         }
     }
 }

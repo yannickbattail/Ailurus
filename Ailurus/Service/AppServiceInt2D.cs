@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Ailurus.DTO.Implementation;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Model;
+using Ailurus.Model.Instructions;
 
 namespace Ailurus.Service
 {
@@ -38,12 +39,13 @@ namespace Ailurus.Service
                     },
                     new Mine<CoordinateInt2D>()
                     {
-                        Name = "Gold Mine",/*
-                    Position = new CoordinateInt2D()
-                    {
-                        X = 98,
-                        Y = 98
-                    }*/
+                        Name = "Gold Mine",
+                        ResourceType = ResourceType.Gold,
+                        Position = new CoordinateInt2D()
+                        {
+                            X = 98,
+                            Y = 98
+                        }
                     }
                 }
             };
@@ -61,26 +63,8 @@ namespace Ailurus.Service
                 PlayerName = playerName,
                 Drones = new List<IDrone<CoordinateInt2D>>()
                 {
-                    new Drone<CoordinateInt2D>()
-                    {
-                        Name = "Drone_1",
-                        CurrentPosition = new CoordinateInt2D()
-                        {
-                            X = 1,
-                            Y = 1
-                        },
-                        Speed = 1
-                    },
-                    new Drone<CoordinateInt2D>()
-                    {
-                        Name = "Drone_2",
-                        CurrentPosition = new CoordinateInt2D()
-                        {
-                            X = 3,
-                            Y = 6
-                        },
-                        Speed = 1
-                    }
+                    CreateNewDrone("Drone_1"),
+                    CreateNewDrone("Drone_2")
                 },
                 Resources = new List<ResourceQuantity>()
                 {
@@ -91,6 +75,20 @@ namespace Ailurus.Service
                     }
                 }
             };
+        }
+
+        private static IDrone<CoordinateInt2D> CreateNewDrone(string name)
+        {
+            var newDrone = new Drone<CoordinateInt2D>()
+            {
+                Name = name,
+                Speed = 1,
+                Instructions = new List<IInstruction<CoordinateInt2D>>()
+            };
+            newDrone.Instructions.Add(new MoveTo<CoordinateInt2D>(newDrone,DateTime.Now,
+                new CoordinateInt2D(){X = 1,Y = 1},
+                new CoordinateInt2D(){X = 1,Y = 1}));
+            return newDrone;
         }
     }
 }

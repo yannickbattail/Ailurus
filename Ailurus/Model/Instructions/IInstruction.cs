@@ -14,7 +14,8 @@ namespace Ailurus.Model.Instructions
         DateTime EndAt { get; }
         double Duration { get; }
         double Progression { get; }
+        DateTime? AbortedAt { get; set; }
+        bool IsAborted { get; }
         double GetProgressionAt(DateTime time);
-        void ScheduleEndInstructionAction(IPlayerContext<TCoordinate> PlayerContext);
     }
 }

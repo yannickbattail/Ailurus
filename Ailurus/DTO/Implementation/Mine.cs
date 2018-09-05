@@ -1,4 +1,5 @@
 ﻿using Ailurus.DTO.Interfaces;
+using Ailurus.Model;
 
 namespace Ailurus.DTO.Implementation
 {
@@ -10,5 +11,6 @@ namespace Ailurus.DTO.Implementation
         }
         public string Name { get; set; }
         public TCoordinate Position { get; set; }
+        public ResourceType ResourceType  { get; set; }
     }
 }
