@@ -82,11 +82,9 @@ namespace Ailurus.Service
             var newDrone = new Drone<CoordinateInt2D>()
             {
                 Name = name,
-                Speed = 1,
-                Instructions = new List<IInstruction<CoordinateInt2D>>()
+                Speed = 1
             };
-            newDrone.Instructions.Add(new MoveTo<CoordinateInt2D>(newDrone,DateTime.Now,
-                new CoordinateInt2D(){X = 1,Y = 1},
+            newDrone.AddInstruction(new MoveTo<CoordinateInt2D>(newDrone,DateTime.Now,
                 new CoordinateInt2D(){X = 1,Y = 1}));
             return newDrone;
         }

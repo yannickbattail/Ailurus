@@ -42,7 +42,7 @@ namespace Ailurus.Service
                 }
 
                 var mapper = new InstructionMapper<TCoordinate>();
-                drone.Instructions.Add(mapper.ToSpecificInstruction(globInstruction, drone, DateTime.Now));
+                drone.AddInstruction(mapper.ToSpecificInstruction(globInstruction, drone, DateTime.Now));
                 return "OK, drone will do "+drone.GetLastValidInstruction().GetType().Name;
             }
             catch (InvalidOperationException e)

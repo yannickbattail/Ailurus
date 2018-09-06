@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Ailurus.DTO;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Model.Instructions;
 
@@ -10,7 +9,7 @@ namespace Ailurus.Model
     public class Drone<TCoordinate> : IDrone<TCoordinate> where TCoordinate : ICoordinate
     {
         public string Name { get; set; }
-        public IList<IInstruction<TCoordinate>> Instructions { get; set; }
+        protected IList<IInstruction<TCoordinate>> Instructions { get; set; }
         public double Speed { get; set; }
         public int StorageSize { get; set; }
         
@@ -34,7 +33,33 @@ namespace Ailurus.Model
                 };
             }
         }
-        
+
+        public void AddInstruction(IInstruction<TCoordinate> instruction)
+        {
+            Instructions.Add(instruction);
+        }
+
+        public void AbortLastInstruction()
+        {
+            var lastInstr = Instructions.Last();
+            if (lastInstr.IsAborted)
+            {
+                throw new InvalidOperationException("");
+            }
+
+            lastInstr.Abort();
+        }
+
+        public IEnumerable<IInstruction<TCoordinate>> GetInstructions()
+        {
+            return Instructions;
+        }
+
+        public IEnumerable<IInstruction<TCoordinate>> GetValidInstructions()
+        {
+            return Instructions.Where(i => !i.IsAborted);
+        }
+
         public DroneState State
         {
             get
@@ -65,7 +90,7 @@ namespace Ailurus.Model
 
             return Instructions.Last(i => !i.IsAborted);
         }
-        
+
         public DroneState GetStateAt(DateTime time)
         {
             if (GetLastValidInstruction() == null

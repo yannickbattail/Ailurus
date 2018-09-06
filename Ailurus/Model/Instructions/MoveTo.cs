@@ -52,19 +52,15 @@ namespace Ailurus.Model.Instructions
             return utils.PathProgression(StartPosition, Destination, GetProgressionAt(time));
         }
         
-        public MoveTo(IDrone<TCoordinate> drone, DateTime startedAt, TCoordinate startPosition, TCoordinate destination)
+        public MoveTo(IDrone<TCoordinate> drone, DateTime startedAt, TCoordinate destination)
         {
             if (destination == null)
             {
                 throw new ArgumentException("missing destination for MoveTo instruction");
             }
-            if (startPosition == null)
-            {
-                throw new ArgumentException("missing startPosition for MoveTo instruction");
-            }
             Drone = drone;
             StartedAt = startedAt;
-            StartPosition = startPosition;
+            StartPosition = drone.CurrentPosition;
             Destination = destination;
         }
     }

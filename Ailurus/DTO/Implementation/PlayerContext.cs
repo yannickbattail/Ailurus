@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Model;
+using Ailurus.Model.Instructions;
 
 namespace Ailurus.DTO.Implementation
 {
@@ -10,18 +12,31 @@ namespace Ailurus.DTO.Implementation
         public IEnumerable<IDrone<TCoordinate>> Drones { get; set; }
         public string PlayerName { get; set; }
         public IList<ResourceQuantity> Resources { get; set; }
-        public void AddResource(ResourceQuantity resourceQuantity)
+
+        public IEnumerable<ResourceQuantity> GetStoredResourcesAt(DateTime time)
         {
-            var res = Resources.FirstOrDefault(r => r.Resource == resourceQuantity.Resource);
-            if (res == null)
-            {
-                Resources.Add(resourceQuantity);
-            }
-            else
-            {
-                res.Quantity += resourceQuantity.Quantity;
-            }
+            return Drones.SelectMany(
+                drone => drone.GetValidInstructions()
+                    .Where(
+                        i => i.IsFinishedAt(time) && i.GetType() == typeof(Unload<TCoordinate>)
+                    ).Select(
+                        i => (i as Unload<TCoordinate>).Resource
+                    )
+                ).GroupBy(
+                    rq => rq.Resource
+                ).Select(
+                    rqGroup => new ResourceQuantity()
+                    {
+                        Resource = rqGroup.Key,
+                        Quantity = rqGroup.Sum(rq => rq.Quantity)
+                    }
+                );
         }
         
+        public IEnumerable<ResourceQuantity> GetStoredResources()
+        {
+            return GetStoredResourcesAt(DateTime.Now);
+        }
+
     }
 }

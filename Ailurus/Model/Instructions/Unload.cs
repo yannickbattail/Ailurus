@@ -10,6 +10,8 @@ namespace Ailurus.Model.Instructions
 {
     public class Unload<TCoordinate> : AbstractInstruction<TCoordinate> where TCoordinate : ICoordinate
     {
+        public ResourceQuantity Resource { get; protected set; }
+        
         public override DateTime EndAt
         {
             get
@@ -32,6 +34,7 @@ namespace Ailurus.Model.Instructions
         {
             Drone = drone;
             StartedAt = startedAt;
+            Resource = drone.Storage;
         }
     }
 }

@@ -26,6 +26,11 @@ namespace Ailurus.Model.Instructions
             get { return !AbortedAt.HasValue; }
         }
 
+        public bool IsFinishedAt(DateTime time)
+        {
+            return time >= EndAt;
+        }
+
         public double GetProgressionAt(DateTime time){
             if (time <= StartedAt)
             {
@@ -36,6 +41,11 @@ namespace Ailurus.Model.Instructions
                 return 1;
             }
             return (time.Ticks - StartedAt.Ticks) / ((double)EndAt.Ticks - StartedAt.Ticks);
+        }
+
+        public void Abort()
+        {
+            AbortedAt = DateTime.Now;
         }
     }
 }

@@ -9,15 +9,17 @@ namespace Ailurus.Model
     public interface IDrone<TCoordinate> where TCoordinate : ICoordinate
     {
         string Name { get; set; }
-        IList<IInstruction<TCoordinate>> Instructions { get; set; }
         TCoordinate CurrentPosition { get; }
         DroneState State { get; }
         DroneState GetStateAt(DateTime time);
         Double Speed { get; set; }
         int StorageSize { get; set; }
         ResourceQuantity Storage { get; }
-
-        IInstruction<TCoordinate> GetLastValidInstruction();
         
+        void AddInstruction(IInstruction<TCoordinate> instruction);
+        void AbortLastInstruction();
+        IEnumerable<IInstruction<TCoordinate>> GetInstructions();
+        IEnumerable<IInstruction<TCoordinate>> GetValidInstructions();
+        IInstruction<TCoordinate> GetLastValidInstruction();
     }
 }

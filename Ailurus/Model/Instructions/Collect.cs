@@ -2,7 +2,6 @@
 using System.Linq;
 using Ailurus.DTO.Implementation;
 using Ailurus.DTO.Interfaces;
-using Ailurus.Repository;
 using Ailurus.Service;
 
 namespace Ailurus.Model.Instructions

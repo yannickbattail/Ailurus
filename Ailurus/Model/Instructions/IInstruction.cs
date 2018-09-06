@@ -1,6 +1,7 @@
 ﻿using System;
 using Ailurus.DTO;
 using Ailurus.DTO.Interfaces;
+using Microsoft.AspNetCore.Rewrite.Internal.UrlActions;
 using Microsoft.IdentityModel.Protocols;
 using Newtonsoft.Json;
 
@@ -14,8 +15,10 @@ namespace Ailurus.Model.Instructions
         DateTime EndAt { get; }
         double Duration { get; }
         double Progression { get; }
-        DateTime? AbortedAt { get; set; }
+        DateTime? AbortedAt { get; }
         bool IsAborted { get; }
+        bool IsFinishedAt(DateTime time);
         double GetProgressionAt(DateTime time);
+        void Abort();
     }
 }
