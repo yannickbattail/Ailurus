@@ -15,19 +15,8 @@ namespace AilurusTest.Repository
             var drone = new Drone<CoordinateInt2D>()
             {
                 Name = "Drone_1",
-                CurrentPosition = new CoordinateInt2D()
-                {
-                    X = 1,
-                    Y = 1
-                },
-                LastInstruction = null,
                 Speed = 1,
-                StorageSize = 10,
-                Storage = new ResourceQuantity()
-                {
-                    Quantity = 10,
-                    Resource = ResourceType.Gold
-                }
+                StorageSize = 10
             };
             
             var droneDtoExpected = new DroneDto<CoordinateInt2D>()

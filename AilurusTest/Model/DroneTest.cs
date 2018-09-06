@@ -17,20 +17,14 @@ namespace AilurusTest.Repository
             {
                 Name = "someDrone",
                 StorageSize = 10,
-                Storage = null,
-                Speed = 10,
-                CurrentPosition = new CoordinateInt2D()
-                {
-                    X = 10,
-                    Y = 10
-                }
+                Speed = 10
             };
             var dateStart = new DateTime(2018, 1, 1, 0,0,0);
-            drone.LastInstruction = new Unload<CoordinateInt2D>(drone, dateStart);
+            drone.AddInstruction(new Unload<CoordinateInt2D>(drone, dateStart));
             
             var date1 = dateStart.Add(TimeSpan.FromSeconds(1));
             drone.GetStateAt(date1).Should().Be(DroneState.ExecutionInstruction);
-            var date2 = dateStart.Add(TimeSpan.FromSeconds(drone.LastInstruction.Duration + 2));
+            var date2 = dateStart.Add(TimeSpan.FromSeconds(drone.GetLastValidInstruction().Duration + 2));
             drone.GetStateAt(date2).Should().Be(DroneState.WaitingForOrders);
         }
     }

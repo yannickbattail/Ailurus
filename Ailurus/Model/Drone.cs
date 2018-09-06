@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Model.Instructions;
+using Ailurus.Service;
 
 namespace Ailurus.Model
 {
@@ -78,7 +79,11 @@ namespace Ailurus.Model
 
         public Drone()
         {
-            Instructions = new List<IInstruction<TCoordinate>>();
+            var startCoord = AppService<TCoordinate>.GetAppService().GetMap().Dimensions.Item1;
+            Instructions = new List<IInstruction<TCoordinate>>()
+            {
+                new MoveTo<TCoordinate>(this, DateTime.Now, startCoord, startCoord)
+            };
         }
         
         public IInstruction<TCoordinate> GetLastValidInstruction()

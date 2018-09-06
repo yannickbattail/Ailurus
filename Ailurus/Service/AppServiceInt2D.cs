@@ -84,8 +84,6 @@ namespace Ailurus.Service
                 Name = name,
                 Speed = 1
             };
-            newDrone.AddInstruction(new MoveTo<CoordinateInt2D>(newDrone,DateTime.Now,
-                new CoordinateInt2D(){X = 1,Y = 1}));
             return newDrone;
         }
     }

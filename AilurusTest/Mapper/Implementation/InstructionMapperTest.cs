@@ -71,9 +71,9 @@ namespace AilurusTest.Repository
 
             var mapper = new InstructionMapper<CoordinateInt2D>();
             var date = new DateTime(2018,1,1);
-            var source = new CoordinateInt2D(){X = 1,Y = 1};
             var dest = new CoordinateInt2D(){X = 84,Y = 42};
-            var expectedInstruction = new MoveTo<CoordinateInt2D>(drone, date,source, dest);
+            var source = new CoordinateInt2D(){X = 1,Y = 1};
+            var expectedInstruction = new MoveTo<CoordinateInt2D>(drone, date, source, dest);
             
             
             var actualInstruction = mapper.ToSpecificInstruction(globalInstruction, drone, date);
@@ -134,19 +134,8 @@ namespace AilurusTest.Repository
             var drone = new Drone<CoordinateInt2D>()
             {
                 Name = "Drone_1",
-                CurrentPosition = new CoordinateInt2D()
-                {
-                    X = 1,
-                    Y = 1
-                },
-                LastInstruction = null,
                 Speed = 1,
-                StorageSize = 10,
-                Storage = new ResourceQuantity()
-                {
-                    Quantity = 10,
-                    Resource = ResourceType.Gold
-                }
+                StorageSize = 10
             };
             return drone;
         }

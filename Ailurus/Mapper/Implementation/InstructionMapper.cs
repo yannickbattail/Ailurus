@@ -28,7 +28,7 @@ namespace Ailurus.Mapper.Implementation
                 case "Collect":
                     return new Collect<TCoordinate>(drone, startedAt);
                 case "MoveTo":
-                    return new MoveTo<TCoordinate>(drone,startedAt,globalInstruction.Destination);
+                    return new MoveTo<TCoordinate>(drone,startedAt,drone.CurrentPosition, globalInstruction.Destination);
                 case "Unload":
                     return new Unload<TCoordinate>(drone,startedAt);
                 default:

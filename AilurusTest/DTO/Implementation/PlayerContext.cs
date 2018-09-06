@@ -9,69 +9,12 @@ namespace AilurusTest.Repository
 {
     public class PlayerContextTest
     {
+        /*
         [Fact]
         public void AddResourceNewTest()
         {
-            var cntx = new PlayerContext<CoordinateInt2D>()
-            {
-                Resources = new List<ResourceQuantity>()
-            };
-
-            var expected = new PlayerContext<CoordinateInt2D>()
-            {
-                Resources = new List<ResourceQuantity>()
-                {
-                    new ResourceQuantity()
-                    {
-                        Resource = ResourceType.Gold,
-                        Quantity = 10
-                    }
-                }
-            };
-            
-            cntx.AddResource( new ResourceQuantity()
-            {
-                Resource = ResourceType.Gold,
-                Quantity = 10
-            });
-
             cntx.Should().BeEquivalentTo(expected);
         }
-        
-        [Fact]
-        public void AddResourceExistingTest()
-        {
-            var cntx = new PlayerContext<CoordinateInt2D>()
-            {
-                Resources = new List<ResourceQuantity>()
-                {
-                    new ResourceQuantity()
-                    {
-                        Resource = ResourceType.Gold,
-                        Quantity = 21
-                    }
-                }
-            };
-
-            var expected = new PlayerContext<CoordinateInt2D>()
-            {
-                Resources = new List<ResourceQuantity>()
-                {
-                    new ResourceQuantity()
-                    {
-                        Resource = ResourceType.Gold,
-                        Quantity = 42
-                    }
-                }
-            };
-            
-            cntx.AddResource( new ResourceQuantity()
-            {
-                Resource = ResourceType.Gold,
-                Quantity = 21
-            });
-
-            cntx.Should().BeEquivalentTo(expected);
-        }
+        */
     }
 }
