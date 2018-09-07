@@ -20,8 +20,8 @@ namespace Ailurus.Service
 
             return App;
         }
-        
-        public IMapInfo<TCoordinate> Map;
+
+        protected IMapInfo<TCoordinate> Map;
 
         public abstract ICoordinateUtils<TCoordinate> GetCoordinateUtils();
         

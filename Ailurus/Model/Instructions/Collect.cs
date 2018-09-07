@@ -30,10 +30,14 @@ namespace Ailurus.Model.Instructions
         public Collect(IDrone<TCoordinate> drone, DateTime startedAt)
         {
             var util = AppService<TCoordinate>.GetAppService().GetCoordinateUtils();
-            var item = AppService<TCoordinate>.GetAppService().Map.Items.First(
+            var item = AppService<TCoordinate>.GetAppService().GetMap().Items.FirstOrDefault(
                     itm => (itm.GetType() == typeof(Mine<TCoordinate>))
                         && util.IsNear(drone.CurrentPosition, itm.Position)
                 );
+            if (item == null)
+            {
+                throw new InvalidInstructionException<TCoordinate>("No mine near the drone");
+            }
             var mine = item as Mine<TCoordinate>;
             Drone = drone;
             StartedAt = startedAt;

@@ -13,6 +13,7 @@ namespace Ailurus.Model
         protected IList<IInstruction<TCoordinate>> Instructions { get; set; }
         public double Speed { get; set; }
         public int StorageSize { get; set; }
+        public TCoordinate InitialPosition { get; set; }
         
         public ResourceQuantity Storage {
             get
@@ -77,13 +78,10 @@ namespace Ailurus.Model
             }
         }
 
-        public Drone()
+        public Drone(TCoordinate initialPosition)
         {
-            var startCoord = AppService<TCoordinate>.GetAppService().GetMap().Dimensions.Item1;
-            Instructions = new List<IInstruction<TCoordinate>>()
-            {
-                new MoveTo<TCoordinate>(this, DateTime.Now, startCoord, startCoord)
-            };
+            InitialPosition = initialPosition;
+            Instructions = new List<IInstruction<TCoordinate>>();
         }
         
         public IInstruction<TCoordinate> GetLastValidInstruction()
@@ -109,9 +107,13 @@ namespace Ailurus.Model
 
         public TCoordinate GetPositionAt(DateTime time)
         {
-            var lastMoveTo = Instructions.Last(
+            var lastMoveTo = Instructions.LastOrDefault(
                 i => i.GetType() == typeof(MoveTo<TCoordinate>) && !i.IsAborted
             );
+            if (lastMoveTo == null)
+            {
+                return InitialPosition;
+            }
             var instructionMoveTo = lastMoveTo as MoveTo<TCoordinate>;
             return instructionMoveTo.GetPositionAt(time);
         }

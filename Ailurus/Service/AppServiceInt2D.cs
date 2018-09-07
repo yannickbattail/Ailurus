@@ -79,7 +79,7 @@ namespace Ailurus.Service
 
         private static IDrone<CoordinateInt2D> CreateNewDrone(string name)
         {
-            var newDrone = new Drone<CoordinateInt2D>()
+            var newDrone = new Drone<CoordinateInt2D>(GetAppService().GetMap().DroneSpawnPoint)
             {
                 Name = name,
                 Speed = 1
