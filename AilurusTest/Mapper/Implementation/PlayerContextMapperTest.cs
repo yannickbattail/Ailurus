@@ -12,7 +12,7 @@ namespace AilurusTest.Repository
         [Fact]
         public void TestDroneMap()
         {
-            var drone = new Drone<CoordinateInt2D>()
+            var drone = new Drone<CoordinateInt2D>(new CoordinateInt2D(){X=1,Y=1})
             {
                 Name = "Drone_1",
                 Speed = 1,
