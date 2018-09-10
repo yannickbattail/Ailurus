@@ -47,6 +47,7 @@ namespace Ailurus.Model.Instructions
             Drone = drone;
             StartedAt = startedAt;
             Resource = drone.Storage;
+            AbortedAt = null;
         }
     }
 }

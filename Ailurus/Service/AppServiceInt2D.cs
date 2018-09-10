@@ -26,6 +26,11 @@ namespace Ailurus.Service
                         Y = 100
                     }
                 ),
+                DroneSpawnPoint = new CoordinateInt2D()
+                {
+                    X = 1,
+                    Y = 1
+                },
                 Items = new List<IItem<CoordinateInt2D>>()
                 {
                     new MainBuilding<CoordinateInt2D>()

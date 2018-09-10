@@ -45,10 +45,15 @@ namespace Ailurus.Service
                 drone.AddInstruction(mapper.ToSpecificInstruction(globInstruction, drone, DateTime.Now));
                 return "OK, drone will do "+drone.GetLastValidInstruction().GetType().Name;
             }
+            catch (InvalidInstructionException<TCoordinate> e)
+            {
+                Console.WriteLine(e.Message);
+                return "Invalid Instruction: " + e.Message + " for instruction: "+globInstruction;
+            }
             catch (InvalidOperationException e)
             {
                 Console.WriteLine(e.Message);
-                return "no such drone named: "+globInstruction.DroneName;
+                return "no such drone named: " + globInstruction.DroneName;
             }
         }
     }

@@ -14,7 +14,12 @@ namespace AilurusTest.Repository
         [Fact]
         public void TestCollectInstruction()
         {
-            var drone = CreateDrone();
+            var drone = new Drone<CoordinateInt2D>(new CoordinateInt2D(){X=98,Y=98})
+            {
+                Name = "Drone_1",
+                Speed = 1,
+                StorageSize = 10
+            };
             
             var globalInstruction = new GlobalInstruction<CoordinateInt2D>()
             {
@@ -37,7 +42,13 @@ namespace AilurusTest.Repository
         [Fact]
         public void TestUnloadInstruction()
         {
-            var drone = CreateDrone();
+            var drone = new Drone<CoordinateInt2D>(new CoordinateInt2D(){X=2,Y=2})
+            {
+                Name = "Drone_1",
+                Speed = 1,
+                StorageSize = 10
+            };
+
             
             var globalInstruction = new GlobalInstruction<CoordinateInt2D>()
             {

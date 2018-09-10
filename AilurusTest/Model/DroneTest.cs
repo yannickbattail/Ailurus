@@ -13,7 +13,7 @@ namespace AilurusTest.Repository
         [Fact]
         public void TestGetStateAt()
         {
-            var drone = new Drone<CoordinateInt2D>(new CoordinateInt2D(){X=1,Y=1})
+            var drone = new Drone<CoordinateInt2D>(new CoordinateInt2D(){X=2,Y=2})
             {
                 Name = "someDrone",
                 StorageSize = 10,
@@ -22,9 +22,9 @@ namespace AilurusTest.Repository
             var dateStart = new DateTime(2018, 1, 1, 0,0,0);
             drone.AddInstruction(new Unload<CoordinateInt2D>(drone, dateStart));
             
-            var date1 = dateStart.Add(TimeSpan.FromSeconds(1));
+            var date1 = new DateTime(2018, 1, 1, 0,0,1);
             drone.GetStateAt(date1).Should().Be(DroneState.ExecutionInstruction);
-            var date2 = dateStart.Add(TimeSpan.FromSeconds(drone.GetLastValidInstruction().Duration + 2));
+            var date2  = new DateTime(2018, 1, 1, 0,0,6);
             drone.GetStateAt(date2).Should().Be(DroneState.WaitingForOrders);
         }
     }

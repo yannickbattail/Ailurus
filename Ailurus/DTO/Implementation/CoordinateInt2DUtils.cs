@@ -13,7 +13,15 @@ namespace Ailurus.DTO.Implementation
 
         public bool IsNear(CoordinateInt2D pointA, CoordinateInt2D pointB)
         {
-            return (pointA.X == pointB.X) && (pointA.Y == pointB.Y);
+            if (pointA == null)
+            {
+                throw new ArgumentNullException();
+            }
+            if (pointB == null)
+            {
+                throw new ArgumentNullException();
+            }
+            return pointA.X == pointB.X && pointA.Y == pointB.Y;
         }
 
         public bool IsInside(CoordinateInt2D coord, Tuple<CoordinateInt2D, CoordinateInt2D> area)

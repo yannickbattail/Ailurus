@@ -31,7 +31,7 @@ namespace AilurusTest
 
             var expected = new List<string>()
             {
-                "OK, drone will do Collect`1",
+                "Invalid Instruction: No mine near the drone for instruction: TYPE: Collect, DroneName: Drone_1, Destination: ",
                 "OK, drone will do MoveTo`1"
             };
             controller.GetPlayerContext();

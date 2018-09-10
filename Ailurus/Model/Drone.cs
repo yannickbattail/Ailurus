@@ -18,12 +18,12 @@ namespace Ailurus.Model
         public ResourceQuantity Storage {
             get
             {
-                var lastCollect = Instructions.Last(
+                var lastCollect = Instructions.LastOrDefault(
                     i => (i.GetType() == typeof(Collect<TCoordinate>)
                           || i.GetType() == typeof(Unload<TCoordinate>))
                          && !i.IsAborted
                 );
-                if (lastCollect.GetType() == typeof(Unload<TCoordinate>))
+                if (lastCollect == null || lastCollect.GetType() == typeof(Unload<TCoordinate>))
                 {
                     return null;
                 }
@@ -80,6 +80,10 @@ namespace Ailurus.Model
 
         public Drone(TCoordinate initialPosition)
         {
+            if (initialPosition == null)
+            {
+                throw new ArgumentNullException();
+            }
             InitialPosition = initialPosition;
             Instructions = new List<IInstruction<TCoordinate>>();
         }
@@ -91,13 +95,14 @@ namespace Ailurus.Model
                 return null;
             }
 
-            return Instructions.Last(i => !i.IsAborted);
+            return Instructions.LastOrDefault(i => !i.IsAborted);
         }
 
         public DroneState GetStateAt(DateTime time)
         {
-            if (GetLastValidInstruction() == null
-                || GetLastValidInstruction().EndAt < time)
+            var lastInstruction = GetLastValidInstruction();
+            if (lastInstruction == null
+                || lastInstruction.EndAt < time)
             {
                 return DroneState.WaitingForOrders;
             }
@@ -107,8 +112,8 @@ namespace Ailurus.Model
 
         public TCoordinate GetPositionAt(DateTime time)
         {
-            var lastMoveTo = Instructions.LastOrDefault(
-                i => i.GetType() == typeof(MoveTo<TCoordinate>) && !i.IsAborted
+            var lastMoveTo = GetValidInstructions().LastOrDefault(
+                i => i.GetType() == typeof(MoveTo<TCoordinate>)
             );
             if (lastMoveTo == null)
             {

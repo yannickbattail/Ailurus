@@ -31,11 +31,7 @@ namespace AilurusTest.Repository
                 State = DroneState.WaitingForOrders,
                 Speed = 1,
                 StorageSize = 10,
-                Storage = new ResourceQuantity()
-                {
-                    Quantity = 10,
-                    Resource = ResourceType.Gold
-                }
+                Storage = null
             };
 
             var mapper = new PlayerContextMapper<CoordinateInt2D>();

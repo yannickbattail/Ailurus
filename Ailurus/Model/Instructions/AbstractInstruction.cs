@@ -23,7 +23,7 @@ namespace Ailurus.Model.Instructions
 
         public bool IsAborted
         {
-            get { return !AbortedAt.HasValue; }
+            get { return AbortedAt.HasValue; }
         }
 
         public bool IsFinishedAt(DateTime time)
