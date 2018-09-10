@@ -131,7 +131,7 @@ namespace AilurusTest.Repository
         
         private static Drone<CoordinateInt2D> CreateDrone()
         {
-            var drone = new Drone<CoordinateInt2D>(new CoordinateInt2D(){X = 1, Y=1})
+            var drone = new Drone<CoordinateInt2D>(new CoordinateInt2D(){X=1,Y=1})
             {
                 Name = "Drone_1",
                 Speed = 1,

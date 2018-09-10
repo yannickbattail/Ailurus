@@ -13,7 +13,7 @@ namespace AilurusTest.Repository
         [Fact]
         public void TestGetStateAt()
         {
-            var drone = new Drone<CoordinateInt2D>(new CoordinateInt2D(){X = 1, Y=1})
+            var drone = new Drone<CoordinateInt2D>(new CoordinateInt2D(){X=1,Y=1})
             {
                 Name = "someDrone",
                 StorageSize = 10,
