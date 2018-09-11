@@ -4,7 +4,24 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body style="background-color: ghostwhite">
+<canvas id="canvas" width="100" height="100"></canvas>
+<script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, 100, 100);
+    
+    ctx.fillStyle = 'green';
+    ctx.fillRect(2, 2, 1, 1);
+    
+    ctx.fillStyle = 'red';
+    ctx.fillRect(98, 98, 1, 1);
+</script>
+
+
+<!--
     <textarea id="json">
 [
 	{
@@ -23,24 +40,70 @@
 ]
     </textarea>
     <br /><input type="button" value="send" onclick="send()" />
+    <br />
+    -->
+    <br />
+    Drone: <select id="drone">
+        <option>Drone_1</option>
+        <option>Drone_2</option>
+    </select>
+    <br /> 
+    Action: <select id="TYPE">
+        <option value="Collect">Collect</option>
+        <option value="Unload">Unload</option>
+        <option value="MoveTo">Move to</option>
+    </select>
+    <br />
+    <select id="Destination">
+        <option value=""> - </option>
+        <option value="2,2">Home</option>
+        <option value="98,98">Gold Mine</option>
+    </select>
+    <br />
+    <input type="button" value="Do it!" onclick="doIt()" />
+    <br />
     <div id="out">
-        
+		
     </div>
 </body>
 <script>
+    function doIt() {
+        var instruction = {};
+        instruction['TYPE'] = getVal('TYPE');
+        instruction['DroneName'] = getVal('drone');
+        if (instruction['TYPE'] === 'MoveTo') {
+            var destination = getVal('Destination').split(',', 2);
+            instruction['Destination'] = {"X":destination[0], "Y":destination[1]};
+        } else {
+            instruction['Destination'] = null;
+        }
+
+        var data = [instruction];
+        go(JSON.stringify(data));
+    }
+
     function send() {
+        go(document.getElementById("json").value);
+    }
+    
+    function go(data) {
+        console.log(data);
         var url = "http://localhost:61218/instructions";
-        var data = document.getElementById("json");
         var xhr = new XMLHttpRequest();
         xhr.open("POST", url, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
         // send the collected data as JSON
-        xhr.send(JSON.stringify(data));
+        xhr.send(data);
 
         xhr.onloadend = function (e) {
-            document.getElementById("out").innerHTML = e;
+            document.getElementById("out").innerHTML = e.target.response;
         };
+    }
+    
+    function getVal(id) {
+        var e = document.getElementById(id);
+        return e.options[e.selectedIndex].value;
     }
 </script>
 </html>
