@@ -87,7 +87,8 @@ namespace Ailurus.Service
             var newDrone = new Drone<CoordinateInt2D>(GetAppService().GetMap().DroneSpawnPoint)
             {
                 Name = name,
-                Speed = 1
+                Speed = 1,
+                StorageSize = 10
             };
             return newDrone;
         }

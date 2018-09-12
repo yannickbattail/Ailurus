@@ -10,6 +10,13 @@ namespace Ailurus.Model.Instructions
     {
         [JsonIgnore]
         public IDrone<TCoordinate> Drone { get; protected set; }
+        public string Type
+        {
+            get
+            {
+                return this.GetType().Name;
+            }
+        }
         public DateTime StartedAt { get; protected set; }
         public abstract DateTime EndAt { get; protected set; }
         public abstract double Duration { get; protected set; }

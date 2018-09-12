@@ -11,6 +11,7 @@ namespace Ailurus.Model.Instructions
     {
         [JsonIgnore]
         IDrone<TCoordinate> Drone { get; }
+        string Type { get; }
         DateTime StartedAt { get; }
         DateTime EndAt { get; }
         double Duration { get; }

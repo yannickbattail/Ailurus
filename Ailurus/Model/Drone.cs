@@ -4,6 +4,8 @@ using System.Linq;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Model.Instructions;
 using Ailurus.Service;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Ailurus.Model
 {
@@ -62,6 +64,7 @@ namespace Ailurus.Model
             return Instructions.Where(i => !i.IsAborted);
         }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public DroneState State
         {
             get

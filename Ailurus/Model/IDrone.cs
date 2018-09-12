@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Ailurus.DTO;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Model.Instructions;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Ailurus.Model
 {
@@ -10,6 +12,7 @@ namespace Ailurus.Model
     {
         string Name { get; set; }
         TCoordinate CurrentPosition { get; }
+        [JsonConverter(typeof(StringEnumConverter))]
         DroneState State { get; }
         DroneState GetStateAt(DateTime time);
         Double Speed { get; set; }
