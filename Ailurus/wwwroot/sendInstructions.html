@@ -165,6 +165,7 @@
             html += "   <td>"+drone.state+"<td>";
             html += "   <td>"+drone.storageSize+"<td>";
             html += "   <td>"+formatStrorage(drone.storage)+"<td>";
+            if (drone.lastInstruction !== null){
             html += "   <td>"+drone.lastInstruction.type+"<td>";
             html += "   <td>"+formatProgress(drone.lastInstruction.progression)+"<td>";
             html += "   <td>"+formatCoord(drone.lastInstruction.destination)+"<td>";
@@ -173,6 +174,16 @@
             html += "   <td>"+formatDate(drone.lastInstruction.startedAt)+"<td>";
             html += "   <td>"+formatDate(drone.lastInstruction.endAt)+"<td>";
             html += "   <td>"+formatDate(drone.lastInstruction.abortedAt)+"<td>";
+            } else {
+                html += "   <td> - <td>";
+                html += "   <td> - <td>";
+                html += "   <td> - <td>";
+                html += "   <td> - <td>";
+                html += "   <td> - <td>";
+                html += "   <td> - <td>";
+                html += "   <td> - <td>";
+                html += "   <td> - <td>";
+            }
             html += "</td>";
             html += "</tr>";
         }
