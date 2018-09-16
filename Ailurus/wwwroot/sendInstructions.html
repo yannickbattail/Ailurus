@@ -2,17 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Ailurus</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body style="background-color: ghostwhite">
     <canvas id="canvas" width="100" height="100"></canvas>
-    <div id="lastUpdate">
-        Last update:
-    </div>
+
     <div id="stats">
-        
+
     </div>
+    <div id="playerContext">
+
+    </div>
+    
     <br />
     Drone: <select id="Drone">
         <option>Drone_1</option>
@@ -34,6 +36,9 @@
     <br />
     <div id="out">
 		
+    </div>
+    <div id="lastUpdate">
+        Last update:
     </div>
 </body>
 <script>
@@ -97,7 +102,8 @@
             drawMine(map.items[1].position);
             drawDrone(playerContext.drones[0].currentPosition);
             drawDrone(playerContext.drones[1].currentPosition);
-            statsDrones(playerContext.drones);
+            displayStatsDrones(playerContext.drones);
+            displayPlayerContext(playerContext);
             $('#lastUpdate').html('Last update: ' + new Date().getTime());
             setTimeout(inLoop, repeat);
         });
@@ -137,24 +143,23 @@
             '</div>';
     }
     
-    function statsDrones(drones){
+    function displayStatsDrones(drones){
         var html = "<table>";
         html += "<tr>";
-        html += "   <td>Name<td>";
-        html += "   <td>Position<td>";
-        html += "   <td>Speed<td>";
-        html += "   <td>State<td>";
-        html += "   <td>Storage size<td>";
-        html += "   <td>Storage<td>";
-        html += "   <td>lastInstruction<td>";
-        html += "   <td>progression<td>";
-        html += "   <td>destination<td>";
-        html += "   <td>distance<td>";
-        html += "   <td>duration<td>";
-        html += "   <td>startedAt<td>";
-        html += "   <td>endAt<td>";
-        html += "   <td>abortedAt<td>";
-        html += "</td>";
+        html += "   <th>Name<th>";
+        html += "   <th>Position<th>";
+        html += "   <th>Speed<th>";
+        html += "   <th>State<th>";
+        html += "   <th>Storage size<th>";
+        html += "   <th>Storage<th>";
+        html += "   <th>lastInstruction<th>";
+        html += "   <th>progression<th>";
+        html += "   <th>destination<th>";
+        html += "   <th>distance<th>";
+        html += "   <th>duration<th>";
+        html += "   <th>startedAt<th>";
+        html += "   <th>endAt<th>";
+        html += "   <th>abortedAt<th>";
         html += "</tr>";
         for (var droneIndex = 0; droneIndex < drones.length; droneIndex++) {
             var drone = drones[droneIndex];
@@ -184,12 +189,27 @@
                 html += "   <td> - <td>";
                 html += "   <td> - <td>";
             }
-            html += "</td>";
             html += "</tr>";
         }
         html += "</table>";
         
         $('#stats').html(html);
+    }
+    
+    function displayPlayerContext(playerContext) {
+        var html = "<table>";
+        html += "<tr>";
+        html += "   <th>Resources</th>";
+        html += "</tr>";
+        for (var resIndex = 0; resIndex < playerContext.resources.length; resIndex++) {
+            var resource = playerContext.resources[resIndex];
+            html += "<tr>";
+            html += "   <td>"+formatStrorage(resource)+"<td>";
+            html += "</tr>";
+        }
+        html += "</table>";
+
+        $('#playerContext').html(html);
     }
     
     function clear() {
@@ -212,7 +232,7 @@
         ctx.fillRect(coord.x, coord.y, 1, 1);
     }
     
-    var URL_PREFIX = "http://localhost:61218/";
+    var URL_PREFIX = "http://localhost:5000/";
 
     var ctx = document.getElementById('canvas').getContext('2d');
     var repeat = 2000;

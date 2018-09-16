@@ -24,8 +24,7 @@ namespace AilurusTest.Repository
                 Name = "Drone_1",
                 CurrentPosition = new CoordinateInt2D()
                 {
-                    X = 1,
-                    Y = 1
+                    X = 1, Y = 1
                 },
                 LastInstruction = null,
                 State = DroneState.WaitingForOrders,
