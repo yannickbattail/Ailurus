@@ -13,7 +13,7 @@ namespace Ailurus.Model.Instructions
 {
     public class Unload<TCoordinate> : AbstractInstruction<TCoordinate> where TCoordinate : ICoordinate
     {
-        public ResourceQuantity Resource { get; protected set; }
+        public ResourceQuantity Resource { get; set; }
         
         public override DateTime EndAt
         {

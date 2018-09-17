@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Ailurus.DTO.Interfaces;
-using Ailurus.Model;
 using Ailurus.Model.Instructions;
 
-namespace Ailurus.DTO.Implementation
+namespace Ailurus.Model
 {
     public class PlayerContext<TCoordinate> : IPlayerContext<TCoordinate> where TCoordinate : ICoordinate
     {
@@ -15,6 +14,11 @@ namespace Ailurus.DTO.Implementation
             get { return GetStoredResourcesAt(DateTime.Now);}
         }
 
+        public PlayerContext()
+        {
+            Drones = new List<IDrone<TCoordinate>>();
+        }
+        
         public IEnumerable<ResourceQuantity> GetStoredResourcesAt(DateTime time)
         {
             return Drones.SelectMany(

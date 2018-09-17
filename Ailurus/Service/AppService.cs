@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Ailurus.DTO.Implementation;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Mapper.Implementation;
+using Ailurus.Model;
 using Ailurus.Repository;
 
 namespace Ailurus.Service
