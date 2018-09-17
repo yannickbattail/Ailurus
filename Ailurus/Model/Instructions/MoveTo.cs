@@ -62,6 +62,10 @@ namespace Ailurus.Model.Instructions
             {
                 throw new ArgumentException("missing destination for MoveTo instruction");
             }
+            if (utils.IsNear(source, destination))
+            {
+                throw new InvalidInstructionException<TCoordinate>("The drone is already at destination");    
+            }
             Drone = drone;
             StartedAt = startedAt;
             StartPosition = source;

@@ -4,6 +4,7 @@ using Ailurus.DTO.Implementation;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Model;
 using Ailurus.Model.Instructions;
+using Ailurus.Service;
 using FluentAssertions;
 using Xunit;
 
@@ -14,41 +15,65 @@ namespace AilurusTest.Model.Instructions
         [Fact]
         public void TestGetStateAt()
         {
-            var drone = new Drone<CoordinateInt2D>(new CoordinateInt2D(){X=2,Y=2})
+            var source = new CoordinateInt2D()
+            {
+                X = 1,
+                Y = 1
+            };
+            var dest = new CoordinateInt2D()
+            {
+                X = 1,
+                Y = 10
+            };
+            var drone = new Drone<CoordinateInt2D>(source)
             {
                 Name = "someDrone",
                 StorageSize = 10,
-                Speed = 10
+                Speed = 1
             };
             var dateStart = new DateTime(2018, 1, 1, 0,0,0);
-            drone.AddInstruction(new Unload<CoordinateInt2D>(drone, dateStart));
+            var date = new DateTime(2018, 1, 1, 0,0,4);
+            var moveTo = new MoveTo<CoordinateInt2D>(drone,dateStart,source,dest);
+
+            var actual = moveTo.GetPositionAt(date);
             
-            var date1 = new DateTime(2018, 1, 1, 0,0,1);
-            drone.GetStateAt(date1).Should().Be(DroneState.ExecutionInstruction);
-            var date2  = new DateTime(2018, 1, 1, 0,0,6);
-            drone.GetStateAt(date2).Should().Be(DroneState.WaitingForOrders);
-        }
-        
-        [Fact]
-        public void TestGetValidInstructions()
-        {
-            var drone = new Drone<CoordinateInt2D>(new CoordinateInt2D(){X=2,Y=2})
+            var expected = new CoordinateInt2D()
             {
-                Name = "someDrone",
-                StorageSize = 10,
-                Speed = 10
-            };
-            var dateStart = new DateTime(2018, 1, 1, 0,0,0);
-            var unloadValid = new Unload<CoordinateInt2D>(drone, dateStart);
-            drone.AddInstruction(unloadValid);
-            var unloadInvalid = new Unload<CoordinateInt2D>(drone, dateStart);
-            unloadInvalid.AbortedAt = dateStart;
-
-            var expected = new List<IInstruction<CoordinateInt2D>>(){unloadValid};
+                X = 1,
+                Y = 5
+            }; 
             
-            var actual = drone.GetValidInstructions();
-
             actual.Should().BeEquivalentTo(expected);
+            
+            
+
+        }
+
+        [Fact]
+        public void TestDestinationEqualSource()
+        {
+            var source = new CoordinateInt2D()
+            {
+                X = 1,
+                Y = 1
+            };
+            var drone = new Drone<CoordinateInt2D>(source)
+            {
+                Name = "someDrone",
+                StorageSize = 10,
+                Speed = 1
+            };
+            
+            var dateStart = new DateTime(2018, 1, 1, 0,0,0);
+            
+            Action action = () =>
+            {
+                var move = new MoveTo<CoordinateInt2D>(drone,dateStart,source,source);
+            };
+
+            action.Should().Throw<InvalidInstructionException<CoordinateInt2D>>()
+                .WithMessage("The drone is already at destination");
+
         }
     }
 }
