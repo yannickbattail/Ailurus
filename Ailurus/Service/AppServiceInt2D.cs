@@ -70,14 +70,6 @@ namespace Ailurus.Service
                 {
                     CreateNewDrone("Drone_1"),
                     CreateNewDrone("Drone_2")
-                },
-                Resources = new List<ResourceQuantity>()
-                {
-                    new ResourceQuantity()
-                    {
-                        Resource = ResourceType.Gold,
-                        Quantity = 0
-                    }
                 }
             };
         }

@@ -7,6 +7,6 @@ namespace Ailurus.DTO.Interfaces
     {
         IEnumerable<IDrone<TCoordinate>> Drones { get; set; }
         string PlayerName { get; set; }
-        IList<ResourceQuantity> Resources { get; set; }
+        IEnumerable<ResourceQuantity> Resources { get; }
     }
 }

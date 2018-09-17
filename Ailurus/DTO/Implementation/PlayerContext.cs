@@ -11,7 +11,9 @@ namespace Ailurus.DTO.Implementation
     {
         public IEnumerable<IDrone<TCoordinate>> Drones { get; set; }
         public string PlayerName { get; set; }
-        public IList<ResourceQuantity> Resources { get; set; }
+        public IEnumerable<ResourceQuantity> Resources {
+            get { return GetStoredResourcesAt(DateTime.Now);}
+        }
 
         public IEnumerable<ResourceQuantity> GetStoredResourcesAt(DateTime time)
         {
@@ -28,15 +30,11 @@ namespace Ailurus.DTO.Implementation
                     rqGroup => new ResourceQuantity()
                     {
                         Resource = rqGroup.Key,
-                        Quantity = rqGroup.Sum(rq => rq.Quantity)
+                        Quantity = rqGroup.Sum(
+                            rq => rq.Quantity
+                            )
                     }
                 );
         }
-        
-        public IEnumerable<ResourceQuantity> GetStoredResources()
-        {
-            return GetStoredResourcesAt(DateTime.Now);
-        }
-
     }
 }
