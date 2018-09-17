@@ -3,7 +3,7 @@ using Ailurus.DTO.Implementation;
 using FluentAssertions;
 using Xunit;
 
-namespace AilurusTest.Repository
+namespace AilurusTest.DTO.Implementation
 {
     public class CoordinateInt2DUtilsTest
     {
@@ -25,6 +25,53 @@ namespace AilurusTest.Repository
             var distance = util.GetDistanceTo(source, dest);
             
             distance.Should().Be(5);
+        }
+
+        [Fact]
+        public void IsNearTest()
+        {
+            var source = new CoordinateInt2D()
+            {
+                X = 1,
+                Y = 1
+            };
+            
+            var dest = new CoordinateInt2D()
+            {
+                X = 3,
+                Y = 4
+            };
+            var util = new CoordinateInt2DUtils();
+            var near = util.IsNear(source, source);
+            near.Should().BeTrue();
+            near = util.IsNear(source, dest);
+            near.Should().BeFalse();
+        }
+        [Fact]
+        public void IsNearThrowTest()
+        {
+            var source = new CoordinateInt2D()
+            {
+                X = 1,
+                Y = 1
+            };
+            
+            var util = new CoordinateInt2DUtils();
+            
+            Action isNearAction = () =>
+            {
+                util.IsNear(source, null);
+            };
+
+            isNearAction.Should().Throw<ArgumentNullException>();
+            
+            isNearAction = () =>
+            {
+                util.IsNear(null, source);
+            };
+
+            isNearAction.Should().Throw<ArgumentNullException>();
+
         }
         
         [Fact]
@@ -133,6 +180,39 @@ namespace AilurusTest.Repository
             {
                 X = 10,
                 Y = 10
+            };
+            
+            var util = new CoordinateInt2DUtils();
+            var inside = util.ForceInside(coord, area);
+            
+            inside.Should().BeEquivalentTo(expected);
+        }
+        
+        [Fact]
+        public void ForceInsideOut2Test()
+        {
+            var coord = new CoordinateInt2D()
+            {
+                X = 1,
+                Y = 1
+            };
+            
+            var area = new Tuple<CoordinateInt2D, CoordinateInt2D>(
+                new CoordinateInt2D()
+                {
+                    X = 5,
+                    Y = 5
+                }, new CoordinateInt2D()
+                {
+                    X = 10,
+                    Y = 10
+                }
+            );
+            
+            var expected = new CoordinateInt2D()
+            {
+                X = 5,
+                Y = 5
             };
             
             var util = new CoordinateInt2DUtils();

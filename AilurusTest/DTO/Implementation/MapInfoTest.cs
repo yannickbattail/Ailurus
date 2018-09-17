@@ -1,11 +1,4 @@
-using System;
-using System.Collections.Generic;
-using Ailurus.DTO.Implementation;
-using Ailurus.Model;
-using FluentAssertions;
-using Xunit;
-
-namespace AilurusTest.Repository
+namespace AilurusTest.DTO.Implementation
 {
     public class MapInfoTest
     {

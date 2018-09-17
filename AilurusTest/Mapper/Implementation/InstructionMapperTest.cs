@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using Ailurus.DTO.Implementation;
 using Ailurus.Mapper.Implementation;
 using Ailurus.Model;
@@ -7,7 +6,7 @@ using Ailurus.Model.Instructions;
 using FluentAssertions;
 using Xunit;
 
-namespace AilurusTest.Repository
+namespace AilurusTest.Mapper.Implementation
 {
     public class InstructionMapperTest
     {

@@ -7,9 +7,9 @@ using Ailurus.Model.Instructions;
 using FluentAssertions;
 using Xunit;
 
-namespace AilurusTest.Model
+namespace AilurusTest.Model.Instructions
 {
-    public class DroneTest
+    public class MoveToTest
     {
         [Fact]
         public void TestGetStateAt()

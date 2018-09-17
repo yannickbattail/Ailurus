@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using Ailurus.Controllers;
 using Ailurus.DTO.Implementation;
-using Xunit;
 using FluentAssertions;
+using Xunit;
 
-namespace AilurusTest
+namespace AilurusTest.Controllers
 {
     public class AilurusControllerTest
     {

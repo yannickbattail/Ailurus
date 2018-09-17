@@ -5,7 +5,7 @@ using Ailurus.Model;
 using FluentAssertions;
 using Xunit;
 
-namespace AilurusTest.Repository
+namespace AilurusTest.Mapper.Implementation
 {
     public class PlayerContextMapperTest
     {
