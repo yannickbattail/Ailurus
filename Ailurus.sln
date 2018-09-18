@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ailurus", "Ailurus\Ailurus.csproj", "{6E9761BC-5ABD-476E-836C-7BB20A5B79CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AilurusTest", "AilurusTest\AilurusTest.csproj", "{080624B4-5D37-443E-94A5-C8D6D91BCD19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AilurusTest", "AilurusTest\AilurusTest.csproj", "{080624B4-5D37-443E-94A5-C8D6D91BCD19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fulgens", "fulgens\fulgens.csproj", "{2574F603-4B6C-4A30-BFDD-E3BC09EEDFDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{080624B4-5D37-443E-94A5-C8D6D91BCD19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{080624B4-5D37-443E-94A5-C8D6D91BCD19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{080624B4-5D37-443E-94A5-C8D6D91BCD19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2574F603-4B6C-4A30-BFDD-E3BC09EEDFDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2574F603-4B6C-4A30-BFDD-E3BC09EEDFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2574F603-4B6C-4A30-BFDD-E3BC09EEDFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2574F603-4B6C-4A30-BFDD-E3BC09EEDFDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
