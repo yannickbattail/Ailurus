@@ -32,6 +32,8 @@ namespace Ailurus.Controllers
         // POST instructions
         [HttpPost]
         [Route("instructions")]
+        [ProducesResponseType(typeof(IEnumerable<string>), 200)]
+        [ProducesResponseType(typeof(void), 400)]
         public IEnumerable<string> SendInstructions(
             [FromBody]
             [Required]
