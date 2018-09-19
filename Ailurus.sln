@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ailurus", "Ailurus\Ailurus.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AilurusTest", "AilurusTest\AilurusTest.csproj", "{080624B4-5D37-443E-94A5-C8D6D91BCD19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fulgens", "Fulgens\Fulgens.csproj", "{DDB565E5-6B8B-4CED-8470-BEB807F0D014}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{080624B4-5D37-443E-94A5-C8D6D91BCD19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{080624B4-5D37-443E-94A5-C8D6D91BCD19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{080624B4-5D37-443E-94A5-C8D6D91BCD19}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DDB565E5-6B8B-4CED-8470-BEB807F0D014}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DDB565E5-6B8B-4CED-8470-BEB807F0D014}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DDB565E5-6B8B-4CED-8470-BEB807F0D014}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DDB565E5-6B8B-4CED-8470-BEB807F0D014}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
