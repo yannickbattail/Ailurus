@@ -1,4 +1,3 @@
-using Ailurus.Controllers;
 using Ailurus.DTO.Implementation;
 using Ailurus.Repository;
 using Ailurus.Service;

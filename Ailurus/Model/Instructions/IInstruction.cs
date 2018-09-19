@@ -1,8 +1,5 @@
 ﻿using System;
-using Ailurus.DTO;
 using Ailurus.DTO.Interfaces;
-using Microsoft.AspNetCore.Rewrite.Internal.UrlActions;
-using Microsoft.IdentityModel.Protocols;
 using Newtonsoft.Json;
 
 namespace Ailurus.Model.Instructions

@@ -1,5 +1,4 @@
-﻿using System;
-using Ailurus.DTO.Interfaces;
+﻿using Ailurus.DTO.Interfaces;
 
 namespace Ailurus.DTO.Implementation
 {

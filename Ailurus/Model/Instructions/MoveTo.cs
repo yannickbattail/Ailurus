@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Threading.Tasks;
-using Ailurus.DTO;
 using Ailurus.DTO.Interfaces;
-using Ailurus.Repository;
 using Ailurus.Service;
 using Newtonsoft.Json;
 

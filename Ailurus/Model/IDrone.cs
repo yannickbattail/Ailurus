@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Ailurus.DTO;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Model.Instructions;
 using Newtonsoft.Json;

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Service;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace Ailurus.DTO.Implementation
 {

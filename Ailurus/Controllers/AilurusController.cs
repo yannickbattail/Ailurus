@@ -1,15 +1,8 @@
-﻿using Ailurus.DTO;
-using Ailurus.DTO.Implementation;
-using Ailurus.Repository;
+﻿using Ailurus.DTO.Implementation;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using Ailurus.DTO.Interfaces;
-using Ailurus.Mapper.Implementation;
-using Ailurus.Model;
-using Ailurus.Model.Instructions;
 using Ailurus.Service;
 
 namespace Ailurus.Controllers

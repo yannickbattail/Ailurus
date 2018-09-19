@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using Ailurus.DTO.Implementation;
-using Ailurus.DTO.Interfaces;
 using Ailurus.Model;
 using Ailurus.Model.Instructions;
 using Ailurus.Service;
