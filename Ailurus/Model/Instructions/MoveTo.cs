@@ -1,6 +1,7 @@
 ﻿using System;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Service;
+using Ailurus.Util.Interfaces;
 using Newtonsoft.Json;
 
 namespace Ailurus.Model.Instructions

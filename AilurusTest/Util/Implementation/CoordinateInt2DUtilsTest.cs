@@ -1,9 +1,10 @@
 using System;
 using Ailurus.DTO.Implementation;
+using Ailurus.Util.Implementation;
 using FluentAssertions;
 using Xunit;
 
-namespace AilurusTest.DTO.Implementation
+namespace AilurusTest.Util.Implementation
 {
     public class CoordinateInt2DUtilsTest
     {

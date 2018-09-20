@@ -1,6 +1,7 @@
 using System;
+using Ailurus.DTO.Interfaces;
 
-namespace Ailurus.DTO.Interfaces
+namespace Ailurus.Util.Interfaces
 {
     public interface ICoordinateUtils<TCoordinate> where TCoordinate : ICoordinate
     {

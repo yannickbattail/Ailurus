@@ -1,7 +1,8 @@
 using System;
-using Ailurus.DTO.Interfaces;
+using Ailurus.DTO.Implementation;
+using Ailurus.Util.Interfaces;
 
-namespace Ailurus.DTO.Implementation
+namespace Ailurus.Util.Implementation
 {
     public class CoordinateInt2DUtils : ICoordinateUtils<CoordinateInt2D>
     {

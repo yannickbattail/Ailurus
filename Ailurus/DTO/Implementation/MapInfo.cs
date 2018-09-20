@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Service;
+using Ailurus.Util.Interfaces;
 
 namespace Ailurus.DTO.Implementation
 {

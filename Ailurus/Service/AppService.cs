@@ -5,6 +5,7 @@ using Ailurus.DTO.Interfaces;
 using Ailurus.Mapper.Implementation;
 using Ailurus.Model;
 using Ailurus.Repository;
+using Ailurus.Util.Interfaces;
 
 namespace Ailurus.Service
 {
