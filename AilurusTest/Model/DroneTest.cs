@@ -41,8 +41,8 @@ namespace AilurusTest.Model
             var dateStart = new DateTime(2018, 1, 1, 0,0,0);
             var unloadValid = new Unload<CoordinateInt2D>(drone, dateStart);
             drone.AddInstruction(unloadValid);
-            var unloadInvalid = new Unload<CoordinateInt2D>(drone, dateStart);
-            unloadInvalid.AbortedAt = dateStart;
+            var unloadAborted = new Unload<CoordinateInt2D>(drone, dateStart);
+            unloadAborted.AbortedAt = dateStart;
 
             var expected = new List<IInstruction<CoordinateInt2D>>(){unloadValid};
             

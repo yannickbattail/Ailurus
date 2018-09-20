@@ -72,17 +72,18 @@ namespace AilurusTest.Mapper.Implementation
         {
             var drone = CreateDrone();
             
+            var date = new DateTime(2018,1,1);
+            var dest = new CoordinateInt2D(){X = 84,Y = 42};
+            var source = new CoordinateInt2D(){X = 1,Y = 1};
+            
             var globalInstruction = new GlobalInstruction<CoordinateInt2D>()
             {
                 TYPE = "MoveTo",
-                Destination = new CoordinateInt2D(){X = 84,Y = 42},
+                Destination = dest,
                 DroneName = "Drone_1"
             };
 
             var mapper = new InstructionMapper<CoordinateInt2D>();
-            var date = new DateTime(2018,1,1);
-            var dest = new CoordinateInt2D(){X = 84,Y = 42};
-            var source = new CoordinateInt2D(){X = 1,Y = 1};
             var expectedInstruction = new MoveTo<CoordinateInt2D>(drone, date, source, dest);
             
             
