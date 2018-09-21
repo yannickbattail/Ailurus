@@ -1,22 +1,20 @@
 ﻿using System;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Service;
-using Ailurus.Util.Interfaces;
 using Newtonsoft.Json;
 
 namespace Ailurus.Model.Instructions
 {
-    public class MoveTo<TCoordinate> : AbstractInstruction<TCoordinate> where TCoordinate : ICoordinate
+    public class MoveTo : AbstractInstruction
     {
         [JsonIgnore]
-        public TCoordinate StartPosition { get; set; }
-        public TCoordinate Destination { get; set; }
-        private static ICoordinateUtils<TCoordinate> utils = AppService<TCoordinate>.GetAppService().GetCoordinateUtils();
+        public ICoordinate StartPosition { get; set; }
+        public ICoordinate Destination { get; set; }
         
         public double Distance
         {
             get {
-                return utils.GetDistanceTo(StartPosition, Destination);
+                return StartPosition.GetDistanceTo(Destination);
             }
         }
     
@@ -37,7 +35,7 @@ namespace Ailurus.Model.Instructions
             protected set{}
         }
 
-        public TCoordinate GetPositionAt(DateTime time)
+        public ICoordinate GetPositionAt(DateTime time)
         {
             if (time <= StartedAt)
             {
@@ -47,10 +45,10 @@ namespace Ailurus.Model.Instructions
             {
                 return Destination;
             }
-            return utils.PathProgression(StartPosition, Destination, GetProgressionAt(time));
+            return StartPosition.PathProgression(Destination, GetProgressionAt(time));
         }
         
-        public MoveTo(IDrone<TCoordinate> drone, DateTime startedAt, TCoordinate source, TCoordinate destination)
+        public MoveTo(IDrone drone, DateTime startedAt, ICoordinate source, ICoordinate destination)
         {
             if (destination == null)
             {
@@ -60,9 +58,9 @@ namespace Ailurus.Model.Instructions
             {
                 throw new ArgumentException("missing destination for MoveTo instruction");
             }
-            if (utils.IsNear(source, destination))
+            if (source.IsNear(destination))
             {
-                throw new InvalidInstructionException<TCoordinate>("The drone is already at destination");    
+                throw new InvalidInstructionException("The drone is already at destination");    
             }
             Drone = drone;
             StartedAt = startedAt;

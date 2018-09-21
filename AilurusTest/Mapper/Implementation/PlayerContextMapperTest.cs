@@ -12,14 +12,14 @@ namespace AilurusTest.Mapper.Implementation
         [Fact]
         public void TestDroneMap()
         {
-            var drone = new Drone<CoordinateInt2D>(new CoordinateInt2D(){X=1,Y=1})
+            var drone = new Drone(new CoordinateInt2D(){X=1,Y=1})
             {
                 Name = "Drone_1",
                 Speed = 1,
                 StorageSize = 10
             };
             
-            var droneDtoExpected = new DroneDto<CoordinateInt2D>()
+            var droneDtoExpected = new DroneDto()
             {
                 Name = "Drone_1",
                 CurrentPosition = new CoordinateInt2D()
@@ -33,7 +33,7 @@ namespace AilurusTest.Mapper.Implementation
                 Storage = null
             };
 
-            var mapper = new PlayerContextMapper<CoordinateInt2D>();
+            var mapper = new PlayerContextMapper();
             
             var droneDtoActual = mapper.Map(drone);
             

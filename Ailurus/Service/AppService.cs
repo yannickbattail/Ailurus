@@ -5,37 +5,34 @@ using Ailurus.DTO.Interfaces;
 using Ailurus.Mapper.Implementation;
 using Ailurus.Model;
 using Ailurus.Repository;
-using Ailurus.Util.Interfaces;
 
 namespace Ailurus.Service
 {
-    public abstract class AppService<TCoordinate> : IAppService<TCoordinate> where TCoordinate : ICoordinate
+    public abstract class AppService : IAppService
     {
-        private static AppService<TCoordinate> App;
+        private static AppService App;
         
-        public static AppService<TCoordinate> GetAppService()
+        public static AppService GetAppService()
         {
             if (App == null)
             {
-                App = new AppServiceInt2D() as AppService<TCoordinate>;
+                App = new AppServiceInt2D() as AppService;
             }
 
             return App;
         }
 
-        protected IMapInfo<TCoordinate> Map;
-
-        public abstract ICoordinateUtils<TCoordinate> GetCoordinateUtils();
+        protected IMapInfo Map;
         
-        public IMapInfo<TCoordinate> GetMap()
+        public IMapInfo GetMap()
         {
             return Map;
         }
 
-        public IPlayerContextDto<TCoordinate> GetPlayerContext(string playerName)
+        public IPlayerContextDto GetPlayerContext(string playerName)
         {
-            var repo = new PlayerContextRepository<TCoordinate>();
-            var mapper = new PlayerContextMapper<TCoordinate>();
+            var repo = new PlayerContextRepository();
+            var mapper = new PlayerContextMapper();
             try
             {
                 return mapper.Map(repo.GetPlayerContextByPlayerName(playerName));
@@ -49,7 +46,7 @@ namespace Ailurus.Service
             }
         }
 
-        public IEnumerable<string> SendInstructions(List<GlobalInstruction<CoordinateInt2D>> instructions, string playerName)
+        public IEnumerable<string> SendInstructions(List<GlobalInstruction> instructions, string playerName)
         {
             try
             {
@@ -66,6 +63,6 @@ namespace Ailurus.Service
             }
         }
 
-        public abstract IPlayerContext<TCoordinate> CreateNew(string playerName);
+        public abstract IPlayerContext CreateNew(string playerName);
     }
 }

@@ -6,9 +6,9 @@ using Ailurus.Service;
 
 namespace Ailurus.Model.Instructions
 {
-    public class Collect<TCoordinate> : AbstractInstruction<TCoordinate> where TCoordinate : ICoordinate
+    public class Collect : AbstractInstruction
     {
-        public Mine<TCoordinate> Mine { get; set; }
+        public Mine Mine { get; set; }
         public override DateTime EndAt
         {
             get
@@ -27,18 +27,17 @@ namespace Ailurus.Model.Instructions
             protected set{}
         }
 
-        public Collect(IDrone<TCoordinate> drone, DateTime startedAt)
+        public Collect(IDrone drone, DateTime startedAt)
         {
-            var util = AppService<TCoordinate>.GetAppService().GetCoordinateUtils();
-            var item = AppService<TCoordinate>.GetAppService().GetMap().Items.FirstOrDefault(
-                    itm => (itm.GetType() == typeof(Mine<TCoordinate>))
-                        && util.IsNear(drone.CurrentPosition, itm.Position)
+            var item = AppService.GetAppService().GetMap().Items.FirstOrDefault(
+                    itm => (itm.GetType() == typeof(Mine))
+                        && drone.CurrentPosition.IsNear(itm.Position)
                 );
             if (item == null)
             {
-                throw new InvalidInstructionException<TCoordinate>("No mine near the drone");
+                throw new InvalidInstructionException("No mine near the drone");
             }
-            var mine = item as Mine<TCoordinate>;
+            var mine = item as Mine;
             Drone = drone;
             StartedAt = startedAt;
             Mine = mine;

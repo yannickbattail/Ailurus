@@ -4,9 +4,9 @@ using Ailurus.Model.Instructions;
 
 namespace Ailurus.Service
 {
-    public class InvalidInstructionException<TCoordinate> : Exception where TCoordinate : ICoordinate
+    public class InvalidInstructionException : Exception
     {
-        public IInstruction<TCoordinate> Instruction { get; set; }
+        public IInstruction Instruction { get; set; }
 
         public InvalidInstructionException(string message) : base(message)
         {

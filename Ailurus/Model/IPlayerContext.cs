@@ -3,9 +3,9 @@ using Ailurus.DTO.Interfaces;
 
 namespace Ailurus.Model
 {
-    public interface IPlayerContext<TCoordinate> where TCoordinate : ICoordinate
+    public interface IPlayerContext
     {
-        IEnumerable<IDrone<TCoordinate>> Drones { get; set; }
+        IEnumerable<IDrone> Drones { get; set; }
         string PlayerName { get; set; }
         IEnumerable<ResourceQuantity> Resources { get; }
     }

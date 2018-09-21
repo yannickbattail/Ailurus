@@ -4,10 +4,10 @@ using Newtonsoft.Json;
 
 namespace Ailurus.Model.Instructions
 {
-    public interface IInstruction<TCoordinate> where TCoordinate : ICoordinate
+    public interface IInstruction
     {
         [JsonIgnore]
-        IDrone<TCoordinate> Drone { get; }
+        IDrone Drone { get; }
         string Type { get; }
         DateTime StartedAt { get; }
         DateTime EndAt { get; }

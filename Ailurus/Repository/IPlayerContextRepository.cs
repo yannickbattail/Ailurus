@@ -3,9 +3,9 @@ using Ailurus.Model;
 
 namespace Ailurus.Repository
 {
-    public interface IPlayerContextRepository<TCoordinate> where TCoordinate : ICoordinate
+    public interface IPlayerContextRepository
     {
-        IPlayerContext<TCoordinate> GetPlayerContextByPlayerName(string playerName);
-        void Save(IPlayerContext<TCoordinate> playerContext);
+        IPlayerContext GetPlayerContextByPlayerName(string playerName);
+        void Save(IPlayerContext playerContext);
     }
 }

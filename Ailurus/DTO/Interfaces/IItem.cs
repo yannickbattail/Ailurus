@@ -1,9 +1,9 @@
 ﻿namespace Ailurus.DTO.Interfaces
 {
-    public interface IItem<TCoordinate> where TCoordinate : ICoordinate
+    public interface IItem
     {
         string TYPE { get; }
         string Name { get; set; }
-        TCoordinate Position { get; set; }
+        ICoordinate Position { get; set; }
     }
 }

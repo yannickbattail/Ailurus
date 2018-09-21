@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Ailurus.DTO.Interfaces
 {
-    public interface IMapInfo<TCoordinate> where TCoordinate : ICoordinate
+    public interface IMapInfo
     {
         string Name { get; set; }
-        Tuple<TCoordinate, TCoordinate> Dimensions { get; set; }
-        TCoordinate DroneSpawnPoint { get; set; }
-        IEnumerable<IItem<TCoordinate>> Items { get; set; }
-        bool IsInside(TCoordinate coordinate);
-        TCoordinate ForceInside(TCoordinate coordinate);
+        Tuple<ICoordinate, ICoordinate> Dimensions { get; set; }
+        ICoordinate DroneSpawnPoint { get; set; }
+        IEnumerable<IItem> Items { get; set; }
+        bool IsInside(ICoordinate coordinate);
+        ICoordinate ForceInside(ICoordinate coordinate);
     }
 }

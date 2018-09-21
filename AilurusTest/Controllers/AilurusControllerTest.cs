@@ -12,14 +12,14 @@ namespace AilurusTest.Controllers
         public void SendInstructionsTest()
         {
             var controller = new AilurusController();
-            var instructions = new List<GlobalInstruction<CoordinateInt2D>>()
+            var instructions = new List<GlobalInstruction>()
             {
-                new GlobalInstruction<CoordinateInt2D>{
+                new GlobalInstruction{
                     TYPE = "Collect",
                     DroneName = "Drone_1",
                     Destination = null
                 },
-                new GlobalInstruction<CoordinateInt2D>{
+                new GlobalInstruction{
                     TYPE = "MoveTo",
                     DroneName = "Drone_2",
                     Destination = new CoordinateInt2D{
@@ -32,7 +32,7 @@ namespace AilurusTest.Controllers
             var expected = new List<string>()
             {
                 "Invalid Instruction: No mine near the drone for instruction: TYPE: Collect, DroneName: Drone_1, Destination: ",
-                "OK, drone will do MoveTo`1"
+                "OK, drone will do MoveTo"
             };
             controller.GetPlayerContext();
             var actual = controller.SendInstructions(instructions);

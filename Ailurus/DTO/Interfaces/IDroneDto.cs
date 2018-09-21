@@ -3,11 +3,11 @@ using Ailurus.Model.Instructions;
 
 namespace Ailurus.DTO.Interfaces
 {
-    public interface IDroneDto<TCoordinate> where TCoordinate : ICoordinate
+    public interface IDroneDto
     {
         string Name { get; set; }
-        IInstruction<TCoordinate> LastInstruction { get; set; }
-        TCoordinate CurrentPosition { get; set; }
+        IInstruction LastInstruction { get; set; }
+        ICoordinate CurrentPosition { get; set; }
         DroneState State { get; set; }
         double Speed { get; set; }
         int StorageSize { get; set; }

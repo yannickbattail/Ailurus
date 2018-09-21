@@ -9,12 +9,12 @@ namespace Ailurus.Controllers
 {
     public class AilurusController : Controller
     {
-        private AppService<CoordinateInt2D> App = AppService<CoordinateInt2D>.GetAppService();
+        private AppService App = AppService.GetAppService();
 
         // GET map
         [HttpGet]
         [Route("map")]
-        public IMapInfo<CoordinateInt2D> GetMap()
+        public IMapInfo GetMap()
         {
             return App.GetMap();
         }
@@ -22,7 +22,7 @@ namespace Ailurus.Controllers
         // GET playerContext
         [HttpGet]
         [Route("playerContext")]
-        public IPlayerContextDto<CoordinateInt2D> GetPlayerContext()
+        public IPlayerContextDto GetPlayerContext()
         {
             //@TODO get playerName from authentication/session
             var playerName = "RedPanda";
@@ -37,7 +37,7 @@ namespace Ailurus.Controllers
         public IEnumerable<string> SendInstructions(
             [FromBody]
             [Required]
-            List<GlobalInstruction<CoordinateInt2D>> instructions)
+            List<GlobalInstruction> instructions)
         {
             //@TODO get playerName from authentication/session
             var playerName = "RedPanda";

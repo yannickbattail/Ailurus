@@ -11,9 +11,9 @@ namespace AilurusTest.Repository
         [Fact]
         public void TestSaveLoad()
         {
-            var repo = new PlayerContextRepository<CoordinateInt2D>();
+            var repo = new PlayerContextRepository();
             var playerName = "somePlayer";
-            var expected = AppService<CoordinateInt2D>.GetAppService().CreateNew(playerName);
+            var expected = AppService.GetAppService().CreateNew(playerName);
             repo.Save(expected);
 
             var playerActual = repo.GetPlayerContextByPlayerName(playerName);

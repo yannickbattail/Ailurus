@@ -6,7 +6,7 @@ using Ailurus.Service;
 
 namespace Ailurus.Model.Instructions
 {
-    public class Unload<TCoordinate> : AbstractInstruction<TCoordinate> where TCoordinate : ICoordinate
+    public class Unload : AbstractInstruction
     {
         public ResourceQuantity Resource { get; set; }
         
@@ -28,16 +28,15 @@ namespace Ailurus.Model.Instructions
             protected set{}
         }
 
-        public Unload(IDrone<TCoordinate> drone, DateTime startedAt)
+        public Unload(IDrone drone, DateTime startedAt)
         {
-            var util = AppService<TCoordinate>.GetAppService().GetCoordinateUtils();
-            var item = AppService<TCoordinate>.GetAppService().GetMap().Items.FirstOrDefault(
-                itm => (itm.GetType() == typeof(MainBuilding<TCoordinate>))
-                       && util.IsNear(drone.CurrentPosition, itm.Position)
+            var item = AppService.GetAppService().GetMap().Items.FirstOrDefault(
+                itm => (itm.GetType() == typeof(MainBuilding))
+                       && drone.CurrentPosition.IsNear(itm.Position)
             );
             if (item == null)
             {
-                throw new InvalidInstructionException<TCoordinate>("No MainBuilding near the drone");
+                throw new InvalidInstructionException("No MainBuilding near the drone");
             }
             Drone = drone;
             StartedAt = startedAt;

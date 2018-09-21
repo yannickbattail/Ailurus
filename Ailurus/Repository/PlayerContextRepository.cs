@@ -5,11 +5,11 @@ using Ailurus.Model;
 
 namespace Ailurus.Repository
 {
-    public class PlayerContextRepository<TCoordinate> : IPlayerContextRepository<TCoordinate> where TCoordinate : ICoordinate
+    public class PlayerContextRepository : IPlayerContextRepository
     {
-        private static IDictionary<string, IPlayerContext<TCoordinate>> PlayerContexts = new Dictionary<string, IPlayerContext<TCoordinate>>();
+        private static IDictionary<string, IPlayerContext> PlayerContexts = new Dictionary<string, IPlayerContext>();
 
-        public IPlayerContext<TCoordinate> GetPlayerContextByPlayerName(string playerName)
+        public IPlayerContext GetPlayerContextByPlayerName(string playerName)
         {
             if (!PlayerContexts.ContainsKey(playerName))
             {
@@ -18,7 +18,7 @@ namespace Ailurus.Repository
             return PlayerContexts[playerName];
         }
 
-        public void Save(IPlayerContext<TCoordinate> playerContext)
+        public void Save(IPlayerContext playerContext)
         {
             PlayerContexts[playerContext.PlayerName] = playerContext;
         }

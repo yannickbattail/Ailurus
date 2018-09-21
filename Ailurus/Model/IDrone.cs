@@ -7,10 +7,10 @@ using Newtonsoft.Json.Converters;
 
 namespace Ailurus.Model
 {
-    public interface IDrone<TCoordinate> where TCoordinate : ICoordinate
+    public interface IDrone
     {
         string Name { get; set; }
-        TCoordinate CurrentPosition { get; }
+        ICoordinate CurrentPosition { get; }
         [JsonConverter(typeof(StringEnumConverter))]
         DroneState State { get; }
         DroneState GetStateAt(DateTime time);
@@ -18,10 +18,10 @@ namespace Ailurus.Model
         int StorageSize { get; set; }
         ResourceQuantity Storage { get; }
         
-        void AddInstruction(IInstruction<TCoordinate> instruction);
+        void AddInstruction(IInstruction instruction);
         void AbortLastInstruction();
-        IEnumerable<IInstruction<TCoordinate>> GetInstructions();
-        IEnumerable<IInstruction<TCoordinate>> GetValidInstructions();
-        IInstruction<TCoordinate> GetLastValidInstruction();
+        IEnumerable<IInstruction> GetInstructions();
+        IEnumerable<IInstruction> GetValidInstructions();
+        IInstruction GetLastValidInstruction();
     }
 }

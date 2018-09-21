@@ -6,11 +6,11 @@ using Ailurus.Model.Instructions;
 
 namespace Ailurus.Mapper.Interfaces
 {
-    public interface IInstructionMapper<TCoordinate> where TCoordinate : ICoordinate
+    public interface IInstructionMapper
     {
-        IInstruction<TCoordinate> ToSpecificInstruction(
-            GlobalInstruction<TCoordinate> globalInstruction,
-            IDrone<TCoordinate> drone,
+        IInstruction ToSpecificInstruction(
+            GlobalInstruction globalInstruction,
+            IDrone drone,
             DateTime currentTime);
     }
 }

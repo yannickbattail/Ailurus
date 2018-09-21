@@ -23,7 +23,7 @@ namespace AilurusTest.Model.Instructions
                 X = 1,
                 Y = 10
             };
-            var drone = new Drone<CoordinateInt2D>(source)
+            var drone = new Drone(source)
             {
                 Name = "someDrone",
                 StorageSize = 10,
@@ -31,7 +31,7 @@ namespace AilurusTest.Model.Instructions
             };
             var dateStart = new DateTime(2018, 1, 1, 0,0,0);
             var date = new DateTime(2018, 1, 1, 0,0,4);
-            var moveTo = new MoveTo<CoordinateInt2D>(drone,dateStart,source,dest);
+            var moveTo = new MoveTo(drone,dateStart,source,dest);
 
             var actual = moveTo.GetPositionAt(date);
             
@@ -55,7 +55,7 @@ namespace AilurusTest.Model.Instructions
                 X = 1,
                 Y = 1
             };
-            var drone = new Drone<CoordinateInt2D>(source)
+            var drone = new Drone(source)
             {
                 Name = "someDrone",
                 StorageSize = 10,
@@ -66,10 +66,10 @@ namespace AilurusTest.Model.Instructions
             
             Action action = () =>
             {
-                var move = new MoveTo<CoordinateInt2D>(drone,dateStart,source,source);
+                var move = new MoveTo(drone,dateStart,source,source);
             };
 
-            action.Should().Throw<InvalidInstructionException<CoordinateInt2D>>()
+            action.Should().Throw<InvalidInstructionException>()
                 .WithMessage("The drone is already at destination");
 
         }

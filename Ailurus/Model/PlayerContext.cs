@@ -6,9 +6,9 @@ using Ailurus.Model.Instructions;
 
 namespace Ailurus.Model
 {
-    public class PlayerContext<TCoordinate> : IPlayerContext<TCoordinate> where TCoordinate : ICoordinate
+    public class PlayerContext : IPlayerContext
     {
-        public IEnumerable<IDrone<TCoordinate>> Drones { get; set; }
+        public IEnumerable<IDrone> Drones { get; set; }
         public string PlayerName { get; set; }
         public IEnumerable<ResourceQuantity> Resources {
             get { return GetStoredResourcesAt(DateTime.Now);}
@@ -16,7 +16,7 @@ namespace Ailurus.Model
 
         public PlayerContext()
         {
-            Drones = new List<IDrone<TCoordinate>>();
+            Drones = new List<IDrone>();
         }
         
         public IEnumerable<ResourceQuantity> GetStoredResourcesAt(DateTime time)
@@ -24,9 +24,9 @@ namespace Ailurus.Model
             return Drones.SelectMany(
                 drone => drone.GetValidInstructions()
                     .Where(
-                        i => i.IsFinishedAt(time) && i.GetType() == typeof(Unload<TCoordinate>)
+                        i => i.IsFinishedAt(time) && i.GetType() == typeof(Unload)
                     ).Select(
-                        i => (i as Unload<TCoordinate>).Resource
+                        i => (i as Unload).Resource
                     )
                 ).GroupBy(
                     rq => rq.Resource

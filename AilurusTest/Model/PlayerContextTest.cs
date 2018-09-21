@@ -15,7 +15,7 @@ namespace AilurusTest.Model
         [Fact]
         public void GetStoredResourcesAtVoidTest()
         {
-            var cntx = new PlayerContext<CoordinateInt2D>();
+            var cntx = new PlayerContext();
             
             IEnumerable<ResourceQuantity> expected = new List<ResourceQuantity>();
 
@@ -28,20 +28,20 @@ namespace AilurusTest.Model
         {
             var initPos = new CoordinateInt2D() { X = 2, Y = 2};
             var rq = new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 42};
-            var mockedDrone = new Mock<IDrone<CoordinateInt2D>>();
+            var mockedDrone = new Mock<IDrone>();
             mockedDrone
                 .Setup(dr => dr.GetValidInstructions())
-                .Returns(new List<IInstruction<CoordinateInt2D>>()
+                .Returns(new List<IInstruction>()
                 {
-                    new Unload<CoordinateInt2D>(new Drone<CoordinateInt2D>(initPos), new DateTime(2018,1,1,0,0,0))
+                    new Unload(new Drone(initPos), new DateTime(2018,1,1,0,0,0))
                     {
                         Resource = rq
                     }
                 });
             
-            var cntx = new PlayerContext<CoordinateInt2D>()
+            var cntx = new PlayerContext()
             {
-                Drones = new List<IDrone<CoordinateInt2D>>()
+                Drones = new List<IDrone>()
                 {
                     mockedDrone.Object
                 }
@@ -60,34 +60,34 @@ namespace AilurusTest.Model
         {
             var initPos = new CoordinateInt2D() { X = 2, Y = 2};
             var rq = new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 42};
-            var mockedDrone = new Mock<IDrone<CoordinateInt2D>>();
+            var mockedDrone = new Mock<IDrone>();
             mockedDrone
                 .Setup(dr => dr.GetValidInstructions())
-                .Returns(new List<IInstruction<CoordinateInt2D>>()
+                .Returns(new List<IInstruction>()
                 {
-                    new Unload<CoordinateInt2D>(new Drone<CoordinateInt2D>(initPos), new DateTime(2018,1,1,0,0,0))
+                    new Unload(new Drone(initPos), new DateTime(2018,1,1,0,0,0))
                     {
                         Resource = new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 42}
                     },
-                    new Unload<CoordinateInt2D>(new Drone<CoordinateInt2D>(initPos), new DateTime(2018,1,1,0,0,2))
+                    new Unload(new Drone(initPos), new DateTime(2018,1,1,0,0,2))
                     {
                         Resource = new ResourceQuantity() {Resource = ResourceType.Silver, Quantity = 66}
                     }
                 });
-            var mockedDrone2 = new Mock<IDrone<CoordinateInt2D>>();
+            var mockedDrone2 = new Mock<IDrone>();
             mockedDrone2
                 .Setup(dr => dr.GetValidInstructions())
-                .Returns(new List<IInstruction<CoordinateInt2D>>()
+                .Returns(new List<IInstruction>()
                 {
-                    new Unload<CoordinateInt2D>(new Drone<CoordinateInt2D>(initPos), new DateTime(2018,1,1,0,0,0))
+                    new Unload(new Drone(initPos), new DateTime(2018,1,1,0,0,0))
                     {
                         Resource = new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 42}
                     }
                 });
 
-            var cntx = new PlayerContext<CoordinateInt2D>()
+            var cntx = new PlayerContext()
             {
-                Drones = new List<IDrone<CoordinateInt2D>>()
+                Drones = new List<IDrone>()
                 {
                     mockedDrone.Object,
                     mockedDrone2.Object

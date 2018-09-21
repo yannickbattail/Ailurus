@@ -6,11 +6,11 @@ using Ailurus.Model;
 
 namespace Ailurus.Mapper.Implementation
 {
-    public class PlayerContextMapper<TCoordinate> : IPlayerContextMapper<TCoordinate> where TCoordinate : ICoordinate
+    public class PlayerContextMapper : IPlayerContextMapper
     {
-        public IPlayerContextDto<TCoordinate> Map(IPlayerContext<TCoordinate> playerContext)
+        public IPlayerContextDto Map(IPlayerContext playerContext)
         {
-            return new PlayerContextDto<TCoordinate>()
+            return new PlayerContextDto()
             {
                 Drones = playerContext.Drones.Select(Map),
                 PlayerName = playerContext.PlayerName,
@@ -18,9 +18,9 @@ namespace Ailurus.Mapper.Implementation
             };
         }
 
-        public IDroneDto<TCoordinate> Map(IDrone<TCoordinate> drone)
+        public IDroneDto Map(IDrone drone)
         {
-            return new DroneDto<TCoordinate>()
+            return new DroneDto()
             {
                 CurrentPosition = drone.CurrentPosition,
                 LastInstruction = drone.GetLastValidInstruction(),

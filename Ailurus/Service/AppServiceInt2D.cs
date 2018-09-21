@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using Ailurus.DTO.Implementation;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Model;
-using Ailurus.Util.Implementation;
-using Ailurus.Util.Interfaces;
 
 namespace Ailurus.Service
 {
-    public class AppServiceInt2D: AppService<CoordinateInt2D>
+    public class AppServiceInt2D: AppService
     {
         public AppServiceInt2D()
         {
-            Map = new MapInfo<CoordinateInt2D>()
+            Map = new MapInfo()
             {
                 Name = "lvl1",
-                Dimensions = new Tuple<CoordinateInt2D, CoordinateInt2D>(
+                Dimensions = new Tuple<ICoordinate, ICoordinate>(
                     new CoordinateInt2D()
                     {
                         X = 0,
@@ -32,9 +30,9 @@ namespace Ailurus.Service
                     X = 1,
                     Y = 1
                 },
-                Items = new List<IItem<CoordinateInt2D>>()
+                Items = new List<IItem>()
                 {
-                    new MainBuilding<CoordinateInt2D>()
+                    new MainBuilding()
                     {
                         Name = "Home",
                         Position = new CoordinateInt2D()
@@ -43,7 +41,7 @@ namespace Ailurus.Service
                             Y = 2
                         }
                     },
-                    new Mine<CoordinateInt2D>()
+                    new Mine()
                     {
                         Name = "Gold Mine",
                         ResourceType = ResourceType.Gold,
@@ -57,17 +55,12 @@ namespace Ailurus.Service
             };
         }
         
-        public override ICoordinateUtils<CoordinateInt2D> GetCoordinateUtils()
+        public override IPlayerContext CreateNew(string playerName)
         {
-            return new CoordinateInt2DUtils();
-        }
-        
-        public override IPlayerContext<CoordinateInt2D> CreateNew(string playerName)
-        {
-            return new PlayerContext<CoordinateInt2D>()
+            return new PlayerContext()
             {
                 PlayerName = playerName,
-                Drones = new List<IDrone<CoordinateInt2D>>()
+                Drones = new List<IDrone>()
                 {
                     CreateNewDrone("Drone_1"),
                     CreateNewDrone("Drone_2")
@@ -75,9 +68,9 @@ namespace Ailurus.Service
             };
         }
 
-        private static IDrone<CoordinateInt2D> CreateNewDrone(string name)
+        private static IDrone CreateNewDrone(string name)
         {
-            var newDrone = new Drone<CoordinateInt2D>(GetAppService().GetMap().DroneSpawnPoint)
+            var newDrone = new Drone(GetAppService().GetMap().DroneSpawnPoint)
             {
                 Name = name,
                 Speed = 1,

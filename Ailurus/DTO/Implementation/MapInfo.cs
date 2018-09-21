@@ -1,28 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using Ailurus.DTO.Interfaces;
-using Ailurus.Service;
-using Ailurus.Util.Interfaces;
 
 namespace Ailurus.DTO.Implementation
 {
-    public class MapInfo<TCoordinate> : IMapInfo<TCoordinate> where TCoordinate : ICoordinate
+    public class MapInfo : IMapInfo
     {
         public string Name { get; set; }
-        public Tuple<TCoordinate, TCoordinate> Dimensions { get; set; }
-        public TCoordinate DroneSpawnPoint { get; set; }
-        public IEnumerable<IItem<TCoordinate>> Items { get; set; }
+        public Tuple<ICoordinate, ICoordinate> Dimensions { get; set; }
+        public ICoordinate DroneSpawnPoint { get; set; }
+        public IEnumerable<IItem> Items { get; set; }
         
-        private static readonly ICoordinateUtils<TCoordinate> utils = AppService<TCoordinate>.GetAppService().GetCoordinateUtils();
-        
-        public bool IsInside(TCoordinate coordinate)
+        public bool IsInside(ICoordinate coordinate)
         {
-            return utils.IsInside(coordinate, Dimensions);
+            return coordinate.IsInside(Dimensions);
         }
 
-        public TCoordinate ForceInside(TCoordinate coordinate)
+        public ICoordinate ForceInside(ICoordinate coordinate)
         {
-            return utils.ForceInside(coordinate, Dimensions);
+            return coordinate.ForceInside(Dimensions);
         }
     }
 }

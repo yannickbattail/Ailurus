@@ -4,9 +4,9 @@ using Ailurus.Model;
 
 namespace Ailurus.DTO.Implementation
 {
-    public class PlayerContextDto<TCoordinate> : IPlayerContextDto<TCoordinate> where TCoordinate : ICoordinate
+    public class PlayerContextDto : IPlayerContextDto
     {
-        public IEnumerable<IDroneDto<TCoordinate>> Drones { get; set; }
+        public IEnumerable<IDroneDto> Drones { get; set; }
         public string PlayerName { get; set; }
         public IEnumerable<ResourceQuantity> Resources { get; set; }
     }

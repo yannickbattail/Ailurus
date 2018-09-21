@@ -19,7 +19,7 @@ namespace AilurusTest.Model.Instructions
                 X = 1,
                 Y = 1
             };
-            var drone = new Drone<CoordinateInt2D>(source)
+            var drone = new Drone(source)
             {
                 Name = "someDrone",
                 StorageSize = 10,
@@ -30,10 +30,10 @@ namespace AilurusTest.Model.Instructions
             
             Action action = () =>
             {
-                new Collect<CoordinateInt2D>(drone, dateStart);
+                new Collect(drone, dateStart);
             };
 
-            action.Should().Throw<InvalidInstructionException<CoordinateInt2D>>()
+            action.Should().Throw<InvalidInstructionException>()
                 .WithMessage("No mine near the drone");
 
         }

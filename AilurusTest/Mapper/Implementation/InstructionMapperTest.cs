@@ -13,24 +13,24 @@ namespace AilurusTest.Mapper.Implementation
         [Fact]
         public void TestCollectInstruction()
         {
-            var drone = new Drone<CoordinateInt2D>(new CoordinateInt2D(){X=98,Y=98})
+            var drone = new Drone(new CoordinateInt2D(){X=98,Y=98})
             {
                 Name = "Drone_1",
                 Speed = 1,
                 StorageSize = 10
             };
             
-            var globalInstruction = new GlobalInstruction<CoordinateInt2D>()
+            var globalInstruction = new GlobalInstruction()
             {
                 TYPE = "Collect",
                 Destination = null,
                 DroneName = "Drone_1"
             };
 
-            var mapper = new InstructionMapper<CoordinateInt2D>();
+            var mapper = new InstructionMapper();
             var date = new DateTime(2018,1,1);
 
-            var expectedInstruction = new Collect<CoordinateInt2D>(drone, date);
+            var expectedInstruction = new Collect(drone, date);
             
             
             var actualInstruction = mapper.ToSpecificInstruction(globalInstruction, drone, date);
@@ -41,7 +41,7 @@ namespace AilurusTest.Mapper.Implementation
         [Fact]
         public void TestUnloadInstruction()
         {
-            var drone = new Drone<CoordinateInt2D>(new CoordinateInt2D(){X=2,Y=2})
+            var drone = new Drone(new CoordinateInt2D(){X=2,Y=2})
             {
                 Name = "Drone_1",
                 Speed = 1,
@@ -49,17 +49,17 @@ namespace AilurusTest.Mapper.Implementation
             };
 
             
-            var globalInstruction = new GlobalInstruction<CoordinateInt2D>()
+            var globalInstruction = new GlobalInstruction()
             {
                 TYPE = "Unload",
                 Destination = null,
                 DroneName = "Drone_1"
             };
 
-            var mapper = new InstructionMapper<CoordinateInt2D>();
+            var mapper = new InstructionMapper();
             var date = new DateTime(2018,1,1);
 
-            var expectedInstruction = new Unload<CoordinateInt2D>(drone, date);
+            var expectedInstruction = new Unload(drone, date);
             
             
             var actualInstruction = mapper.ToSpecificInstruction(globalInstruction, drone, date);
@@ -76,15 +76,15 @@ namespace AilurusTest.Mapper.Implementation
             var dest = new CoordinateInt2D(){X = 84,Y = 42};
             var source = new CoordinateInt2D(){X = 1,Y = 1};
             
-            var globalInstruction = new GlobalInstruction<CoordinateInt2D>()
+            var globalInstruction = new GlobalInstruction()
             {
                 TYPE = "MoveTo",
                 Destination = dest,
                 DroneName = "Drone_1"
             };
 
-            var mapper = new InstructionMapper<CoordinateInt2D>();
-            var expectedInstruction = new MoveTo<CoordinateInt2D>(drone, date, source, dest);
+            var mapper = new InstructionMapper();
+            var expectedInstruction = new MoveTo(drone, date, source, dest);
             
             
             var actualInstruction = mapper.ToSpecificInstruction(globalInstruction, drone, date);
@@ -97,14 +97,14 @@ namespace AilurusTest.Mapper.Implementation
         {
             var drone = CreateDrone();
             
-            var globalInstruction = new GlobalInstruction<CoordinateInt2D>()
+            var globalInstruction = new GlobalInstruction()
             {
                 TYPE = "MoveTo",
                 Destination = null,
                 DroneName = "Drone_1"
             };
 
-            var mapper = new InstructionMapper<CoordinateInt2D>();
+            var mapper = new InstructionMapper();
             var date = new DateTime(2018,1,1);
             
             Action toSpecificInstructionAction = () =>
@@ -121,14 +121,14 @@ namespace AilurusTest.Mapper.Implementation
         {
             var drone = CreateDrone();
             
-            var globalInstruction = new GlobalInstruction<CoordinateInt2D>()
+            var globalInstruction = new GlobalInstruction()
             {
                 TYPE = "Poulet",
                 Destination = null,
                 DroneName = "Drone_1"
             };
 
-            var mapper = new InstructionMapper<CoordinateInt2D>();
+            var mapper = new InstructionMapper();
             var date = new DateTime(2018,1,1);
             
             Action toSpecificInstructionAction = () =>
@@ -140,9 +140,9 @@ namespace AilurusTest.Mapper.Implementation
                 .WithMessage("Unknown instruction type Poulet");
         }
         
-        private static Drone<CoordinateInt2D> CreateDrone()
+        private static Drone CreateDrone()
         {
-            var drone = new Drone<CoordinateInt2D>(new CoordinateInt2D(){X=1,Y=1})
+            var drone = new Drone(new CoordinateInt2D(){X=1,Y=1})
             {
                 Name = "Drone_1",
                 Speed = 1,

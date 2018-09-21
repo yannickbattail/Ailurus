@@ -11,16 +11,16 @@ namespace Ailurus.Service
 {
     public class DroneManagementService<TCoordinate> where TCoordinate : ICoordinate
     {
-        private IPlayerContext<TCoordinate> PlayerContext;
-        private IPlayerContextRepository<TCoordinate> Repository;
+        private IPlayerContext PlayerContext;
+        private IPlayerContextRepository Repository;
         
         public DroneManagementService(string playerName)
         {
-            Repository = new PlayerContextRepository<TCoordinate>();
+            Repository = new PlayerContextRepository();
             PlayerContext = Repository.GetPlayerContextByPlayerName(playerName);
         }
 
-        public IEnumerable<string> ProcessInstructions(IEnumerable<GlobalInstruction<TCoordinate>> instructions)
+        public IEnumerable<string> ProcessInstructions(IEnumerable<GlobalInstruction> instructions)
         {
             var messages = instructions.Select(
                 ProcessInstruction
@@ -29,7 +29,7 @@ namespace Ailurus.Service
             return messages;
         }
         
-        private string ProcessInstruction(GlobalInstruction<TCoordinate> globInstruction)
+        private string ProcessInstruction(GlobalInstruction globInstruction)
         {
             try
             {
@@ -41,11 +41,11 @@ namespace Ailurus.Service
                     return "drone is already doing an action "+drone.GetLastValidInstruction().GetType().Name;
                 }
 
-                var mapper = new InstructionMapper<TCoordinate>();
+                var mapper = new InstructionMapper();
                 drone.AddInstruction(mapper.ToSpecificInstruction(globInstruction, drone, DateTime.Now));
                 return "OK, drone will do "+drone.GetLastValidInstruction().GetType().Name;
             }
-            catch (InvalidInstructionException<TCoordinate> e)
+            catch (InvalidInstructionException e)
             {
                 Console.WriteLine(e.Message);
                 return "Invalid Instruction: " + e.Message + " for instruction: "+globInstruction;

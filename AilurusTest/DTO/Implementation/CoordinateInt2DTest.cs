@@ -1,12 +1,11 @@
 using System;
 using Ailurus.DTO.Implementation;
-using Ailurus.Util.Implementation;
 using FluentAssertions;
 using Xunit;
 
-namespace AilurusTest.Util.Implementation
+namespace AilurusTest.DTO.Implementation
 {
-    public class CoordinateInt2DUtilsTest
+    public class CoordinateInt2DTest
     {
         [Fact]
         public void GetDistanceToTest()
@@ -22,8 +21,7 @@ namespace AilurusTest.Util.Implementation
                 X = 3,
                 Y = 4
             };
-            var util = new CoordinateInt2DUtils();
-            var distance = util.GetDistanceTo(source, dest);
+            var distance = source.GetDistanceTo(dest);
             
             distance.Should().Be(5);
         }
@@ -42,10 +40,9 @@ namespace AilurusTest.Util.Implementation
                 X = 3,
                 Y = 4
             };
-            var util = new CoordinateInt2DUtils();
-            var near = util.IsNear(source, source);
+            var near = source.IsNear(source);
             near.Should().BeTrue();
-            near = util.IsNear(source, dest);
+            near = source.IsNear(dest);
             near.Should().BeFalse();
         }
         [Fact]
@@ -57,22 +54,12 @@ namespace AilurusTest.Util.Implementation
                 Y = 1
             };
             
-            var util = new CoordinateInt2DUtils();
-            
             Action isNearAction = () =>
             {
-                util.IsNear(source, null);
+                source.IsNear(null);
             };
 
             isNearAction.Should().Throw<ArgumentNullException>();
-            
-            isNearAction = () =>
-            {
-                util.IsNear(null, source);
-            };
-
-            isNearAction.Should().Throw<ArgumentNullException>();
-
         }
         
         [Fact]
@@ -95,8 +82,7 @@ namespace AilurusTest.Util.Implementation
                     Y = 10
                 }
             );
-            var util = new CoordinateInt2DUtils();
-            var inside = util.IsInside(coord, area);
+            var inside = coord.IsInside(area);
             
             inside.Should().BeTrue();
         }
@@ -121,8 +107,7 @@ namespace AilurusTest.Util.Implementation
                     Y = 10
                 }
             );
-            var util = new CoordinateInt2DUtils();
-            var inside = util.IsInside(coord, area);
+            var inside = coord.IsInside(area);
             
             inside.Should().BeFalse();
         }
@@ -150,8 +135,7 @@ namespace AilurusTest.Util.Implementation
             
             var expected = coord;
             
-            var util = new CoordinateInt2DUtils();
-            var inside = util.ForceInside(coord, area);
+            var inside = coord.ForceInside(area);
             
             inside.Should().BeEquivalentTo(expected);
         }
@@ -183,8 +167,7 @@ namespace AilurusTest.Util.Implementation
                 Y = 10
             };
             
-            var util = new CoordinateInt2DUtils();
-            var inside = util.ForceInside(coord, area);
+            var inside = coord.ForceInside(area);
             
             inside.Should().BeEquivalentTo(expected);
         }
@@ -216,8 +199,7 @@ namespace AilurusTest.Util.Implementation
                 Y = 5
             };
             
-            var util = new CoordinateInt2DUtils();
-            var inside = util.ForceInside(coord, area);
+            var inside = coord.ForceInside(area);
             
             inside.Should().BeEquivalentTo(expected);
         }
@@ -242,8 +224,7 @@ namespace AilurusTest.Util.Implementation
                 Y = 5
             };
             
-            var util = new CoordinateInt2DUtils();
-            var actual = util.PathProgression(origin, destination, 0.5);
+            var actual = origin.PathProgression(destination, 0.5);
             
             actual.Should().BeEquivalentTo(expected);
         }
@@ -268,8 +249,7 @@ namespace AilurusTest.Util.Implementation
                 Y = 1
             };
             
-            var util = new CoordinateInt2DUtils();
-            var actual = util.PathProgression(origin, destination, 0.6666666);
+            var actual = origin.PathProgression(destination, 0.6666666);
             
             actual.Should().BeEquivalentTo(expected);
         }
@@ -287,12 +267,10 @@ namespace AilurusTest.Util.Implementation
                 X = 0,
                 Y = 0
             };
-
-            var util = new CoordinateInt2DUtils();
             
             Action pathProgressionAction = () =>
             {
-                util.PathProgression(origin, destination, 2);
+                origin.PathProgression(destination, 2);
             };
 
             pathProgressionAction.Should().Throw<Exception>()

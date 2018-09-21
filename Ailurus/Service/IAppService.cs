@@ -2,16 +2,14 @@ using System.Collections.Generic;
 using Ailurus.DTO.Implementation;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Model;
-using Ailurus.Util.Interfaces;
 
 namespace Ailurus.Service
 {
-    public interface IAppService<TCoordinate> where TCoordinate : ICoordinate
+    public interface IAppService
     {
-        ICoordinateUtils<TCoordinate> GetCoordinateUtils();
-        IMapInfo<TCoordinate> GetMap();
-        IPlayerContextDto<TCoordinate> GetPlayerContext(string playerName);
-        IEnumerable<string> SendInstructions(List<GlobalInstruction<CoordinateInt2D>> instructions, string playerName);
-        IPlayerContext<TCoordinate> CreateNew(string playerName);
+        IMapInfo GetMap();
+        IPlayerContextDto GetPlayerContext(string playerName);
+        IEnumerable<string> SendInstructions(List<GlobalInstruction> instructions, string playerName);
+        IPlayerContext CreateNew(string playerName);
     }
 }

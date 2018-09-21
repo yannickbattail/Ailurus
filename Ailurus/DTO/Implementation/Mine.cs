@@ -3,14 +3,14 @@ using Ailurus.Model;
 
 namespace Ailurus.DTO.Implementation
 {
-    public class Mine<TCoordinate> : IItem<TCoordinate> where TCoordinate : ICoordinate
+    public class Mine : IItem
     {
         public string TYPE
         {
             get { return this.GetType().Name; }
         }
         public string Name { get; set; }
-        public TCoordinate Position { get; set; }
+        public ICoordinate Position { get; set; }
         public ResourceType ResourceType  { get; set; }
     }
 }

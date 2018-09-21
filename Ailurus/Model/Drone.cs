@@ -8,27 +8,27 @@ using Newtonsoft.Json.Converters;
 
 namespace Ailurus.Model
 {
-    public class Drone<TCoordinate> : IDrone<TCoordinate> where TCoordinate : ICoordinate
+    public class Drone: IDrone
     {
         public string Name { get; set; }
-        protected IList<IInstruction<TCoordinate>> Instructions { get; set; }
+        protected IList<IInstruction> Instructions { get; set; }
         public double Speed { get; set; }
         public int StorageSize { get; set; }
-        public TCoordinate InitialPosition { get; set; }
+        public ICoordinate InitialPosition { get; set; }
         
         public ResourceQuantity Storage {
             get
             {
                 var lastCollect = Instructions.LastOrDefault(
-                    i => (i.GetType() == typeof(Collect<TCoordinate>)
-                          || i.GetType() == typeof(Unload<TCoordinate>))
+                    i => (i.GetType() == typeof(Collect)
+                          || i.GetType() == typeof(Unload))
                          && !i.IsAborted
                 );
-                if (lastCollect == null || lastCollect.GetType() == typeof(Unload<TCoordinate>))
+                if (lastCollect == null || lastCollect.GetType() == typeof(Unload))
                 {
                     return null;
                 }
-                var instructionCollect = lastCollect as Collect<TCoordinate>;
+                var instructionCollect = lastCollect as Collect;
                 return new ResourceQuantity()
                 {
                     Resource = instructionCollect.Mine.ResourceType,
@@ -37,7 +37,7 @@ namespace Ailurus.Model
             }
         }
 
-        public void AddInstruction(IInstruction<TCoordinate> instruction)
+        public void AddInstruction(IInstruction instruction)
         {
             Instructions.Add(instruction);
         }
@@ -53,12 +53,12 @@ namespace Ailurus.Model
             lastInstr.Abort();
         }
 
-        public IEnumerable<IInstruction<TCoordinate>> GetInstructions()
+        public IEnumerable<IInstruction> GetInstructions()
         {
             return Instructions;
         }
 
-        public IEnumerable<IInstruction<TCoordinate>> GetValidInstructions()
+        public IEnumerable<IInstruction> GetValidInstructions()
         {
             return Instructions.Where(i => !i.IsAborted);
         }
@@ -72,7 +72,7 @@ namespace Ailurus.Model
             }
         }
         
-        public TCoordinate CurrentPosition
+        public ICoordinate CurrentPosition
         {
             get
             {
@@ -80,17 +80,17 @@ namespace Ailurus.Model
             }
         }
 
-        public Drone(TCoordinate initialPosition)
+        public Drone(ICoordinate initialPosition)
         {
             if (initialPosition == null)
             {
                 throw new ArgumentNullException();
             }
             InitialPosition = initialPosition;
-            Instructions = new List<IInstruction<TCoordinate>>();
+            Instructions = new List<IInstruction>();
         }
         
-        public IInstruction<TCoordinate> GetLastValidInstruction()
+        public IInstruction GetLastValidInstruction()
         {
             if (Instructions == null || !Instructions.Any())
             {
@@ -112,16 +112,16 @@ namespace Ailurus.Model
             return DroneState.ExecutionInstruction;
         }
 
-        public TCoordinate GetPositionAt(DateTime time)
+        public ICoordinate GetPositionAt(DateTime time)
         {
             var lastMoveTo = GetValidInstructions().LastOrDefault(
-                i => i.GetType() == typeof(MoveTo<TCoordinate>)
+                i => i.GetType() == typeof(MoveTo)
             );
             if (lastMoveTo == null)
             {
                 return InitialPosition;
             }
-            var instructionMoveTo = lastMoveTo as MoveTo<TCoordinate>;
+            var instructionMoveTo = lastMoveTo as MoveTo;
             return instructionMoveTo.GetPositionAt(time);
         }
         
