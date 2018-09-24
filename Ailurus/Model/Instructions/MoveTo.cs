@@ -62,6 +62,10 @@ namespace Ailurus.Model.Instructions
             {
                 throw new InvalidInstructionException("The drone is already at destination");    
             }
+            if (!AppService.GetAppService().GetMap().IsInside(destination))
+            {
+                throw new InvalidInstructionException("Destination is outside of the map.");
+            }
             Drone = drone;
             StartedAt = startedAt;
             StartPosition = source;

@@ -66,11 +66,43 @@ namespace AilurusTest.Model.Instructions
             
             Action action = () =>
             {
-                var move = new MoveTo(drone,dateStart,source,source);
+                var move = new MoveTo(drone,dateStart, source, source);
             };
 
             action.Should().Throw<InvalidInstructionException>()
                 .WithMessage("The drone is already at destination");
+
+        }
+        
+        [Fact]
+        public void TestMoveOutsideOfTheMap()
+        {
+            var source = new CoordinateInt2D()
+            {
+                X = 10,
+                Y = 10
+            };
+            var dest = new CoordinateInt2D()
+            {
+                X = -1,
+                Y = -1
+            };
+            var drone = new Drone(source)
+            {
+                Name = "someDrone",
+                StorageSize = 10,
+                Speed = 1
+            };
+            
+            var dateStart = new DateTime(2018, 1, 1, 0,0,0);
+            
+            Action action = () =>
+            {
+                var move = new MoveTo(drone,dateStart, source, dest);
+            };
+
+            action.Should().Throw<InvalidInstructionException>()
+                .WithMessage("Destination is outside of the map.");
 
         }
     }
