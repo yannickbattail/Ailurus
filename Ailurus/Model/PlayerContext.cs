@@ -10,6 +10,8 @@ namespace Ailurus.Model
     {
         public IEnumerable<IDrone> Drones { get; set; }
         public string PlayerName { get; set; }
+        public string Pass { get; set; }
+
         public IEnumerable<ResourceQuantity> Resources {
             get { return GetStoredResourcesAt(DateTime.Now);}
         }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Service;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Ailurus.Controllers
 {
@@ -14,19 +15,35 @@ namespace Ailurus.Controllers
         // GET map
         [HttpGet]
         [Route("map")]
-        public IMapInfo GetMap()
+        public ActionResult<IMapInfo> GetMap()
         {
-            return App.GetMap();
+            return Ok(App.GetMap());
         }
 
-        // GET playerContext
-        [HttpGet]
-        [Route("playerContext")]
-        public IPlayerContextDto GetPlayerContext()
+        // POST createPlayer
+        [HttpPost]
+        [Route("createPlayer")]
+        public ActionResult<IPlayerContextDto>  CreatePlayer(
+            [FromBody]
+            [Required]
+            UserLoginDto login)
         {
-            //@TODO get playerName from authentication/session
-            var playerName = "RedPanda";
-            return App.GetPlayerContext(playerName);;
+            return Ok(App.CreateNew(login));
+        }
+        
+        // POST playerContext
+        [HttpPost]
+        [Route("playerContext")]
+        public ActionResult<IPlayerContextDto> GetPlayerContext(
+            [FromBody]
+            [Required]
+            UserLoginDto login)
+        {
+            if (!App.CheckLogin(login))
+            {
+                return Forbid();
+            }
+            return Ok(App.GetPlayerContext(login.PlayerName));
         }
         
         // POST instructions
@@ -34,14 +51,16 @@ namespace Ailurus.Controllers
         [Route("instructions")]
         [ProducesResponseType(typeof(IEnumerable<string>), 200)]
         [ProducesResponseType(typeof(void), 400)]
-        public IEnumerable<string> SendInstructions(
+        public ActionResult<IEnumerable<string>> SendInstructions(
             [FromBody]
             [Required]
-            List<GlobalInstruction> instructions)
+            InstructionSetDto instructionSet)
         {
-            //@TODO get playerName from authentication/session
-            var playerName = "RedPanda";
-            return App.SendInstructions(instructions, playerName);
+            if (!App.CheckLogin(instructionSet.Login))
+            {
+                return Forbid();
+            }
+            return Ok(App.SendInstructions(instructionSet.Instructions, instructionSet.Login.PlayerName));
         }
     }
 }

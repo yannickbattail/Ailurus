@@ -12,19 +12,28 @@ namespace AilurusTest.Controllers
         public void SendInstructionsTest()
         {
             var controller = new AilurusController();
-            var instructions = new List<GlobalInstruction>()
+            
+            var instructionSet = new InstructionSetDto()
             {
-                new GlobalInstruction{
-                    TYPE = "Collect",
-                    DroneName = "Drone_1",
-                    Destination = null
+                Login = new UserLoginDto()
+                {
+                    PlayerName = "panda",
+                    Pass = "roux"
                 },
-                new GlobalInstruction{
-                    TYPE = "MoveTo",
-                    DroneName = "Drone_2",
-                    Destination = new CoordinateInt2D{
-                        X = 10,
-                        Y = 10
+                Instructions = new List<GlobalInstruction>()
+                {
+                    new GlobalInstruction{
+                        TYPE = "Collect",
+                        DroneName = "Drone_1",
+                        Destination = null
+                    },
+                    new GlobalInstruction{
+                        TYPE = "MoveTo",
+                        DroneName = "Drone_2",
+                        Destination = new CoordinateInt2D{
+                            X = 10,
+                            Y = 10
+                        }
                     }
                 }
             };
@@ -34,8 +43,8 @@ namespace AilurusTest.Controllers
                 "Invalid Instruction: No mine near the drone for instruction: TYPE: Collect, DroneName: Drone_1, Destination: ",
                 "OK, drone will do MoveTo"
             };
-            controller.GetPlayerContext();
-            var actual = controller.SendInstructions(instructions);
+            controller.CreatePlayer(instructionSet.Login);
+            var actual = controller.SendInstructions(instructionSet);
             
             actual.Should().BeEquivalentTo(expected);
         }

@@ -7,6 +7,7 @@ namespace Ailurus.Model
     {
         IEnumerable<IDrone> Drones { get; set; }
         string PlayerName { get; set; }
+        string Pass { get; set; }
         IEnumerable<ResourceQuantity> Resources { get; }
     }
 }

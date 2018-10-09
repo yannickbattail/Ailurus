@@ -15,7 +15,18 @@ namespace Ailurus.Repository
             {
                 throw new Exception("Player not found");
             }
+
             return PlayerContexts[playerName];
+        }
+
+        public bool PlayerExists(string playerName, string pass)
+        {
+            if (!PlayerContexts.ContainsKey(playerName))
+            {
+                return false;
+            }
+
+            return PlayerContexts[playerName].Pass == pass;
         }
 
         public void Save(IPlayerContext playerContext)

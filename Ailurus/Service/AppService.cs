@@ -11,6 +11,12 @@ namespace Ailurus.Service
     public abstract class AppService : IAppService
     {
         private static AppService App;
+
+        public bool CheckLogin(UserLoginDto login)
+        {
+            var repo = new PlayerContextRepository();
+            return repo.PlayerExists(login.PlayerName, login.Pass);
+        }
         
         public static AppService GetAppService()
         {
@@ -40,13 +46,11 @@ namespace Ailurus.Service
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                var playerCtx = CreateNew(playerName);
-                repo.Save(playerCtx);
-                return mapper.Map(playerCtx);
+                throw e;
             }
         }
 
-        public IEnumerable<string> SendInstructions(List<GlobalInstruction> instructions, string playerName)
+        public IEnumerable<string> SendInstructions(IList<GlobalInstruction> instructions, string playerName)
         {
             try
             {
@@ -63,6 +67,6 @@ namespace Ailurus.Service
             }
         }
 
-        public abstract IPlayerContext CreateNew(string playerName);
+        public abstract IPlayerContextDto CreateNew(UserLoginDto login);
     }
 }

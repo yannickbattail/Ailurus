@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using Ailurus.DTO.Implementation;
 using Ailurus.DTO.Interfaces;
+using Ailurus.Mapper.Implementation;
 using Ailurus.Model;
+using Ailurus.Repository;
 
 namespace Ailurus.Service
 {
@@ -55,17 +57,22 @@ namespace Ailurus.Service
             };
         }
         
-        public override IPlayerContext CreateNew(string playerName)
+        public override IPlayerContextDto CreateNew(UserLoginDto login)
         {
-            return new PlayerContext()
+            var repo = new PlayerContextRepository();
+            var mapper = new PlayerContextMapper();
+            var payerCtx = new PlayerContext()
             {
-                PlayerName = playerName,
+                PlayerName = login.PlayerName,
+                Pass = login.Pass,
                 Drones = new List<IDrone>()
                 {
                     CreateNewDrone("Drone_1"),
                     CreateNewDrone("Drone_2")
                 }
             };
+            repo.Save(payerCtx);
+            return mapper.Map(payerCtx);
         }
 
         private static IDrone CreateNewDrone(string name)

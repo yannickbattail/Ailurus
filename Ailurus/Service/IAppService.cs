@@ -9,7 +9,7 @@ namespace Ailurus.Service
     {
         IMapInfo GetMap();
         IPlayerContextDto GetPlayerContext(string playerName);
-        IEnumerable<string> SendInstructions(List<GlobalInstruction> instructions, string playerName);
-        IPlayerContext CreateNew(string playerName);
+        IEnumerable<string> SendInstructions(IList<GlobalInstruction> instructions, string playerName);
+        IPlayerContextDto CreateNew(UserLoginDto login);
     }
 }
