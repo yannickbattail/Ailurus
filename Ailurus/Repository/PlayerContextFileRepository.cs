@@ -1,36 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using Ailurus.Model;
+﻿using Ailurus.Model;
+using Newtonsoft.Json;
+using System;
+using System.IO;
 
 namespace Ailurus.Repository
 {
     public class PlayerContextFileRepository : IPlayerContextRepository
     {
-        private static IDictionary<string, IPlayerContext> PlayerContexts = new Dictionary<string, IPlayerContext>();
+        const string RootData = "data/v1/";
 
         public IPlayerContext GetPlayerContextByPlayerName(string playerName)
         {
-            if (!PlayerContexts.ContainsKey(playerName))
+            try
             {
-                throw new Exception("Player not found");
+                var json = File.ReadAllText(GetFileName(playerName));
+                return JsonConvert.DeserializeObject<IPlayerContext>(json);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw new Exception("player not found", e);
             }
 
-            return PlayerContexts[playerName];
         }
 
         public bool PlayerExists(string playerName, string pass)
         {
-            if (!PlayerContexts.ContainsKey(playerName))
+            try
             {
+                var playerContext = GetPlayerContextByPlayerName(playerName);
+                return playerContext.Pass == pass;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
                 return false;
             }
-
-            return PlayerContexts[playerName].Pass == pass;
         }
 
         public void Save(IPlayerContext playerContext)
         {
-            PlayerContexts[playerContext.PlayerName] = playerContext;
+            var json = JsonConvert.SerializeObject(playerContext);
+            File.WriteAllText(GetFileName(playerContext.PlayerName), json);
+        }
+
+        protected string GetFileName(string playerName)
+        {
+            return RootData + playerName + ".json";
         }
     }
 }
