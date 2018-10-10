@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Ailurus.DTO.Interfaces;
 
 namespace Ailurus.Model
 {

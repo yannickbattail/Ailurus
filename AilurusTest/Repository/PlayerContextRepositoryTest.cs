@@ -1,7 +1,3 @@
-using Ailurus.DTO.Implementation;
-using Ailurus.Repository;
-using Ailurus.Service;
-using FluentAssertions;
 using Xunit;
 
 namespace AilurusTest.Repository

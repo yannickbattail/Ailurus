@@ -4,7 +4,7 @@ using Ailurus.Model;
 
 namespace Ailurus.Repository
 {
-    public class PlayerContextRepository : IPlayerContextRepository
+    public class PlayerContextFileRepository : IPlayerContextRepository
     {
         private static IDictionary<string, IPlayerContext> PlayerContexts = new Dictionary<string, IPlayerContext>();
 

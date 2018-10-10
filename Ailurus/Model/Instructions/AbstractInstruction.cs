@@ -1,5 +1,4 @@
 using System;
-using Ailurus.DTO.Interfaces;
 using Newtonsoft.Json;
 
 namespace Ailurus.Model.Instructions

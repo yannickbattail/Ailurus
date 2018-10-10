@@ -1,5 +1,4 @@
-﻿using Ailurus.DTO.Interfaces;
-using Ailurus.Model;
+﻿using Ailurus.Model;
 
 namespace Ailurus.Repository
 {

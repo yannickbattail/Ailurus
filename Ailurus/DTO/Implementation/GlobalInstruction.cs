@@ -1,6 +1,4 @@
-﻿using Ailurus.DTO.Interfaces;
-
-namespace Ailurus.DTO.Implementation
+﻿namespace Ailurus.DTO.Implementation
 {
     public class GlobalInstruction
     {

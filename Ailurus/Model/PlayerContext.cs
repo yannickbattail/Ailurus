@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Ailurus.DTO.Interfaces;
 using Ailurus.Model.Instructions;
 
 namespace Ailurus.Model

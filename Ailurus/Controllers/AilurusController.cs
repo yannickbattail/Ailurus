@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Ailurus.DTO.Interfaces;
 using Ailurus.Service;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Ailurus.Controllers
 {

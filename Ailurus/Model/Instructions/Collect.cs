@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Ailurus.DTO.Implementation;
-using Ailurus.DTO.Interfaces;
 using Ailurus.Service;
 
 namespace Ailurus.Model.Instructions
