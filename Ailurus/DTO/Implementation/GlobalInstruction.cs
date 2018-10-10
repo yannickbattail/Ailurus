@@ -7,7 +7,7 @@ namespace Ailurus.DTO.Implementation
         public string TYPE { get; set; }
         public string DroneName { get; set; }
         
-        public ICoordinate Destination { get; set; }
+        public CoordinateInt2D Destination { get; set; }
 
         public override string ToString()
         {

@@ -28,6 +28,10 @@ namespace Ailurus.Controllers
             [Required]
             UserLoginDto login)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState.Values);
+            }
             return Ok(App.CreateNew(login));
         }
         
@@ -39,6 +43,10 @@ namespace Ailurus.Controllers
             [Required]
             UserLoginDto login)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState.Values);
+            }
             if (!App.CheckLogin(login))
             {
                 return Forbid();
@@ -56,6 +64,10 @@ namespace Ailurus.Controllers
             [Required]
             InstructionSetDto instructionSet)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState.Values);
+            }
             if (!App.CheckLogin(instructionSet.Login))
             {
                 return Forbid();
