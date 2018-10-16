@@ -14,7 +14,8 @@ namespace Ailurus.Mapper.Implementation
             {
                 Drones = playerContext.Drones.Select(Map),
                 PlayerName = playerContext.PlayerName,
-                Resources = playerContext.Resources
+                Resources = playerContext.Resources,
+                GoalAchieved = playerContext.IsGoalAchieved()
             };
         }
 

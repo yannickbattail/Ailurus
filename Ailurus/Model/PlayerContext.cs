@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Ailurus.Model.Instructions;
+using Ailurus.Service;
 
 namespace Ailurus.Model
 {
@@ -37,9 +38,22 @@ namespace Ailurus.Model
                         Resource = rqGroup.Key,
                         Quantity = rqGroup.Sum(
                             rq => rq.Quantity
-                            )
+                        )
                     }
                 );
+        }
+
+        public bool IsGoalAchieved()
+        {
+            return IsGoalAchieved(AppService.GetAppService().GetMap().ResourceGoal);
+        }
+        
+        public bool IsGoalAchieved(IEnumerable<ResourceQuantity> goal)
+        {
+            var resourceList = Resources.ToList();
+            return goal.All(
+                res => resourceList.FirstOrDefault(g => g.Resource == res.Resource)?.Quantity >= res.Quantity
+            );
         }
     }
 }

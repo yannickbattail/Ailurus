@@ -8,5 +8,7 @@ namespace Ailurus.Model
         string PlayerName { get; set; }
         string Pass { get; set; }
         IEnumerable<ResourceQuantity> Resources { get; }
+        bool IsGoalAchieved();
+        bool IsGoalAchieved(IEnumerable<ResourceQuantity> goal);
     }
 }

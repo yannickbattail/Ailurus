@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Ailurus.Controllers;
 using Ailurus.DTO.Implementation;
 using FluentAssertions;
+using Microsoft.AspNetCore.Mvc;
 using Xunit;
 
 namespace AilurusTest.Controllers
@@ -38,11 +39,11 @@ namespace AilurusTest.Controllers
                 }
             };
 
-            var expected = new List<string>()
+            ActionResult<IEnumerable<string>> expected = controller.Ok(new List<string>()
             {
                 "Invalid Instruction: No mine near the drone for instruction: TYPE: Collect, DroneName: Drone_1, Destination: ",
                 "OK, drone will do MoveTo"
-            };
+            });
             controller.CreatePlayer(instructionSet.Login);
             var actual = controller.SendInstructions(instructionSet);
             

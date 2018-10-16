@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Ailurus.DTO.Interfaces;
+using Ailurus.Model;
 
 namespace Ailurus.DTO.Implementation
 {
@@ -10,6 +11,7 @@ namespace Ailurus.DTO.Implementation
         public Tuple<ICoordinate, ICoordinate> Dimensions { get; set; }
         public ICoordinate DroneSpawnPoint { get; set; }
         public IEnumerable<IItem> Items { get; set; }
+        public IEnumerable<ResourceQuantity> ResourceGoal { get; set; }
         
         public bool IsInside(ICoordinate coordinate)
         {

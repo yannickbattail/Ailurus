@@ -103,5 +103,100 @@ namespace AilurusTest.Model
             var a = actual.ToList();
             a.Should().BeEquivalentTo(expected);
         }
+
+
+        [Fact]
+        public void IsGoalAchievedWithSuccess()
+        {
+            var initPos = new CoordinateInt2D() { X = 2, Y = 2};
+            var rq = new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 10};
+            var goal = new List<ResourceQuantity>()
+            {
+                new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 10}
+            };
+            var mockedDrone = new Mock<IDrone>();
+            mockedDrone
+                .Setup(dr => dr.GetValidInstructions())
+                .Returns(new List<IInstruction>()
+                {
+                    new Unload(new Drone(initPos), new DateTime(2018,1,1,0,0,0))
+                    {
+                        Resource = rq
+                    }
+                });
+            
+            var cntx = new PlayerContext()
+            {
+                Drones = new List<IDrone>()
+                {
+                    mockedDrone.Object
+                }
+            };
+
+            cntx.IsGoalAchieved(goal).Should().BeTrue();
+        }
+        
+        [Fact]
+        public void IsGoalAchievedFail2Ressources()
+        {
+            var initPos = new CoordinateInt2D() { X = 2, Y = 2};
+            var rq = new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 10};
+            var goal = new List<ResourceQuantity>()
+            {
+                new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 10},
+                new ResourceQuantity() {Resource = ResourceType.Silver, Quantity = 10}
+            };
+            var mockedDrone = new Mock<IDrone>();
+            mockedDrone
+                .Setup(dr => dr.GetValidInstructions())
+                .Returns(new List<IInstruction>()
+                {
+                    new Unload(new Drone(initPos), new DateTime(2018,1,1,0,0,0))
+                    {
+                        Resource = rq
+                    }
+                });
+            
+            var cntx = new PlayerContext()
+            {
+                Drones = new List<IDrone>()
+                {
+                    mockedDrone.Object
+                }
+            };
+
+            cntx.IsGoalAchieved(goal).Should().BeFalse();
+        }    
+        
+        [Fact]
+        public void IsGoalAchievedFailNotEnoughResources()
+        {
+            var initPos = new CoordinateInt2D() { X = 2, Y = 2};
+            var rq = new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 10};
+            var goal = new List<ResourceQuantity>()
+            {
+                new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 11},
+            };
+            var mockedDrone = new Mock<IDrone>();
+            mockedDrone
+                .Setup(dr => dr.GetValidInstructions())
+                .Returns(new List<IInstruction>()
+                {
+                    new Unload(new Drone(initPos), new DateTime(2018,1,1,0,0,0))
+                    {
+                        Resource = rq
+                    }
+                });
+            
+            var cntx = new PlayerContext()
+            {
+                Drones = new List<IDrone>()
+                {
+                    mockedDrone.Object
+                }
+            };
+
+            cntx.IsGoalAchieved(goal).Should().BeFalse();
+        }
     }
 }

@@ -53,6 +53,10 @@ namespace Ailurus.Service
                             Y = 98
                         }
                     }
+                },
+                ResourceGoal = new List<ResourceQuantity>()
+                {
+                    new ResourceQuantity(){Resource = ResourceType.Gold, Quantity = 30}
                 }
             };
         }
