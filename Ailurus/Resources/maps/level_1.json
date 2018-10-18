@@ -1,40 +1,52 @@
 {
+  "$type": "Ailurus.DTO.Responses.Implementations.MapInfo, Ailurus",
   "Name": "lvl1",
   "Dimensions": {
+    "$type": "System.Tuple`2[[Ailurus.DTO.Requests.Interfaces.ICoordinate, Ailurus],[Ailurus.DTO.Requests.Interfaces.ICoordinate, Ailurus]], System.Private.CoreLib",
     "Item1": {
+      "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
       "X": 0,
       "Y": 0
     },
     "Item2": {
+      "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
       "X": 100,
       "Y": 100
     }
   },
   "DroneSpawnPoint": {
+    "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
     "X": 1,
     "Y": 1
   },
-  "Items": [
+  "Mines": [
     {
-      "type": "MainBuilding",
+      "$type": "Ailurus.DTO.Responses.Implementations.Mine, Ailurus",
+      "TYPE": "Mine",
+      "Name": "Gold Mine",
+      "Position": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 97,
+        "Y": 97
+      },
+      "ResourceType": "Gold"
+    }
+  ],
+  "Factories": [
+    {
+      "$type": "Ailurus.DTO.Responses.Implementations.Factory, Ailurus",
+      "TYPE": "Factory",
       "Name": "Home",
       "Position": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
         "X": 2,
         "Y": 2
-      }
-    },
-    {
-      "type": "Mine",
-      "Name": "Gold Mine",
-      "ResourceType": "Gold",
-      "Position": {
-        "X": 98,
-        "Y": 98
       }
     }
   ],
   "ResourceGoal": [
     {
+      "$type": "Ailurus.Model.ResourceQuantity, Ailurus",
       "Resource": "Gold",
       "Quantity": 30
     }

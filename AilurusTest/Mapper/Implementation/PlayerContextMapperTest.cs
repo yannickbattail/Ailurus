@@ -1,5 +1,4 @@
 using Ailurus.DTO.Requests.Implementations;
-using Ailurus.DTO.Requests.Interfaces;
 using Ailurus.DTO.Responses.Implementations;
 using Ailurus.Mapper.Implementations;
 using Ailurus.Model;

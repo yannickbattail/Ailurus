@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Ailurus.DTO.Requests.Implementations;
-using Ailurus.DTO.Requests.Interfaces;
 using Ailurus.Model;
 using Ailurus.Model.Instructions;
 using FluentAssertions;

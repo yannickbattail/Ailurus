@@ -1,6 +1,8 @@
 ﻿using Ailurus.DTO.Requests.Interfaces;
 using Ailurus.DTO.Responses.Interfaces;
 using Ailurus.Model;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Ailurus.DTO.Responses.Implementations
 {
@@ -12,6 +14,7 @@ namespace Ailurus.DTO.Responses.Implementations
         }
         public string Name { get; set; }
         public ICoordinate Position { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
         public ResourceType ResourceType  { get; set; }
     }
 }

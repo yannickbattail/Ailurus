@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Ailurus.DTO.Requests.Implementations;
-using Ailurus.DTO.Requests.Interfaces;
 using Ailurus.DTO.Responses.Interfaces;
 using Ailurus.Service;
 

@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Ailurus.DTO.Requests.Interfaces;
 using Ailurus.DTO.Responses.Implementations;
 using Ailurus.DTO.Responses.Interfaces;
 using Ailurus.Mapper.Interfaces;
