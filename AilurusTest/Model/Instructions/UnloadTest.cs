@@ -34,7 +34,7 @@ namespace AilurusTest.Model.Instructions
             };
 
             action.Should().Throw<InvalidInstructionException>()
-                .WithMessage("No MainBuilding near the drone");
+                .WithMessage("No factory near the drone");
 
         }
     }

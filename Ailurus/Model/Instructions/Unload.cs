@@ -29,13 +29,12 @@ namespace Ailurus.Model.Instructions
 
         public Unload(IDrone drone, DateTime startedAt)
         {
-            var item = AppService.GetAppService().GetMap().Items.FirstOrDefault(
-                itm => (itm.GetType() == typeof(MainBuilding))
-                       && drone.CurrentPosition.IsNear(itm.Position)
+            var item = AppService.GetAppService().GetMap().Factories.FirstOrDefault(
+                itm => drone.CurrentPosition.IsNear(itm.Position)
             );
             if (item == null)
             {
-                throw new InvalidInstructionException("No MainBuilding near the drone");
+                throw new InvalidInstructionException("No factory near the drone");
             }
             Drone = drone;
             StartedAt = startedAt;

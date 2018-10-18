@@ -28,9 +28,8 @@ namespace Ailurus.Model.Instructions
 
         public Collect(IDrone drone, DateTime startedAt)
         {
-            var item = AppService.GetAppService().GetMap().Items.FirstOrDefault(
-                    itm => (itm.GetType() == typeof(Mine))
-                        && drone.CurrentPosition.IsNear(itm.Position)
+            var item = AppService.GetAppService().GetMap().Mines.FirstOrDefault(
+                    itm => drone.CurrentPosition.IsNear(itm.Position)
                 );
             if (item == null)
             {

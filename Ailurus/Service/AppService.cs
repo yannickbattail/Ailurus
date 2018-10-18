@@ -22,7 +22,7 @@ namespace Ailurus.Service
         {
             if (App == null)
             {
-                App = new AppServiceInt2D() as AppService;
+                App = new AppServiceInt2D();
             }
 
             return App;

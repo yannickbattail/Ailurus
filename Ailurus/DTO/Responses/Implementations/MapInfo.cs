@@ -11,7 +11,8 @@ namespace Ailurus.DTO.Responses.Implementations
         public string Name { get; set; }
         public Tuple<ICoordinate, ICoordinate> Dimensions { get; set; }
         public ICoordinate DroneSpawnPoint { get; set; }
-        public IEnumerable<IItem> Items { get; set; }
+        public IEnumerable<Mine> Mines { get; set; }
+        public IEnumerable<Factory> Factories { get; set; }
         public IEnumerable<ResourceQuantity> ResourceGoal { get; set; }
         
         public bool IsInside(ICoordinate coordinate)

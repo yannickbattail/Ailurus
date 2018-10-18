@@ -34,17 +34,8 @@ namespace Ailurus.Service
                     X = 1,
                     Y = 1
                 },
-                Items = new List<IItem>()
+                Mines = new List<Mine>()
                 {
-                    new MainBuilding()
-                    {
-                        Name = "Home",
-                        Position = new CoordinateInt2D()
-                        {
-                            X = 2,
-                            Y = 2
-                        }
-                    },
                     new Mine()
                     {
                         Name = "Gold Mine",
@@ -55,6 +46,18 @@ namespace Ailurus.Service
                             Y = 98
                         }
                     }
+                },
+                Factories = new List<Factory>()
+                {
+                    new Factory()
+                    {
+                        Name = "Home",
+                        Position = new CoordinateInt2D()
+                        {
+                            X = 2,
+                            Y = 2
+                        }
+                    },
                 },
                 ResourceGoal = new List<ResourceQuantity>()
                 {

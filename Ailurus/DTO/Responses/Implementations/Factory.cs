@@ -3,7 +3,7 @@ using Ailurus.DTO.Responses.Interfaces;
 
 namespace Ailurus.DTO.Responses.Implementations
 {
-    public class MainBuilding : IItem
+    public class Factory : IItem
     {
         public string TYPE
         {
