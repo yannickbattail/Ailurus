@@ -1,4 +1,4 @@
-﻿namespace Ailurus.DTO.Interfaces
+﻿namespace Ailurus.Model
 {
     public enum DroneState
     {

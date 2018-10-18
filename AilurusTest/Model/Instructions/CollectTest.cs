@@ -1,5 +1,5 @@
 using System;
-using Ailurus.DTO.Implementation;
+using Ailurus.DTO.Requests.Implementations;
 using Ailurus.Model;
 using Ailurus.Model.Instructions;
 using Ailurus.Service;

@@ -1,8 +1,9 @@
-﻿using Ailurus.DTO.Implementation;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Ailurus.DTO.Interfaces;
+using Ailurus.DTO.Requests.Implementations;
+using Ailurus.DTO.Requests.Interfaces;
+using Ailurus.DTO.Responses.Interfaces;
 using Ailurus.Service;
 
 namespace Ailurus.Controllers

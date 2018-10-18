@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Ailurus.DTO.Requests.Interfaces;
 using Ailurus.Model;
 
-namespace Ailurus.DTO.Interfaces
+namespace Ailurus.DTO.Responses.Interfaces
 {
     public interface IMapInfo
     {

@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Ailurus.DTO.Implementation;
-using Ailurus.DTO.Interfaces;
-using Ailurus.Mapper.Implementation;
+using Ailurus.DTO.Requests.Implementations;
+using Ailurus.DTO.Requests.Interfaces;
+using Ailurus.DTO.Responses.Implementations;
+using Ailurus.DTO.Responses.Interfaces;
+using Ailurus.Mapper.Implementations;
 using Ailurus.Model;
 using Ailurus.Repository;
 

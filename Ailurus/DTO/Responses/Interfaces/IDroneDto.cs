@@ -1,9 +1,10 @@
-﻿using Ailurus.Model;
+﻿using Ailurus.DTO.Requests.Interfaces;
+using Ailurus.Model;
 using Ailurus.Model.Instructions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Ailurus.DTO.Interfaces
+namespace Ailurus.DTO.Responses.Interfaces
 {
     public interface IDroneDto
     {

@@ -1,10 +1,10 @@
 ﻿using System;
-using Ailurus.DTO.Implementation;
+using Ailurus.DTO.Requests.Implementations;
 using Ailurus.Mapper.Interfaces;
 using Ailurus.Model;
 using Ailurus.Model.Instructions;
 
-namespace Ailurus.Mapper.Implementation
+namespace Ailurus.Mapper.Implementations
 {
     public class InstructionMapper : IInstructionMapper
     {

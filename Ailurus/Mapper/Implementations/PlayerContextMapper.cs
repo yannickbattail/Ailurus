@@ -1,10 +1,11 @@
 ﻿using System.Linq;
-using Ailurus.DTO.Implementation;
-using Ailurus.DTO.Interfaces;
+using Ailurus.DTO.Requests.Interfaces;
+using Ailurus.DTO.Responses.Implementations;
+using Ailurus.DTO.Responses.Interfaces;
 using Ailurus.Mapper.Interfaces;
 using Ailurus.Model;
 
-namespace Ailurus.Mapper.Implementation
+namespace Ailurus.Mapper.Implementations
 {
     public class PlayerContextMapper : IPlayerContextMapper
     {

@@ -1,6 +1,6 @@
 using System;
-using Ailurus.DTO.Implementation;
-using Ailurus.Mapper.Implementation;
+using Ailurus.DTO.Requests.Implementations;
+using Ailurus.Mapper.Implementations;
 using Ailurus.Model;
 using Ailurus.Model.Instructions;
 using FluentAssertions;

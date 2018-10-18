@@ -1,5 +1,5 @@
 ﻿using System;
-using Ailurus.DTO.Interfaces;
+using Ailurus.DTO.Requests.Interfaces;
 using Ailurus.Service;
 using Newtonsoft.Json;
 

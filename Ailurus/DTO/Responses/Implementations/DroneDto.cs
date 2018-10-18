@@ -1,10 +1,11 @@
-﻿using Ailurus.DTO.Interfaces;
+﻿using Ailurus.DTO.Requests.Interfaces;
+using Ailurus.DTO.Responses.Interfaces;
 using Ailurus.Model;
 using Ailurus.Model.Instructions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Ailurus.DTO.Implementation
+namespace Ailurus.DTO.Responses.Implementations
 {
     public class DroneDto : IDroneDto
     {

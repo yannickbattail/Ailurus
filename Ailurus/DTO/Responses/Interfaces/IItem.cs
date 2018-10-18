@@ -1,4 +1,6 @@
-﻿namespace Ailurus.DTO.Interfaces
+﻿using Ailurus.DTO.Requests.Interfaces;
+
+namespace Ailurus.DTO.Responses.Interfaces
 {
     public interface IItem
     {

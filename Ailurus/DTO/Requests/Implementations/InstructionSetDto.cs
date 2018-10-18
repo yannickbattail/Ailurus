@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Ailurus.DTO.Interfaces;
+using Ailurus.DTO.Requests.Interfaces;
 
-namespace Ailurus.DTO.Implementation
+namespace Ailurus.DTO.Requests.Implementations
 {
     public class InstructionSetDto : IInstructionSetDto
     {

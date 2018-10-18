@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Ailurus.Model;
 
-namespace Ailurus.DTO.Interfaces
+namespace Ailurus.DTO.Responses.Interfaces
 {
     public interface IPlayerContextDto
     {

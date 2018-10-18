@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Ailurus.DTO.Implementation;
+using Ailurus.DTO.Requests.Implementations;
 using Ailurus.Model;
 using Ailurus.Model.Instructions;
 using FluentAssertions;

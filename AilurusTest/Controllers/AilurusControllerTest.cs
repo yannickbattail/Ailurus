@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Ailurus.Controllers;
-using Ailurus.DTO.Implementation;
+using Ailurus.DTO.Requests.Implementations;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;

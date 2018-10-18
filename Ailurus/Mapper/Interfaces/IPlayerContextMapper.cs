@@ -1,4 +1,5 @@
-﻿using Ailurus.DTO.Interfaces;
+﻿using Ailurus.DTO.Requests.Interfaces;
+using Ailurus.DTO.Responses.Interfaces;
 using Ailurus.Model;
 
 namespace Ailurus.Mapper.Interfaces

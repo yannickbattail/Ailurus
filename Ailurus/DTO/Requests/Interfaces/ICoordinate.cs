@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ailurus.DTO.Interfaces
+namespace Ailurus.DTO.Requests.Interfaces
 {
     public interface ICoordinate
     {

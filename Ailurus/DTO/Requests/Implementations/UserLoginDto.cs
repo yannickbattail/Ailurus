@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Ailurus.DTO.Implementation
+namespace Ailurus.DTO.Requests.Implementations
 {
     public class UserLoginDto
     {
