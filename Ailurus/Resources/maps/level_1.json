@@ -26,8 +26,8 @@
       "Name": "Gold Mine",
       "Position": {
         "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
-        "X": 97,
-        "Y": 97
+        "X": 98,
+        "Y": 98
       },
       "ResourceType": "Gold"
     }
