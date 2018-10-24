@@ -93,7 +93,7 @@ namespace Ailurus.Service
         
         public override IPlayerContextDto CreateNew(UserLoginDto login)
         {
-            var repo = new PlayerContextRepository();
+            var repo = GetPlayerContextRepository();
             var mapper = new PlayerContextMapper();
             var payerCtx = new PlayerContext()
             {

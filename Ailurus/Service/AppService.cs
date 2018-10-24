@@ -13,7 +13,7 @@ namespace Ailurus.Service
 
         public bool CheckLogin(UserLoginDto login)
         {
-            var repo = new PlayerContextRepository();
+            var repo = GetPlayerContextRepository();
             return repo.PlayerExists(login.PlayerName, login.Pass);
         }
         
@@ -25,6 +25,11 @@ namespace Ailurus.Service
             }
 
             return App;
+        }        
+        
+        public IPlayerContextRepository GetPlayerContextRepository()
+        {
+            return new PlayerContextRepository();
         }
 
         protected IMapInfo Map;
@@ -36,7 +41,7 @@ namespace Ailurus.Service
 
         public IPlayerContextDto GetPlayerContext(string playerName)
         {
-            var repo = new PlayerContextRepository();
+            var repo = GetPlayerContextRepository();
             var mapper = new PlayerContextMapper();
             try
             {

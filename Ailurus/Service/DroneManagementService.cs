@@ -16,7 +16,7 @@ namespace Ailurus.Service
         
         public DroneManagementService(string playerName)
         {
-            Repository = new PlayerContextRepository();
+            Repository = AppService.GetAppService().GetPlayerContextRepository();
             PlayerContext = Repository.GetPlayerContextByPlayerName(playerName);
         }
 
