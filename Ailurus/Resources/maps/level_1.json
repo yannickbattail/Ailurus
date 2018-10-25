@@ -10,14 +10,14 @@
     },
     "Item2": {
       "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
-      "X": 100,
-      "Y": 100
+      "X": 50,
+      "Y": 50
     }
   },
   "DroneSpawnPoint": {
     "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
-    "X": 1,
-    "Y": 1
+    "X": 20,
+    "Y": 10
   },
   "Mines": [
     {
@@ -26,8 +26,8 @@
       "Name": "Gold Mine",
       "Position": {
         "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
-        "X": 98,
-        "Y": 98
+        "X": 45,
+        "Y": 45
       },
       "ResourceType": "Gold"
     }
@@ -39,8 +39,8 @@
       "Name": "Home",
       "Position": {
         "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
-        "X": 2,
-        "Y": 2
+        "X": 4,
+        "Y": 4
       }
     }
   ],
