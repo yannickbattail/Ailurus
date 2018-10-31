@@ -3,6 +3,7 @@ namespace Ailurus.Model
     public enum ResourceType
     {
         Gold,
-        Silver
+        Silver,
+		Iron
     }
 }
