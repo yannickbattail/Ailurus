@@ -49,25 +49,7 @@ namespace Ailurus.Service
             }
         }
 
-        public IPlayerContextDto ChangeLevel(int level, string playerName)
-        {
-            var repo = GetPlayerContextRepository();
-            var mapper = new PlayerContextMapper();
-            try
-            {
-                var playerContext = repo.GetPlayerContextByPlayerName(playerName);
-                // try load maps, throws exception if map does not exists
-                GetMap(level);
-                playerContext.Level = level;
-                repo.Save(playerContext);
-                return mapper.Map(playerContext);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                throw e;
-            }
-        }
+        public abstract IPlayerContextDto ChangeLevel(int level, string playerName);
 
         public IEnumerable<string> SendInstructions(IList<GlobalInstruction> instructions, string playerName)
         {

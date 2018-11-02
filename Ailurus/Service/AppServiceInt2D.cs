@@ -57,6 +57,31 @@ namespace Ailurus.Service
             return mapper.Map(payerCtx);
         }
 
+        public override IPlayerContextDto ChangeLevel(int level, string playerName)
+        {
+            var repo = GetPlayerContextRepository();
+            var mapper = new PlayerContextMapper();
+            try
+            {
+                var playerContext = repo.GetPlayerContextByPlayerName(playerName);
+                // try load maps, throws exception if map does not exists
+                GetMap(level);
+                playerContext.Level = level;
+                playerContext.Drones = new List<IDrone>()
+                {
+                    CreateNewDrone("Drone_1", 1),
+                    CreateNewDrone("Drone_2", 1)
+                };
+                repo.Save(playerContext);
+                return mapper.Map(playerContext);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw ;
+            }
+        }
+        
         private static IDrone CreateNewDrone(string name, int mapLevel)
         {
             var newDrone = new Drone(GetAppService().GetMap(mapLevel).DroneSpawnPoint)
