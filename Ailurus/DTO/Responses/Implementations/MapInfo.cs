@@ -9,6 +9,7 @@ namespace Ailurus.DTO.Responses.Implementations
     public class MapInfo : IMapInfo
     {
         public string Name { get; set; }
+        public string Description { get; set; }
         public Tuple<ICoordinate, ICoordinate> Dimensions { get; set; }
         public ICoordinate DroneSpawnPoint { get; set; }
         public IEnumerable<Mine> Mines { get; set; }

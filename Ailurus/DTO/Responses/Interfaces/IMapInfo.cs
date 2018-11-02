@@ -9,6 +9,7 @@ namespace Ailurus.DTO.Responses.Interfaces
     public interface IMapInfo
     {
         string Name { get; set; }
+        string Description { get; set; }
         Tuple<ICoordinate, ICoordinate> Dimensions { get; set; }
         ICoordinate DroneSpawnPoint { get; set; }
         IEnumerable<Mine> Mines { get; set; }

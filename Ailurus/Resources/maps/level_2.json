@@ -1,6 +1,7 @@
 {
   "$type": "Ailurus.DTO.Responses.Implementations.MapInfo, Ailurus",
   "Name": "lvl1",
+  "Description": "Map level 2. With 3 resources: gold, silver and iron",
   "Dimensions": {
     "$type": "System.Tuple`2[[Ailurus.DTO.Requests.Interfaces.ICoordinate, Ailurus],[Ailurus.DTO.Requests.Interfaces.ICoordinate, Ailurus]], System.Private.CoreLib",
     "Item1": {
