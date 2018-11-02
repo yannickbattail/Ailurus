@@ -13,14 +13,18 @@ namespace AilurusTest.Model
         [Fact]
         public void TestGetStateAt()
         {
-            var drone = new Drone(new CoordinateInt2D(){X=2,Y=2})
+            var drone = new Drone(new CoordinateInt2D(){X=4,Y=4})
             {
                 Name = "someDrone",
                 StorageSize = 10,
                 Speed = 10
             };
+            var playerCtx = new PlayerContext()
+            {
+                Level = 1
+            };
             var dateStart = new DateTime(2018, 1, 1, 0,0,0);
-            drone.AddInstruction(new Unload(drone, dateStart));
+            drone.AddInstruction(new Unload(playerCtx, drone, dateStart));
             
             var date1 = new DateTime(2018, 1, 1, 0,0,1);
             drone.GetStateAt(date1).Should().Be(DroneState.ExecutionInstruction);
@@ -31,16 +35,20 @@ namespace AilurusTest.Model
         [Fact]
         public void TestGetValidInstructions()
         {
-            var drone = new Drone(new CoordinateInt2D(){X=2,Y=2})
+            var drone = new Drone(new CoordinateInt2D(){X=4,Y=4})
             {
                 Name = "someDrone",
                 StorageSize = 10,
                 Speed = 10
             };
+            var playerCtx = new PlayerContext()
+            {
+                Level = 1
+            };
             var dateStart = new DateTime(2018, 1, 1, 0,0,0);
-            var unloadValid = new Unload(drone, dateStart);
+            var unloadValid = new Unload(playerCtx, drone, dateStart);
             drone.AddInstruction(unloadValid);
-            var unloadAborted = new Unload(drone, dateStart);
+            var unloadAborted = new Unload(playerCtx, drone, dateStart);
             unloadAborted.AbortedAt = dateStart;
 
             var expected = new List<IInstruction>(){unloadValid};

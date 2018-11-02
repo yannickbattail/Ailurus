@@ -32,12 +32,7 @@ namespace Ailurus.Service
             return new PlayerContextRepository();
         }
 
-        protected IMapInfo Map;
-        
-        public IMapInfo GetMap()
-        {
-            return Map;
-        }
+        public abstract IMapInfo GetMap(int mapLevel);
 
         public IPlayerContextDto GetPlayerContext(string playerName)
         {
@@ -46,6 +41,26 @@ namespace Ailurus.Service
             try
             {
                 return mapper.Map(repo.GetPlayerContextByPlayerName(playerName));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw e;
+            }
+        }
+
+        public IPlayerContextDto ChangeLevel(int level, string playerName)
+        {
+            var repo = GetPlayerContextRepository();
+            var mapper = new PlayerContextMapper();
+            try
+            {
+                var playerContext = repo.GetPlayerContextByPlayerName(playerName);
+                // try load maps, throws exception if map does not exists
+                GetMap(level);
+                playerContext.Level = level;
+                repo.Save(playerContext);
+                return mapper.Map(playerContext);
             }
             catch (Exception e)
             {

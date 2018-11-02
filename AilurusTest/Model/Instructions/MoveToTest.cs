@@ -29,9 +29,13 @@ namespace AilurusTest.Model.Instructions
                 StorageSize = 10,
                 Speed = 1
             };
+            var playerCtx = new PlayerContext()
+            {
+                Level = 1
+            };
             var dateStart = new DateTime(2018, 1, 1, 0,0,0);
             var date = new DateTime(2018, 1, 1, 0,0,4);
-            var moveTo = new MoveTo(drone,dateStart,source,dest);
+            var moveTo = new MoveTo(playerCtx, drone,dateStart,source,dest);
 
             var actual = moveTo.GetPositionAt(date);
             
@@ -61,12 +65,16 @@ namespace AilurusTest.Model.Instructions
                 StorageSize = 10,
                 Speed = 1
             };
+            var playerCtx = new PlayerContext()
+            {
+                Level = 1
+            };
             
             var dateStart = new DateTime(2018, 1, 1, 0,0,0);
             
             Action action = () =>
             {
-                var move = new MoveTo(drone,dateStart, source, source);
+                var move = new MoveTo(playerCtx, drone,dateStart, source, source);
             };
 
             action.Should().Throw<InvalidInstructionException>()
@@ -93,12 +101,16 @@ namespace AilurusTest.Model.Instructions
                 StorageSize = 10,
                 Speed = 1
             };
+            var playerCtx = new PlayerContext()
+            {
+                Level = 1
+            };
             
             var dateStart = new DateTime(2018, 1, 1, 0,0,0);
             
             Action action = () =>
             {
-                var move = new MoveTo(drone,dateStart, source, dest);
+                var move = new MoveTo(playerCtx, drone,dateStart, source, dest);
             };
 
             action.Should().Throw<InvalidInstructionException>()

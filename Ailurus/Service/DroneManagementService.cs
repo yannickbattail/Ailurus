@@ -41,7 +41,7 @@ namespace Ailurus.Service
                     return "drone is already doing an action "+drone.GetLastValidInstruction().GetType().Name;
                 }
 
-                var mapper = new InstructionMapper();
+                var mapper = new InstructionMapper(PlayerContext);
                 drone.AddInstruction(mapper.ToSpecificInstruction(globInstruction, drone, DateTime.Now));
                 return "OK, drone will do "+drone.GetLastValidInstruction().GetType().Name;
             }

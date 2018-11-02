@@ -13,7 +13,7 @@ namespace AilurusTest.Mapper.Implementation
         [Fact]
         public void TestCollectInstruction()
         {
-            var drone = new Drone(new CoordinateInt2D(){X=98,Y=98})
+            var drone = new Drone(new CoordinateInt2D(){X=45,Y=45})
             {
                 Name = "Drone_1",
                 Speed = 1,
@@ -26,11 +26,15 @@ namespace AilurusTest.Mapper.Implementation
                 Destination = null,
                 DroneName = "Drone_1"
             };
+            var playerCtx = new PlayerContext()
+            {
+                Level = 1
+            };
 
-            var mapper = new InstructionMapper();
+            var mapper = new InstructionMapper(playerCtx);
             var date = new DateTime(2018,1,1);
 
-            var expectedInstruction = new Collect(drone, date);
+            var expectedInstruction = new Collect(playerCtx, drone, date);
             
             
             var actualInstruction = mapper.ToSpecificInstruction(globalInstruction, drone, date);
@@ -41,7 +45,7 @@ namespace AilurusTest.Mapper.Implementation
         [Fact]
         public void TestUnloadInstruction()
         {
-            var drone = new Drone(new CoordinateInt2D(){X=2,Y=2})
+            var drone = new Drone(new CoordinateInt2D(){X=4,Y=4})
             {
                 Name = "Drone_1",
                 Speed = 1,
@@ -55,11 +59,16 @@ namespace AilurusTest.Mapper.Implementation
                 Destination = null,
                 DroneName = "Drone_1"
             };
+            var playerCtx = new PlayerContext()
+            {
+                Level = 1
+            };
 
-            var mapper = new InstructionMapper();
+
+            var mapper = new InstructionMapper(playerCtx);
             var date = new DateTime(2018,1,1);
 
-            var expectedInstruction = new Unload(drone, date);
+            var expectedInstruction = new Unload(playerCtx, drone, date);
             
             
             var actualInstruction = mapper.ToSpecificInstruction(globalInstruction, drone, date);
@@ -73,7 +82,7 @@ namespace AilurusTest.Mapper.Implementation
             var drone = CreateDrone();
             
             var date = new DateTime(2018,1,1);
-            var dest = new CoordinateInt2D(){X = 84,Y = 42};
+            var dest = new CoordinateInt2D(){X = 45,Y = 45};
             var source = new CoordinateInt2D(){X = 1,Y = 1};
             
             var globalInstruction = new GlobalInstruction()
@@ -82,9 +91,14 @@ namespace AilurusTest.Mapper.Implementation
                 Destination = dest,
                 DroneName = "Drone_1"
             };
+            var playerCtx = new PlayerContext()
+            {
+                Level = 1
+            };
 
-            var mapper = new InstructionMapper();
-            var expectedInstruction = new MoveTo(drone, date, source, dest);
+
+            var mapper = new InstructionMapper(playerCtx);
+            var expectedInstruction = new MoveTo(playerCtx, drone, date, source, dest);
             
             
             var actualInstruction = mapper.ToSpecificInstruction(globalInstruction, drone, date);
@@ -103,8 +117,12 @@ namespace AilurusTest.Mapper.Implementation
                 Destination = null,
                 DroneName = "Drone_1"
             };
+            var playerCtx = new PlayerContext()
+            {
+                Level = 1
+            };
 
-            var mapper = new InstructionMapper();
+            var mapper = new InstructionMapper(playerCtx);
             var date = new DateTime(2018,1,1);
             
             Action toSpecificInstructionAction = () =>
@@ -127,8 +145,13 @@ namespace AilurusTest.Mapper.Implementation
                 Destination = null,
                 DroneName = "Drone_1"
             };
+            var playerCtx = new PlayerContext()
+            {
+                Level = 1
+            };
 
-            var mapper = new InstructionMapper();
+
+            var mapper = new InstructionMapper(playerCtx);
             var date = new DateTime(2018,1,1);
             
             Action toSpecificInstructionAction = () =>

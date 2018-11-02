@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Ailurus.DTO.Responses.Interfaces;
 using Ailurus.Model.Instructions;
 using Ailurus.Service;
 
@@ -11,6 +12,7 @@ namespace Ailurus.Model
         public IEnumerable<IDrone> Drones { get; set; }
         public string PlayerName { get; set; }
         public string Pass { get; set; }
+        public int Level { get; set; }
 
         public IEnumerable<ResourceQuantity> Resources {
             get { return GetStoredResourcesAt(DateTime.Now);}
@@ -45,7 +47,7 @@ namespace Ailurus.Model
 
         public bool IsGoalAchieved()
         {
-            return IsGoalAchieved(AppService.GetAppService().GetMap().ResourceGoal);
+            return IsGoalAchieved(GetMap().ResourceGoal);
         }
         
         public bool IsGoalAchieved(IEnumerable<ResourceQuantity> goal)
@@ -54,6 +56,11 @@ namespace Ailurus.Model
             return goal.All(
                 res => resourceList.FirstOrDefault(g => g.Resource == res.Resource)?.Quantity >= res.Quantity
             );
+        }
+
+        public IMapInfo GetMap()
+        {
+            return AppService.GetAppService().GetMap(Level);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Ailurus.Service
 {
     public interface IAppService
     {
-        IMapInfo GetMap();
+        IMapInfo GetMap(int mapLevel);
         IPlayerContextDto GetPlayerContext(string playerName);
         IEnumerable<string> SendInstructions(IList<GlobalInstruction> instructions, string playerName);
         IPlayerContextDto CreateNew(UserLoginDto login);

@@ -25,12 +25,16 @@ namespace AilurusTest.Model.Instructions
                 StorageSize = 10,
                 Speed = 1
             };
-            
+            var playerCtx = new PlayerContext()
+            {
+                Level = 1
+            };
+
             var dateStart = new DateTime(2018, 1, 1, 0,0,0);
             
             Action action = () =>
             {
-                new Collect(drone, dateStart);
+                new Collect(playerCtx, drone, dateStart);
             };
 
             action.Should().Throw<InvalidInstructionException>()

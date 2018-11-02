@@ -26,9 +26,9 @@ namespace Ailurus.Model.Instructions
             protected set{}
         }
 
-        public Unload(IDrone drone, DateTime startedAt)
+        public Unload(IPlayerContext playerContext, IDrone drone, DateTime startedAt)
         {
-            var item = AppService.GetAppService().GetMap().Factories.FirstOrDefault(
+            var item = playerContext.GetMap().Factories.FirstOrDefault(
                 itm => drone.CurrentPosition.IsNear(itm.Position)
             );
             if (item == null)

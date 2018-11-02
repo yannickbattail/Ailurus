@@ -48,7 +48,7 @@ namespace Ailurus.Model.Instructions
             return StartPosition.PathProgression(Destination, GetProgressionAt(time));
         }
         
-        public MoveTo(IDrone drone, DateTime startedAt, ICoordinate source, ICoordinate destination)
+        public MoveTo(IPlayerContext playerContext, IDrone drone, DateTime startedAt, ICoordinate source, ICoordinate destination)
         {
             if (destination == null)
             {
@@ -62,7 +62,7 @@ namespace Ailurus.Model.Instructions
             {
                 throw new InvalidInstructionException("The drone is already at destination");    
             }
-            if (!AppService.GetAppService().GetMap().IsInside(destination))
+            if (!playerContext.GetMap().IsInside(destination))
             {
                 throw new InvalidInstructionException("Destination is outside of the map.");
             }

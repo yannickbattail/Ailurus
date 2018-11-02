@@ -7,6 +7,7 @@ namespace Ailurus.DTO.Responses.Interfaces
     {
         IEnumerable<IDroneDto> Drones { get; set; }
         string PlayerName { get; set; }
+        int Level { get; set; }
         IEnumerable<ResourceQuantity> Resources { get; set; }
         bool GoalAchieved { get; set; }
     }

@@ -26,25 +26,26 @@ namespace AilurusTest.Model
         [Fact]
         public void GetStoredResourcesAtTest()
         {
-            var initPos = new CoordinateInt2D() { X = 2, Y = 2};
+            var initPos = new CoordinateInt2D() { X = 4, Y = 4};
             var rq = new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 42};
+            var cntx = new PlayerContext()
+            {
+                Level = 1
+            };
             var mockedDrone = new Mock<IDrone>();
             mockedDrone
                 .Setup(dr => dr.GetValidInstructions())
                 .Returns(new List<IInstruction>()
                 {
-                    new Unload(new Drone(initPos), new DateTime(2018,1,1,0,0,0))
+                    new Unload(cntx, new Drone(initPos), new DateTime(2018,1,1,0,0,0))
                     {
                         Resource = rq
                     }
                 });
             
-            var cntx = new PlayerContext()
+            cntx.Drones = new List<IDrone>()
             {
-                Drones = new List<IDrone>()
-                {
-                    mockedDrone.Object
-                }
+                mockedDrone.Object
             };
             IEnumerable<ResourceQuantity> expected = new List<ResourceQuantity>()
             {
@@ -58,18 +59,22 @@ namespace AilurusTest.Model
         [Fact]
         public void GetStoredResourcesAt3Test()
         {
-            var initPos = new CoordinateInt2D() { X = 2, Y = 2};
+            var initPos = new CoordinateInt2D() { X = 4, Y = 4};
             var rq = new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 42};
+            var cntx = new PlayerContext()
+            {
+                Level = 1
+            };
             var mockedDrone = new Mock<IDrone>();
             mockedDrone
                 .Setup(dr => dr.GetValidInstructions())
                 .Returns(new List<IInstruction>()
                 {
-                    new Unload(new Drone(initPos), new DateTime(2018,1,1,0,0,0))
+                    new Unload(cntx, new Drone(initPos), new DateTime(2018,1,1,0,0,0))
                     {
                         Resource = new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 42}
                     },
-                    new Unload(new Drone(initPos), new DateTime(2018,1,1,0,0,2))
+                    new Unload(cntx, new Drone(initPos), new DateTime(2018,1,1,0,0,2))
                     {
                         Resource = new ResourceQuantity() {Resource = ResourceType.Silver, Quantity = 66}
                     }
@@ -79,19 +84,16 @@ namespace AilurusTest.Model
                 .Setup(dr => dr.GetValidInstructions())
                 .Returns(new List<IInstruction>()
                 {
-                    new Unload(new Drone(initPos), new DateTime(2018,1,1,0,0,0))
+                    new Unload(cntx, new Drone(initPos), new DateTime(2018,1,1,0,0,0))
                     {
                         Resource = new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 42}
                     }
                 });
 
-            var cntx = new PlayerContext()
+            cntx.Drones = new List<IDrone>()
             {
-                Drones = new List<IDrone>()
-                {
-                    mockedDrone.Object,
-                    mockedDrone2.Object
-                }
+                mockedDrone.Object,
+                mockedDrone2.Object
             };
             IEnumerable<ResourceQuantity> expected = new List<ResourceQuantity>()
             {
@@ -108,29 +110,30 @@ namespace AilurusTest.Model
         [Fact]
         public void IsGoalAchievedWithSuccess()
         {
-            var initPos = new CoordinateInt2D() { X = 2, Y = 2};
+            var initPos = new CoordinateInt2D() { X = 4, Y = 4};
             var rq = new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 10};
             var goal = new List<ResourceQuantity>()
             {
                 new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 10}
+            };
+            var cntx = new PlayerContext()
+            {
+                Level = 1
             };
             var mockedDrone = new Mock<IDrone>();
             mockedDrone
                 .Setup(dr => dr.GetValidInstructions())
                 .Returns(new List<IInstruction>()
                 {
-                    new Unload(new Drone(initPos), new DateTime(2018,1,1,0,0,0))
+                    new Unload(cntx, new Drone(initPos), new DateTime(2018,1,1,0,0,0))
                     {
                         Resource = rq
                     }
                 });
             
-            var cntx = new PlayerContext()
+            cntx.Drones = new List<IDrone>()
             {
-                Drones = new List<IDrone>()
-                {
-                    mockedDrone.Object
-                }
+                mockedDrone.Object
             };
 
             cntx.IsGoalAchieved(goal).Should().BeTrue();
@@ -139,30 +142,31 @@ namespace AilurusTest.Model
         [Fact]
         public void IsGoalAchievedFail2Ressources()
         {
-            var initPos = new CoordinateInt2D() { X = 2, Y = 2};
+            var initPos = new CoordinateInt2D() { X = 4, Y = 4};
             var rq = new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 10};
             var goal = new List<ResourceQuantity>()
             {
                 new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 10},
                 new ResourceQuantity() {Resource = ResourceType.Silver, Quantity = 10}
             };
+            var cntx = new PlayerContext()
+            {
+                Level = 1
+            };
             var mockedDrone = new Mock<IDrone>();
             mockedDrone
                 .Setup(dr => dr.GetValidInstructions())
                 .Returns(new List<IInstruction>()
                 {
-                    new Unload(new Drone(initPos), new DateTime(2018,1,1,0,0,0))
+                    new Unload(cntx, new Drone(initPos), new DateTime(2018,1,1,0,0,0))
                     {
                         Resource = rq
                     }
                 });
             
-            var cntx = new PlayerContext()
+            cntx.Drones = new List<IDrone>()
             {
-                Drones = new List<IDrone>()
-                {
-                    mockedDrone.Object
-                }
+                mockedDrone.Object
             };
 
             cntx.IsGoalAchieved(goal).Should().BeFalse();
@@ -171,29 +175,30 @@ namespace AilurusTest.Model
         [Fact]
         public void IsGoalAchievedFailNotEnoughResources()
         {
-            var initPos = new CoordinateInt2D() { X = 2, Y = 2};
+            var initPos = new CoordinateInt2D() { X = 4, Y = 4};
             var rq = new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 10};
             var goal = new List<ResourceQuantity>()
             {
                 new ResourceQuantity() {Resource = ResourceType.Gold, Quantity = 11},
+            };
+            var cntx = new PlayerContext()
+            {
+                Level = 1
             };
             var mockedDrone = new Mock<IDrone>();
             mockedDrone
                 .Setup(dr => dr.GetValidInstructions())
                 .Returns(new List<IInstruction>()
                 {
-                    new Unload(new Drone(initPos), new DateTime(2018,1,1,0,0,0))
+                    new Unload(cntx, new Drone(initPos), new DateTime(2018,1,1,0,0,0))
                     {
                         Resource = rq
                     }
                 });
-            
-            var cntx = new PlayerContext()
+
+            cntx.Drones = new List<IDrone>()
             {
-                Drones = new List<IDrone>()
-                {
-                    mockedDrone.Object
-                }
+                mockedDrone.Object
             };
 
             cntx.IsGoalAchieved(goal).Should().BeFalse();

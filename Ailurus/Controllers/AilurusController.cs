@@ -11,12 +11,46 @@ namespace Ailurus.Controllers
     {
         private AppService App = AppService.GetAppService();
 
-        // GET map
-        [HttpGet]
+        // POST map
+        [HttpPost]
         [Route("map")]
-        public ActionResult<IMapInfo> GetMap()
+        public ActionResult<IMapInfo> GetMap(
+            [FromBody]
+            [Required]
+            UserLoginDto login)
         {
-            return Ok(App.GetMap());
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState.Values);
+            }
+            if (!App.CheckLogin(login))
+            {
+                return Forbid();
+            }
+
+            var playerContext = App.GetPlayerContext(login.PlayerName);
+            return Ok(App.GetMap(playerContext.Level));
+        }
+        
+        // POST map
+        [HttpPost]
+        [Route("changeLevel")]
+        public ActionResult<IPlayerContextDto> ChangeLevel(
+            [FromBody]
+            [Required]
+            ChangeLevelDto changeLevel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState.Values);
+            }
+            if (!App.CheckLogin(changeLevel.Login))
+            {
+                return Forbid();
+            }
+
+            var playerContext = App.ChangeLevel(changeLevel.Level, changeLevel.Login.PlayerName);
+            return Ok(playerContext);
         }
 
         // POST createPlayer

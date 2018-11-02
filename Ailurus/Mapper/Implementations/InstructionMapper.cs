@@ -8,6 +8,13 @@ namespace Ailurus.Mapper.Implementations
 {
     public class InstructionMapper : IInstructionMapper
     {
+        private IPlayerContext PlayerContext;
+
+        public InstructionMapper(IPlayerContext playerContext)
+        {
+            PlayerContext = playerContext;
+        }
+        
         public IInstruction ToSpecificInstruction(
             GlobalInstruction globalInstruction,
             IDrone drone,
@@ -25,11 +32,11 @@ namespace Ailurus.Mapper.Implementations
             switch (globalInstruction.TYPE)
             {
                 case "Collect":
-                    return new Collect(drone, startedAt);
+                    return new Collect(PlayerContext, drone, startedAt);
                 case "MoveTo":
-                    return new MoveTo(drone,startedAt,drone.CurrentPosition, globalInstruction.Destination);
+                    return new MoveTo(PlayerContext, drone,startedAt,drone.CurrentPosition, globalInstruction.Destination);
                 case "Unload":
-                    return new Unload(drone,startedAt);
+                    return new Unload(PlayerContext, drone,startedAt);
                 default:
                     throw new ArgumentException("Unknown instruction type "+globalInstruction.TYPE);
             }

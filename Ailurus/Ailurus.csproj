@@ -26,4 +26,12 @@
     <_ContentIncludedByDefault Remove="wwwroot\js\FulgensMap.js" />
     <_ContentIncludedByDefault Remove="wwwroot\js\main.js" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Update="Resources\maps\level_1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Resources\maps\level_2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
