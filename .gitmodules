@@ -1,0 +1,3 @@
+[submodule "Ailurus/wwwroot/fulgens-js"]
+	path = Ailurus/wwwroot/fulgens-js
+	url = https://github.com/yannickbattail/fulgens-js.git
