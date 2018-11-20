@@ -10,15 +10,12 @@
 
 ```console
 git clone https://github.com/yannickbattail/Ailurus.git
-cd Ailurus/Ailurus/wwwroot/
-rm ./.empty
-git clone https://github.com/yannickbattail/fulgens-js.git .
 ```
 
 ### start
 
 ```console
-cd ..
+cd Ailurus/Ailurus
 dotnet run
 ```
 
@@ -27,7 +24,7 @@ Wait a bit and then you should have (or an other port)
     Now listening on: http://localhost:61218
     Application started. Press Ctrl+C to shut down.
 
-and now open you web browser to http://localhost:61218/index.html
+and now open you web browser to http://localhost:61218/fulgens-js/index.html
 
 adapt the port if needed
 
