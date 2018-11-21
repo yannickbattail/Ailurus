@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Ailurus.Model;
 
 namespace Ailurus.DTO.Responses.Interfaces
@@ -10,5 +11,6 @@ namespace Ailurus.DTO.Responses.Interfaces
         int Level { get; set; }
         IEnumerable<ResourceQuantity> Resources { get; set; }
         bool GoalAchieved { get; set; }
+        DateTime DateStart { get; set; }
     }
 }

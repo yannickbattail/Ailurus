@@ -83,5 +83,51 @@
       "Resource": "Iron",
       "Quantity": 200
     }
+  ],
+  "InitialDrones": [
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_1",
+      "Speed": 1,
+      "StorageSize": 10,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 20,
+        "Y": 10
+      }
+    },
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_2",
+      "Speed": 1,
+      "StorageSize": 10,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 21,
+        "Y": 11
+      }
+    },
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_3",
+      "Speed": 1,
+      "StorageSize": 10,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 20,
+        "Y": 10
+      }
+    },
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_4",
+      "Speed": 1,
+      "StorageSize": 11,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 21,
+        "Y": 11
+      }
+    }
   ]
 }

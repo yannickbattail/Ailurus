@@ -15,11 +15,6 @@
       "Y": 50
     }
   },
-  "DroneSpawnPoint": {
-    "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
-    "X": 20,
-    "Y": 10
-  },
   "Mines": [
     {
       "$type": "Ailurus.DTO.Responses.Implementations.Mine, Ailurus",
@@ -50,6 +45,30 @@
       "$type": "Ailurus.Model.ResourceQuantity, Ailurus",
       "Resource": "Gold",
       "Quantity": 40
+    }
+  ],
+  "InitialDrones": [
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_1",
+      "Speed": 1,
+      "StorageSize": 10,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 20,
+        "Y": 10
+      }
+    },
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_2",
+      "Speed": 1,
+      "StorageSize": 10,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 21,
+        "Y": 11
+      }
     }
   ]
 }

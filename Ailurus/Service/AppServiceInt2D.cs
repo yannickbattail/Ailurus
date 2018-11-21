@@ -42,16 +42,14 @@ namespace Ailurus.Service
         {
             var repo = GetPlayerContextRepository();
             var mapper = new PlayerContextMapper();
+            
+            var map = GetMap(1);
             var payerCtx = new PlayerContext()
             {
                 PlayerName = login.PlayerName,
                 Pass = login.Pass,
                 Level = 1,
-                Drones = new List<IDrone>()
-                {
-                    CreateNewDrone("Drone_1", 1),
-                    CreateNewDrone("Drone_2", 1)
-                }
+                Drones = map.InitialDrones
             };
             repo.Save(payerCtx);
             return mapper.Map(payerCtx);
@@ -65,13 +63,9 @@ namespace Ailurus.Service
             {
                 var playerContext = repo.GetPlayerContextByPlayerName(playerName);
                 // try load maps, throws exception if map does not exists
-                GetMap(level);
+                var map = GetMap(level);
                 playerContext.Level = level;
-                playerContext.Drones = new List<IDrone>()
-                {
-                    CreateNewDrone("Drone_1", 1),
-                    CreateNewDrone("Drone_2", 1)
-                };
+                playerContext.Drones = map.InitialDrones;
                 repo.Save(playerContext);
                 return mapper.Map(playerContext);
             }
@@ -80,17 +74,6 @@ namespace Ailurus.Service
                 Console.WriteLine(e.Message);
                 throw ;
             }
-        }
-        
-        private static IDrone CreateNewDrone(string name, int mapLevel)
-        {
-            var newDrone = new Drone(GetAppService().GetMap(mapLevel).DroneSpawnPoint)
-            {
-                Name = name,
-                Speed = 1,
-                StorageSize = 10
-            };
-            return newDrone;
         }
     }
 }

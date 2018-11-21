@@ -11,10 +11,10 @@ namespace Ailurus.DTO.Responses.Interfaces
         string Name { get; set; }
         string Description { get; set; }
         Tuple<ICoordinate, ICoordinate> Dimensions { get; set; }
-        ICoordinate DroneSpawnPoint { get; set; }
         IEnumerable<Mine> Mines { get; set; }
         IEnumerable<Factory> Factories { get; set; }
         IEnumerable<ResourceQuantity> ResourceGoal { get; set; }
+        IEnumerable<Drone> InitialDrones { get; set; }
         
         bool IsInside(ICoordinate coordinate);
         ICoordinate ForceInside(ICoordinate coordinate);

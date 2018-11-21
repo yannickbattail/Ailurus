@@ -90,6 +90,14 @@ namespace Ailurus.Model
             Instructions = new List<IInstruction>();
         }
         
+        /// <summary>
+        /// for json deserialization
+        /// </summary>
+        public Drone( )
+        {
+            Instructions = new List<IInstruction>();
+        }
+        
         public IInstruction GetLastValidInstruction()
         {
             if (Instructions == null || !Instructions.Any())
