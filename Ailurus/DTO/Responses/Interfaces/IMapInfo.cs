@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Ailurus.DTO.Requests.Interfaces;
+﻿using Ailurus.DTO.Requests.Interfaces;
 using Ailurus.DTO.Responses.Implementations;
 using Ailurus.Model;
+using System;
+using System.Collections.Generic;
 
 namespace Ailurus.DTO.Responses.Interfaces
 {
@@ -14,8 +14,9 @@ namespace Ailurus.DTO.Responses.Interfaces
         IEnumerable<Mine> Mines { get; set; }
         IEnumerable<Factory> Factories { get; set; }
         IEnumerable<ResourceQuantity> ResourceGoal { get; set; }
+        TimeSpan TimeLimitGoal { get; set; }
         IEnumerable<Drone> InitialDrones { get; set; }
-        
+
         bool IsInside(ICoordinate coordinate);
         ICoordinate ForceInside(ICoordinate coordinate);
     }

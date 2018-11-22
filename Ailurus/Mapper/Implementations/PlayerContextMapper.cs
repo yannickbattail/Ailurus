@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using Ailurus.DTO.Responses.Implementations;
+﻿using Ailurus.DTO.Responses.Implementations;
 using Ailurus.DTO.Responses.Interfaces;
 using Ailurus.Mapper.Interfaces;
 using Ailurus.Model;
+using System.Linq;
 
 namespace Ailurus.Mapper.Implementations
 {
@@ -16,7 +16,11 @@ namespace Ailurus.Mapper.Implementations
                 PlayerName = playerContext.PlayerName,
                 Level = playerContext.Level,
                 Resources = playerContext.Resources,
-                GoalAchieved = playerContext.IsGoalAchieved()
+                IsResourceGoalAchieved = playerContext.IsResourceGoalAchieved(),
+                StartTime = playerContext.GetStartTime(),
+                TimeWhenResoucesGoalIsAchieved = playerContext.GetTimeWhenResoucesGoalIsAchieved(),
+                SpentTime = playerContext.GetSpentTime(),
+                IsTimeGoalAchieved = playerContext.IsTimeGoalAchieved()
             };
         }
 

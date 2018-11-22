@@ -47,6 +47,7 @@
       "Quantity": 40
     }
   ],
+  "TimeLimitGoal": "00:05:00.0",
   "InitialDrones": [
     {
       "$type": "Ailurus.Model.Drone, Ailurus",

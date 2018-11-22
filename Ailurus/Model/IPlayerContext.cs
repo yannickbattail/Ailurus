@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using Ailurus.DTO.Responses.Interfaces;
+﻿using Ailurus.DTO.Responses.Interfaces;
+using System;
+using System.Collections.Generic;
 
 namespace Ailurus.Model
 {
@@ -10,8 +11,12 @@ namespace Ailurus.Model
         string Pass { get; set; }
         int Level { get; set; }
         IEnumerable<ResourceQuantity> Resources { get; }
-        bool IsGoalAchieved();
-        bool IsGoalAchieved(IEnumerable<ResourceQuantity> goal);
+        bool IsResourceGoalAchieved();
+        bool IsResourceGoalAchieved(IEnumerable<ResourceQuantity> goal);
+        DateTime? GetStartTime();
+        DateTime? GetTimeWhenResoucesGoalIsAchieved();
+        TimeSpan? GetSpentTime();
+        bool IsTimeGoalAchieved();
         IMapInfo GetMap();
     }
 }

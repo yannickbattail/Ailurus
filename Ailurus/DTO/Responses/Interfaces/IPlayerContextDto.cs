@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Ailurus.Model;
+using System;
 using System.Collections.Generic;
-using Ailurus.Model;
 
 namespace Ailurus.DTO.Responses.Interfaces
 {
@@ -10,7 +10,10 @@ namespace Ailurus.DTO.Responses.Interfaces
         string PlayerName { get; set; }
         int Level { get; set; }
         IEnumerable<ResourceQuantity> Resources { get; set; }
-        bool GoalAchieved { get; set; }
-        DateTime DateStart { get; set; }
+        bool IsResourceGoalAchieved { get; set; }
+        DateTime? StartTime { get; set; }
+        DateTime? TimeWhenResoucesGoalIsAchieved { get; set; }
+        TimeSpan? SpentTime { get; set; }
+        bool IsTimeGoalAchieved { get; set; }
     }
 }
