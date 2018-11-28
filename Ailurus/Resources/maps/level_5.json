@@ -1,7 +1,7 @@
 {
   "$type": "Ailurus.DTO.Responses.Implementations.MapInfo, Ailurus",
   "Name": "lvl1",
-  "Description": "Map level 2. Now you have to use both of the drones to finish in time. When achievement is ok you can execute this to go to the next level: ailurusApi.changeLevel(3, console.log, console.log);",
+  "Description": "Map level 5. With 3 resources: gold, silver and iron",
   "Dimensions": {
     "$type": "System.Tuple`2[[Ailurus.DTO.Requests.Interfaces.ICoordinate, Ailurus],[Ailurus.DTO.Requests.Interfaces.ICoordinate, Ailurus]], System.Private.CoreLib",
     "Item1": {
@@ -15,6 +15,11 @@
       "Y": 50
     }
   },
+  "DroneSpawnPoint": {
+    "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+    "X": 20,
+    "Y": 10
+  },
   "Mines": [
     {
       "$type": "Ailurus.DTO.Responses.Implementations.Mine, Ailurus",
@@ -22,10 +27,32 @@
       "Name": "Gold Mine",
       "Position": {
         "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
-        "X": 45,
+        "X": 5,
         "Y": 45
       },
       "ResourceType": "Gold"
+    },
+    {
+      "$type": "Ailurus.DTO.Responses.Implementations.Mine, Ailurus",
+      "TYPE": "Mine",
+      "Name": "Silver Mine",
+      "Position": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 45,
+        "Y": 5
+      },
+      "ResourceType": "Silver"
+    },
+    {
+      "$type": "Ailurus.DTO.Responses.Implementations.Mine, Ailurus",
+      "TYPE": "Mine",
+      "Name": "Iron Mine",
+      "Position": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 45,
+        "Y": 45
+      },
+      "ResourceType": "Iron"
     }
   ],
   "Factories": [
@@ -44,10 +71,20 @@
     {
       "$type": "Ailurus.Model.ResourceQuantity, Ailurus",
       "Resource": "Gold",
-      "Quantity": 40
+      "Quantity": 30
+    },
+    {
+      "$type": "Ailurus.Model.ResourceQuantity, Ailurus",
+      "Resource": "Silver",
+      "Quantity": 70
+    },
+    {
+      "$type": "Ailurus.Model.ResourceQuantity, Ailurus",
+      "Resource": "Iron",
+      "Quantity": 200
     }
   ],
-  "TimeLimitGoal": "00:04:55.0",
+  "TimeLimitGoal": "00:20:00.0",
   "InitialDrones": [
     {
       "$type": "Ailurus.Model.Drone, Ailurus",
@@ -65,6 +102,28 @@
       "Name": "Drone_2",
       "Speed": 1,
       "StorageSize": 10,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 21,
+        "Y": 11
+      }
+    },
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_3",
+      "Speed": 1,
+      "StorageSize": 10,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 20,
+        "Y": 10
+      }
+    },
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_4",
+      "Speed": 1,
+      "StorageSize": 11,
       "InitialPosition": {
         "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
         "X": 21,

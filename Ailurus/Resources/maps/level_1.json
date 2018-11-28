@@ -1,7 +1,7 @@
 {
   "$type": "Ailurus.DTO.Responses.Implementations.MapInfo, Ailurus",
   "Name": "lvl1",
-  "Description": "Map level 1. when achievement si ok you can execute this to go to the next level: ailurusApi.changeLevel(2, console.log, console.log);",
+  "Description": "Map level 1. When achievement is ok you can execute this to go to the next level: ailurusApi.changeLevel(2, console.log, console.log);",
   "Dimensions": {
     "$type": "System.Tuple`2[[Ailurus.DTO.Requests.Interfaces.ICoordinate, Ailurus],[Ailurus.DTO.Requests.Interfaces.ICoordinate, Ailurus]], System.Private.CoreLib",
     "Item1": {
@@ -47,7 +47,7 @@
       "Quantity": 40
     }
   ],
-  "TimeLimitGoal": "00:05:00.0",
+  "TimeLimitGoal": "00:10:00.0",
   "InitialDrones": [
     {
       "$type": "Ailurus.Model.Drone, Ailurus",

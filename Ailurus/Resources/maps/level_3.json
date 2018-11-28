@@ -1,0 +1,163 @@
+{
+  "$type": "Ailurus.DTO.Responses.Implementations.MapInfo, Ailurus",
+  "Name": "lvl1",
+  "Description": "Map level 3. And Now in the same time you have get 200gold but with 10 drones! When achievement is ok you can execute this to go to the next level: ailurusApi.changeLevel(3, console.log, console.log);",
+  "Dimensions": {
+    "$type": "System.Tuple`2[[Ailurus.DTO.Requests.Interfaces.ICoordinate, Ailurus],[Ailurus.DTO.Requests.Interfaces.ICoordinate, Ailurus]], System.Private.CoreLib",
+    "Item1": {
+      "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+      "X": 0,
+      "Y": 0
+    },
+    "Item2": {
+      "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+      "X": 50,
+      "Y": 50
+    }
+  },
+  "Mines": [
+    {
+      "$type": "Ailurus.DTO.Responses.Implementations.Mine, Ailurus",
+      "TYPE": "Mine",
+      "Name": "Gold Mine",
+      "Position": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 45,
+        "Y": 45
+      },
+      "ResourceType": "Gold"
+    }
+  ],
+  "Factories": [
+    {
+      "$type": "Ailurus.DTO.Responses.Implementations.Factory, Ailurus",
+      "TYPE": "Factory",
+      "Name": "Home",
+      "Position": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 4,
+        "Y": 4
+      }
+    }
+  ],
+  "ResourceGoal": [
+    {
+      "$type": "Ailurus.Model.ResourceQuantity, Ailurus",
+      "Resource": "Gold",
+      "Quantity": 200
+    }
+  ],
+  "TimeLimitGoal": "00:04:55.0",
+  "InitialDrones": [
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_1",
+      "Speed": 1,
+      "StorageSize": 10,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 20,
+        "Y": 10
+      }
+    },
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_2",
+      "Speed": 1,
+      "StorageSize": 10,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 21,
+        "Y": 11
+      }
+    },
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_3",
+      "Speed": 1,
+      "StorageSize": 10,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 21,
+        "Y": 11
+      }
+    },
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_4",
+      "Speed": 1,
+      "StorageSize": 10,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 21,
+        "Y": 11
+      }
+    },
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_5",
+      "Speed": 1,
+      "StorageSize": 10,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 21,
+        "Y": 11
+      }
+    },
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_6",
+      "Speed": 1,
+      "StorageSize": 10,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 21,
+        "Y": 11
+      }
+    },
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_7",
+      "Speed": 1,
+      "StorageSize": 10,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 21,
+        "Y": 11
+      }
+    },
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_8",
+      "Speed": 1,
+      "StorageSize": 10,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 21,
+        "Y": 11
+      }
+    },
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_9",
+      "Speed": 1,
+      "StorageSize": 10,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 21,
+        "Y": 11
+      }
+    },
+    {
+      "$type": "Ailurus.Model.Drone, Ailurus",
+      "Name": "Drone_10",
+      "Speed": 1,
+      "StorageSize": 10,
+      "InitialPosition": {
+        "$type": "Ailurus.DTO.Requests.Implementations.CoordinateInt2D, Ailurus",
+        "X": 21,
+        "Y": 11
+      }
+    }
+  ]
+}
