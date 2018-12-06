@@ -20,17 +20,23 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
   </ItemGroup>
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\js\ailurus-api.js" />
-    <_ContentIncludedByDefault Remove="wwwroot\js\ailurus-mocked-api.js" />
-    <_ContentIncludedByDefault Remove="wwwroot\js\fulgens.js" />
-    <_ContentIncludedByDefault Remove="wwwroot\js\FulgensMap.js" />
-    <_ContentIncludedByDefault Remove="wwwroot\js\main.js" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Update="Resources\maps\level_1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="Resources\maps\level_2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Resources\maps\level_3.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Resources\maps\level_4.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Resources\maps\level_5.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\v1\.empty">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

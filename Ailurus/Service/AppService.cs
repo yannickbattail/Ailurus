@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
 using Ailurus.DTO.Requests.Implementations;
 using Ailurus.DTO.Responses.Interfaces;
 using Ailurus.Mapper.Implementations;
 using Ailurus.Repository;
+using System;
+using System.Collections.Generic;
 
 namespace Ailurus.Service
 {
@@ -16,7 +16,7 @@ namespace Ailurus.Service
             var repo = GetPlayerContextRepository();
             return repo.PlayerExists(login.PlayerName, login.Pass);
         }
-        
+
         public static AppService GetAppService()
         {
             if (App == null)
@@ -25,11 +25,12 @@ namespace Ailurus.Service
             }
 
             return App;
-        }        
-        
+        }
+
         public IPlayerContextRepository GetPlayerContextRepository()
         {
             return new PlayerContextRepository();
+            //return new PlayerContextFileRepository();
         }
 
         public abstract IMapInfo GetMap(int mapLevel);

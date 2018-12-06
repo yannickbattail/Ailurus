@@ -17,6 +17,7 @@ namespace Ailurus.Model
         Double Speed { get; set; }
         int StorageSize { get; set; }
         ResourceQuantity Storage { get; }
+        IList<IInstruction> Instructions { get; set; }
         
         void AddInstruction(IInstruction instruction);
         void AbortLastInstruction();

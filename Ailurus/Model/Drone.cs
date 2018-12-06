@@ -11,7 +11,7 @@ namespace Ailurus.Model
     public class Drone: IDrone
     {
         public string Name { get; set; }
-        protected IList<IInstruction> Instructions { get; set; }
+        public IList<IInstruction> Instructions { get; set; }
         public double Speed { get; set; }
         public int StorageSize { get; set; }
         public ICoordinate InitialPosition { get; set; }

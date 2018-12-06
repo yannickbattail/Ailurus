@@ -8,13 +8,20 @@ namespace Ailurus.Repository
     public class PlayerContextFileRepository : IPlayerContextRepository
     {
         const string RootData = "data/v1/";
+        
+        private JsonSerializerSettings Settings = new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.Objects,
+            PreserveReferencesHandling = PreserveReferencesHandling.Objects 
+        };
+        
 
         public IPlayerContext GetPlayerContextByPlayerName(string playerName)
         {
             try
             {
                 var json = File.ReadAllText(GetFileName(playerName));
-                return JsonConvert.DeserializeObject<IPlayerContext>(json);
+                return JsonConvert.DeserializeObject<IPlayerContext>(json, Settings);
             }
             catch (Exception e)
             {
@@ -40,7 +47,7 @@ namespace Ailurus.Repository
 
         public void Save(IPlayerContext playerContext)
         {
-            var json = JsonConvert.SerializeObject(playerContext);
+            var json = JsonConvert.SerializeObject(playerContext, Settings);
             File.WriteAllText(GetFileName(playerContext.PlayerName), json);
         }
 
