@@ -5,7 +5,6 @@ namespace Ailurus.Model.Instructions
 {
     public abstract class AbstractInstruction : IInstruction
     {
-        [JsonIgnore]
         public IDrone Drone { get; protected set; }
         public string Type
         {

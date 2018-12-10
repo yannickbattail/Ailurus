@@ -29,8 +29,8 @@ namespace Ailurus.Service
 
         public IPlayerContextRepository GetPlayerContextRepository()
         {
-            return new PlayerContextRepository();
-            //return new PlayerContextFileRepository();
+            //return new PlayerContextRepository();
+            return new PlayerContextFileRepository();
         }
 
         public abstract IMapInfo GetMap(int mapLevel);

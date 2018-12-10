@@ -103,7 +103,7 @@ namespace Ailurus.Controllers
             }
             if (!App.CheckLogin(instructionSet.Login))
             {
-                return Forbid();
+                return Ok("Authentication failed");
             }
             return Ok(App.SendInstructions(instructionSet.Instructions, instructionSet.Login.PlayerName));
         }

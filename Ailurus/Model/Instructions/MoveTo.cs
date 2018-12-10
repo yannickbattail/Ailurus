@@ -7,7 +7,6 @@ namespace Ailurus.Model.Instructions
 {
     public class MoveTo : AbstractInstruction
     {
-        [JsonIgnore]
         public ICoordinate StartPosition { get; set; }
         public ICoordinate Destination { get; set; }
         
@@ -47,6 +46,8 @@ namespace Ailurus.Model.Instructions
             }
             return StartPosition.PathProgression(Destination, GetProgressionAt(time));
         }
+
+        public MoveTo() {}
         
         public MoveTo(IPlayerContext playerContext, IDrone drone, DateTime startedAt, ICoordinate source, ICoordinate destination)
         {

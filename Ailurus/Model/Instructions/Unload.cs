@@ -25,7 +25,9 @@ namespace Ailurus.Model.Instructions
             }
             protected set{}
         }
-
+        
+        public Unload(){}
+            
         public Unload(IPlayerContext playerContext, IDrone drone, DateTime startedAt)
         {
             var item = playerContext.GetMap().Factories.FirstOrDefault(
